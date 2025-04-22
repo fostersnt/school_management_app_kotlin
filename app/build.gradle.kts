@@ -83,13 +83,13 @@ dependencies {
 
     // Coroutines (Flow / StateFlow / Async)
     implementation(libs.kotlin.coroutines)
-//
-//    // Accompanist (optional for system UI control)
+
+    // Accompanist (optional for system UI control)
     implementation(libs.system.ui.controller)
-//
-//    // Gson (JSON parser)
+
+    // Gson (JSON parser)
     implementation(libs.gson.parser)
-//
-//    //Live Data
+
+    //Live Data
     implementation (libs.livedata.runtime)
 }
