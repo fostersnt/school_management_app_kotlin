@@ -65,31 +65,32 @@ dependencies {
 //    debugImplementation(libs.androidx.ui.tooling)
 
     // Lifecycle + ViewModel Compose support
-    implementation(libs.androidx.viewmodel.compose)
+//    implementation(libs.androidx.viewmodel.compose)
 
     // Hilt (Dependency Injection)
-    implementation(libs.hilt.dagger)
-//    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation)
-
-    // Retrofit (Networking)
+//    implementation(libs.hilt.dagger)
+////    kapt(libs.hilt.compiler)
+//    implementation(libs.hilt.navigation)
+//
+//    // Retrofit (Networking)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
-
-    // Room (Local Database)
-    implementation(libs.room.runtime)
-    implementation(libs.room.compiler)
-    implementation(libs.room.kapt)
-
-    // Coroutines (Flow / StateFlow / Async)
+//
+//    // Room (Local Database)
+//    implementation(libs.room.runtime)
+//    implementation(libs.room.compiler)
+//    implementation(libs.room.kapt)
+//
+//    // Coroutines (Flow / StateFlow / Async)
+////    THIS DEPENDENCY CAUSES DUPLICATION. IT SEEMS SAME/SIMILAR DEPENDENCY EXISTS
     implementation(libs.kotlin.coroutines)
-
-    // Accompanist (optional for system UI control)
-    implementation(libs.system.ui.controller)
-
-    // Gson (JSON parser)
+//
+//    // Accompanist (optional for system UI control)
+////    implementation(libs.system.ui.controller)
+//
+//    // Gson (JSON parser)
     implementation(libs.gson.parser)
-
-    //Live Data
+//
+//    //Live Data
     implementation (libs.livedata.runtime)
 }

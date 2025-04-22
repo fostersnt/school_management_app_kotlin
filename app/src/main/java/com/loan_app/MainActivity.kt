@@ -23,9 +23,9 @@ import com.loan_app.ui.view.post.SavePostScreen
 import com.loan_app.ui.view.post.SearchPostScreen
 import com.loan_app.ui.view.post.SinglePostScreen
 import com.loan_app.ui.viewmodel.PostViewModel
-import dagger.hilt.android.AndroidEntryPoint
+//import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val postViewModel by lazy { PostViewModel(PostRepository()) }
