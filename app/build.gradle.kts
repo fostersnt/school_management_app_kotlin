@@ -90,4 +90,7 @@ dependencies {
 
     // Gson (JSON parser)
     implementation("com.google.code.gson:gson:2.10.1")
+
+    //Live Data
+    implementation ("androidx.compose.runtime:runtime-livedata:1.6.1")
 }
