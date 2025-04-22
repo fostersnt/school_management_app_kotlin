@@ -11,14 +11,15 @@ import com.loan_app.ui.viewmodel.PostViewModel
 
 @Composable
 fun SavePostScreen(viewModel: PostViewModel) {
+    var url = remember { mutableStateOf("") }
     var title = remember { mutableStateOf("") }
     var content = remember { mutableStateOf("") }
 
     Column {
-        TextField(value = name, onValueChange = { name = it }, label = { Text("Name") })
-        TextField(value = email, onValueChange = { email = it }, label = { Text("Email") })
+        TextField(value = "title", onValueChange = { title.value = it }, label = { Text("Name") })
+        TextField(value = "content", onValueChange = { content.value = it }, label = { Text("Email") })
 
-        Button(onClick = { viewModel.(name, email) }) {
+        Button(onClick = { viewModel.createPost(url.value, title.value, content.value) }) {
             Text("Submit")
         }
     }

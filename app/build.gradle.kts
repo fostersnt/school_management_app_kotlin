@@ -59,38 +59,37 @@ dependencies {
 
     //ADDED DEPENDENCIES
     // Jetpack Compose
-    implementation("androidx.compose.ui:ui:1.6.0")
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.0")
+//    implementation(libs.androidx.ui) //androidx.ui is coming from the libs.versions.toml
+//    implementation(libs.androidx.material3)
+//    implementation(libs.androidx.ui.tooling.preview)
+//    debugImplementation(libs.androidx.ui.tooling)
 
     // Lifecycle + ViewModel Compose support
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation(libs.androidx.viewmodel.compose)
 
     // Hilt (Dependency Injection)
-    implementation("com.google.dagger:hilt-android:2.50")
-//    kapt("com.google.dagger:hilt-compiler:2.50")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.hilt.dagger)
+    implementation(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
 
     // Retrofit (Networking)
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter)
 
     // Room (Local Database)
-    implementation("androidx.room:room-runtime:2.6.1")
-//    kapt("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    implementation(libs.room.kapt)
 
     // Coroutines (Flow / StateFlow / Async)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-
-    // Accompanist (optional for system UI control)
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.34.0")
-
-    // Gson (JSON parser)
-    implementation("com.google.code.gson:gson:2.10.1")
-
-    //Live Data
-    implementation ("androidx.compose.runtime:runtime-livedata:1.6.1")
+    implementation(libs.kotlin.coroutines)
+//
+//    // Accompanist (optional for system UI control)
+    implementation(libs.system.ui.controller)
+//
+//    // Gson (JSON parser)
+    implementation(libs.gson.parser)
+//
+//    //Live Data
+    implementation (libs.livedata.runtime)
 }
