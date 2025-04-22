@@ -69,7 +69,7 @@ dependencies {
 
     // Hilt (Dependency Injection)
     implementation(libs.hilt.dagger)
-    implementation(libs.hilt.compiler)
+//    kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
 
     // Retrofit (Networking)
@@ -78,7 +78,7 @@ dependencies {
 
     // Room (Local Database)
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
+    implementation(libs.room.compiler)
     implementation(libs.room.kapt)
 
     // Coroutines (Flow / StateFlow / Async)
