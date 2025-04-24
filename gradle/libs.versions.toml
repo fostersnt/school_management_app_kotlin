@@ -10,10 +10,10 @@ activityCompose = "1.10.1"
 composeBom = "2025.04.00"
 viewModelVersion = "2.8.7"
 retrofitVersion = "2.9.0"
-hiltVersion = "2.50"
-#hiltCompilerVersion = "2.56.1"
+hiltVersion = "2.56.1"
+hiltCompilerVersion = "2.56.1"
 hiltNavigationVersion = "1.2.0"
-roomDatabaseVersion = "2.7.0"
+roomDatabaseVersion = "2.7.1"
 coroutinesVersion = "1.7.3"
 uiControllerVersion = "0.34.0"
 gsonVersion = "2.10.1"
@@ -38,28 +38,27 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 ## PERSONALY ADDED DEPENDENCIES
 #
 ## Hilt dependencies
-#hilt-dagger = {module = "com.google.dagger:hilt-android", name = "hilt-dagger", version.ref = "hiltVersion"}
-##hilt-compiler = {module = "com.google.dagger:hilt-compiler", name = "hilt-compiler", version.ref = "hiltCompilerVersion"}
-#hilt-navigation = {module = "androidx.hilt:hilt-navigation-compose", name = "hilt-navigation", version.ref = "hiltNavigationVersion"}
+hilt-dagger = {module = "com.google.dagger:hilt-android", name = "hilt-dagger", version.ref = "hiltVersion"}
+hilt-compiler = {module = "com.google.dagger:hilt-compiler", name = "hilt-compiler", version.ref = "hiltCompilerVersion"}
+hilt-navigation = {module = "androidx.hilt:hilt-navigation-compose", name = "hilt-navigation", version.ref = "hiltNavigationVersion"}
 #
 ## ViewModel dependency
-#androidx-viewmodel-compose = {module = "androidx.lifecycle:lifecycle-viewmodel-compose", name = "viewmodel", version.ref = "viewModelVersion"}
-#
+androidx-viewmodel-compose = {module = "androidx.lifecycle:lifecycle-viewmodel-compose", name = "viewmodel", version.ref = "viewModelVersion"}
+
 ##Retrofit dependencies
 retrofit = {module = "com.squareup.retrofit2:retrofit", name = "retrofit", version.ref = "retrofitVersion"}
 retrofit-converter = {module = "com.squareup.retrofit2:converter-gson", name = "retrofit-converter", version.ref = "retrofitVersion"}
-#
-## Room (Local Database)
-#room-runtime = {module = "androidx.room:room-runtime", name = "androidx-room-runtime", version.ref = "roomDatabaseVersion"}
-#room-compiler = {module = "androidx.room:room-ktx", name = "androidx-room-compiler", version.ref = "roomDatabaseVersion"}
-#room-kapt = {module = "androidx.room:room-compiler", name = "androidx-room-kapt", version.ref = "roomDatabaseVersion"}
-#
+
+# Room (Local Database)
+room-runtime = {module = "androidx.room:room-runtime", name = "androidx-room-runtime", version.ref = "roomDatabaseVersion"}
+room-compiler = {module = "androidx.room:room-ktx", name = "androidx-room-compiler", version.ref = "roomDatabaseVersion"}
+
 ## Coroutines (Flow / StateFlow / Async)
 ## THIS DEPENDENCY CAUSES DUPLICATION. IT SEEMS SAME/SIMILAR DEPENDENCY EXISTS
  kotlin-coroutines = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", name = "kotlin-coroutines", version.ref = "coroutinesVersion"}
 
 ## Accompanist (optional for system UI control)
-#system-ui-controller = {module = "com.google.accompanist:accompanist-systemuicontroller", name = "system-ui-controller", version.ref = "uiControllerVersion"}
+system-ui-controller = {module = "com.google.accompanist:accompanist-systemuicontroller", name = "system-ui-controller", version.ref = "uiControllerVersion"}
 
 ## Gson (JSON parser)
 gson-parser = {module = "com.google.code.gson:gson", name = "gson-parser", version.ref = "gsonVersion"}
@@ -71,4 +70,4 @@ livedata-runtime = {module = "androidx.compose.runtime:runtime-livedata", name =
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+kotlin-Kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }

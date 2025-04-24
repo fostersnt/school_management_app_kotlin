@@ -9,10 +9,12 @@ import com.loan_app.ui.viewmodel.PostViewModel
 @Composable
 fun SinglePostScreen(viewModel: PostViewModel, postId: Int) {
     LaunchedEffect(Unit) { viewModel.fetchPost(postId) }
-    val post = viewModel.post.observeAsState()
+    val post = viewModel.post.observeAsState().value
 
-//    post?.let {
-        Text("Name: ${post.value?.title}")
-        Text("Email: ${post.value?.content}")
-//    } ?: Text("Loading...")
+    if (post != null){
+        Text("Name: ${post.title}")
+        Text("Email: ${post.content}")
+    }else{
+        Text("Loading...")
+    }
 }

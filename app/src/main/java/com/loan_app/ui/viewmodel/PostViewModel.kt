@@ -15,7 +15,7 @@ class PostViewModel (private val repository: PostRepository) : ViewModel() {
     val searchResults = MutableLiveData<List<Post>>()
 //    val searchResults: LiveData<List<Post>> = _searchResults
 
-        var post =  MutableLiveData<Post?>(null)
+        var post =  MutableLiveData<Post>(null)
         var posts = MutableLiveData<List<Post>>(emptyList())
 //        var searchResults  = MutableLiveData<List<Post>>(emptyList())
 

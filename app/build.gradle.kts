@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -65,29 +66,28 @@ dependencies {
 //    debugImplementation(libs.androidx.ui.tooling)
 
     // Lifecycle + ViewModel Compose support
-//    implementation(libs.androidx.viewmodel.compose)
+    implementation(libs.androidx.viewmodel.compose)
 
     // Hilt (Dependency Injection)
-//    implementation(libs.hilt.dagger)
-////    kapt(libs.hilt.compiler)
-//    implementation(libs.hilt.navigation)
+    implementation(libs.hilt.dagger)
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
 //
 //    // Retrofit (Networking)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
 //
-//    // Room (Local Database)
-//    implementation(libs.room.runtime)
-//    implementation(libs.room.compiler)
-//    implementation(libs.room.kapt)
-//
-//    // Coroutines (Flow / StateFlow / Async)
+    // Room (Local Database)
+    implementation(libs.room.runtime)
+    implementation(libs.room.compiler)
+
+    // Coroutines (Flow / StateFlow / Async)
 ////    THIS DEPENDENCY CAUSES DUPLICATION. IT SEEMS SAME/SIMILAR DEPENDENCY EXISTS
     implementation(libs.kotlin.coroutines)
 //
-//    // Accompanist (optional for system UI control)
-////    implementation(libs.system.ui.controller)
-//
+    // Accompanist (optional for system UI control)
+    implementation(libs.system.ui.controller)
+
 //    // Gson (JSON parser)
     implementation(libs.gson.parser)
 //
