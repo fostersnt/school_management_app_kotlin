@@ -58,6 +58,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //SPLASHSCREEN
+    implementation(libs.androidx.splash.screen)
+
     //ADDED DEPENDENCIES
     // Jetpack Compose
 //    implementation(libs.androidx.ui) //androidx.ui is coming from the libs.versions.toml

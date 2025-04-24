@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.loan_app.data.model.Post
 //import androidx.hilt.navigation.compose.hiltViewModel
 import com.loan_app.data.repository.PostRepository
@@ -42,6 +43,7 @@ class MainActivity : ComponentActivity() {
     private val postViewModel by lazy { PostViewModel(PostRepository()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {

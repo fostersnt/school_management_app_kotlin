@@ -18,6 +18,7 @@ coroutinesVersion = "1.7.3"
 uiControllerVersion = "0.34.0"
 gsonVersion = "2.10.1"
 liveDataVersion = "1.7.8"
+splashscreen = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +35,8 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+androidx-splash-screen = {module = "androidx.core:core-splashscreen", name = "androidx-splash-screen", version.ref = "splashscreen"}
 
 ## PERSONALY ADDED DEPENDENCIES
 #
