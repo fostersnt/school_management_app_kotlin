@@ -16,5 +16,7 @@
     <color name="warning_color">#F2C94C</color>
     <color name="danger_color">#EB5757</color>
     <color name="info_color">#2D9CDB</color>
+    <color name="border_color">#4A4A6A</color>
+<!--    <color name="shadow_color">rgba(255, 255, 255, 0.05)</color>-->
     <color name="splash_background">#1C1735</color>
 </resources>

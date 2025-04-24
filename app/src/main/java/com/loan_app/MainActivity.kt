@@ -31,6 +31,7 @@ import com.loan_app.data.model.Post
 //import androidx.hilt.navigation.compose.hiltViewModel
 import com.loan_app.data.repository.PostRepository
 import com.loan_app.ui.theme.Loan_AppTheme
+import com.loan_app.ui.view.LoginScreen
 import com.loan_app.ui.view.post.AllPostsScreen
 import com.loan_app.ui.view.post.SavePostScreen
 import com.loan_app.ui.view.post.SearchPostScreen
@@ -48,11 +49,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 //            Loan_AppTheme {
-                Scaffold { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface {
+                    InitialScreen()
 //                }
             }
 
@@ -68,25 +66,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.fillMaxSize()
-        .background(Color(0xFFBB86FC)),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-        ) {
-        Text(
-            text = "Hello $name!",
-//            color = Color.White,
-            modifier = modifier.clickable { Log.i("TAG", "Welcome: $name!") },
-        )
-    }
-}
+//@Composable
+//fun (name: String, modifier: Modifier = Modifier) {
+//    LoginScreen()
+//}
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun InitialScreen() {
 //    Loan_AppTheme {
-        Greeting("Android")
+        LoginScreen()
 //    }
 }
