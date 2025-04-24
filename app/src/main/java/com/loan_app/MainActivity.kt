@@ -6,18 +6,25 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 //import androidx.compose.foundation.layout.fillMaxSize
 //import androidx.compose.foundation.layout.padding
 //import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.loan_app.data.model.Post
 //import androidx.hilt.navigation.compose.hiltViewModel
 import com.loan_app.data.repository.PostRepository
 import com.loan_app.ui.theme.Loan_AppTheme
@@ -30,7 +37,6 @@ import com.loan_app.ui.viewmodel.PostViewModel
 
 //@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     private val postViewModel by lazy { PostViewModel(PostRepository()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,36 +44,41 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 //            Loan_AppTheme {
-//                Scaffold (modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
+                Scaffold(modifier = Modifier.fillMaxSize()
+                    .background(Color.Red)) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+//                }
+            }
+
+//            Surface(modifier = Modifier.fillMaxSize().fillMaxWidth().fillMaxHeight()) {
+//                Column(modifier = Modifier.fillMaxSize()) {
+////                SinglePostScreen(postViewModel, 1)
+////                AllPostsScreen(postViewModel)
+////                SavePostScreen(postViewModel)
+////                SearchPostScreen(postViewModel)
 //                }
 //            }
-
-            Column {
-                SinglePostScreen(postViewModel, 1)
-//                AllPostsScreen(postViewModel)
-                SavePostScreen(postViewModel)
-                SearchPostScreen(postViewModel)
-            }
         }
     }
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier.clickable { Log.i("TAG", "Welcome: $name!") },
-    )
+    Column{
+        Text(
+            text = "Hello $name!",
+            modifier = modifier.clickable { Log.i("TAG", "Welcome: $name!") },
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Loan_AppTheme {
+//    Loan_AppTheme {
         Greeting("Android")
-    }
+//    }
 }
