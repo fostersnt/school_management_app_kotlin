@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
             Column {
                 SinglePostScreen(postViewModel, 1)
-                AllPostsScreen(postViewModel)
+//                AllPostsScreen(postViewModel)
                 SavePostScreen(postViewModel)
                 SearchPostScreen(postViewModel)
             }

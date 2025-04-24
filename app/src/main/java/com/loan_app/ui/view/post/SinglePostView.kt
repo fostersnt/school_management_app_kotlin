@@ -1,5 +1,6 @@
 package com.loan_app.ui.view.post
 
+import android.util.Log
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,13 +9,15 @@ import com.loan_app.ui.viewmodel.PostViewModel
 
 @Composable
 fun SinglePostScreen(viewModel: PostViewModel, postId: Int) {
-    LaunchedEffect(Unit) { viewModel.fetchPost(postId) }
-    val post = viewModel.post.observeAsState().value
+        LaunchedEffect(Unit) { viewModel.fetchPost(postId) }
+        val post = viewModel.post.observeAsState().value
 
-    if (post != null){
-        Text("Name: ${post.title}")
-        Text("Email: ${post.content}")
-    }else{
-        Text("Loading...")
-    }
+//    Log.i("SinglePostScreen", "$post?.let { post.title }")
+
+        if (post != null){
+            Text("Name: ${post.title}")
+            Text("Email: ${post.content}")
+        }else{
+            Text("Loading...")
+        }
 }
