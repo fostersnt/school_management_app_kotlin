@@ -70,14 +70,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.fillMaxSize()
-        .background(Color.Blue),
+    Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
         ) {
         Text(
             text = "Hello $name!",
-            color = Color.White,
+//            color = Color.White,
             modifier = modifier.clickable { Log.i("TAG", "Welcome: $name!") },
         )
     }
