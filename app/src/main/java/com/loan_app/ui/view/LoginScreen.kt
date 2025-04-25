@@ -111,6 +111,7 @@ val msisdnData = viewModel.getMsisdn();
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF3A39FF)
                     ),
+                    shape = RoundedCornerShape(10.dp),
                     onClick = { Log.i("LoginScreen", "LoginScreen: ")},
                     content = { Text(text = "Send OTP", modifier = Modifier.padding(20.dp)) },
                     modifier = Modifier.fillMaxWidth()
