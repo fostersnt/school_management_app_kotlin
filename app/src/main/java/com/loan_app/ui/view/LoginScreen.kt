@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -71,9 +72,9 @@ val msisdnData = viewModel.getMsisdn();
             Text(
                 text = "Get started with your phone number",
                 style = TextStyle(
+                    fontWeight = FontWeight.Bold,
                 color = Color.White,
-                fontSize = 30.sp,
-                    textAlign = TextAlign.Center
+                fontSize = 30.sp, textAlign = TextAlign.Center
                 ),
             )
             Column(
@@ -99,11 +100,13 @@ val msisdnData = viewModel.getMsisdn();
                         Text(
                             text = "+233 |",
                             fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(10.dp),
                         )
                     },
                     textStyle = TextStyle(
                         fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 )
                 //Button ----------
@@ -113,7 +116,13 @@ val msisdnData = viewModel.getMsisdn();
                     ),
                     shape = RoundedCornerShape(10.dp),
                     onClick = { viewModel.otpTrigger() },
-                    content = { Text(text = "Send OTP", modifier = Modifier.padding(20.dp)) },
+                    content = {
+                        Text(
+                            text = "Send OTP",
+                            modifier = Modifier.padding(20.dp),
+                            fontWeight = FontWeight.Bold
+                        )
+                              },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
