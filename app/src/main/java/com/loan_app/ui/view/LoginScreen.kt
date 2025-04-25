@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.loan_app.ui.view.components.CustomButton
+import com.loan_app.ui.view.components.CustomOutlinedTextField
+import com.loan_app.ui.view.components.LeadingContentItem
 import com.loan_app.ui.viewmodel.LoginViewModel
 
 @Preview(showBackground = true)
@@ -84,33 +86,9 @@ val msisdnData = viewModel.getMsisdn();
                 modifier = Modifier.fillMaxHeight(0.5f)
             ) {
                 //Input field --------------
-                OutlinedTextField(
-                    singleLine = true,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp),
-                    shape = RoundedCornerShape(10.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color(0XFFFFFFFF),
-                        unfocusedContainerColor = Color(0XFFE5E5F0),
-                        focusedPlaceholderColor = Color(0xFFEB5757)
-                    ),
-                    value = "${msisdnData.value}",
-                    onValueChange = { input -> viewModel.onMsisdnChanged(input) },
-                    leadingIcon = {
-                        Text(
-                            text = "+233 |",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(10.dp),
-                        )
-                    },
-                    textStyle = TextStyle(
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-                CustomButton("Send OTP", 20, 1f, {})
+//                val viewModel: LoginViewModel = viewModel();
+                CustomOutlinedTextField("", { LeadingContentItem() }, viewModel.getMsisdn(), {})
+                CustomButton("Send OTP", 20, 1f, {viewModel.otpTrigger()})
             }
         }
     }
