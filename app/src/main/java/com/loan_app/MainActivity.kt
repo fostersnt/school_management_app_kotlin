@@ -49,10 +49,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 //            Loan_AppTheme {
-                Surface {
                     InitialScreen()
 //                }
-            }
 
 //            Surface(modifier = Modifier.fillMaxSize().fillMaxWidth().fillMaxHeight()) {
 //                Column(modifier = Modifier.fillMaxSize()) {
@@ -75,6 +73,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun InitialScreen() {
 //    Loan_AppTheme {
+    Surface(modifier = Modifier.fillMaxSize()) {
         LoginScreen()
+    }
 //    }
 }
