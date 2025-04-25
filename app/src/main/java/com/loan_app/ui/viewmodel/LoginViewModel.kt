@@ -11,7 +11,7 @@ class LoginViewModel () : ViewModel() {
 
     fun onMsisdnChanged(newMsisdn: String) {
         msisdn.value = newMsisdn
-        Log.i("LoginScreen", "CURRENT TEXT: $newMsisdn")
+        Log.i("LoginViewModel", "CURRENT TEXT: $newMsisdn")
     }
 
     /*

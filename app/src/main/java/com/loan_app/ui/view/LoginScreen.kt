@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,8 +37,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.loan_app.ui.view.components.CustomButton
 import com.loan_app.ui.view.components.CustomOutlinedTextField
-import com.loan_app.ui.view.components.LeadingContentItem
 import com.loan_app.ui.viewmodel.LoginViewModel
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Preview(showBackground = true)
 @Composable
@@ -57,39 +58,45 @@ viewModel.msisdn.observeAsState().value;
     */
 val msisdnData = viewModel.getMsisdn();
 
-    Column(modifier = Modifier
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
         .fillMaxSize()
 //        .fillMaxHeight(0.8f)
-        .background(
-            Color(0xFF262053)
-        ),
+        .background(Color(0xFF262053))
+            .padding(20.dp),
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight(0.6f)
-                .padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceAround
-        ) {
-            //Text ----------------
-            Text(
-                text = "Get started with your phone number",
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
+        Text(
+            text = "Get started with your phone number",
+            style = TextStyle(
+                fontWeight = FontWeight.Bold,
                 color = Color.White,
                 fontSize = 30.sp, textAlign = TextAlign.Center
-                ),
-            )
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxHeight(0.5f)
-            ) {
-                //Input field --------------
-//                val viewModel: LoginViewModel = viewModel();
-                CustomOutlinedTextField("", { LeadingContentItem() }, viewModel.getMsisdn(), {})
-                CustomButton("Send OTP", 20, 1f, {viewModel.otpTrigger()})
-            }
-        }
+            ),
+        )
+        //Adding space
+        Spacer(modifier = Modifier.padding(bottom = 20.dp))
+        //Input field
+        CustomOutlinedTextField(
+            "",
+            { LeadingContentItem() },
+            viewModel.msisdn,
+            {viewModel.onMsisdnChanged(msisdnData.value.toString())}
+        )
+        //Space
+        Spacer(modifier = Modifier.padding(bottom = 20.dp))
+        //
+        CustomButton("Send OTP", 20, 1f, {viewModel.otpTrigger()})
     }
+}
+
+@Composable
+fun LeadingContentItem(){
+    Text(
+        text = "+233 |",
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(10.dp),
+    )
 }
