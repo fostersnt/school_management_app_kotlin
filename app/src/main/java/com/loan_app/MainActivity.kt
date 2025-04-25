@@ -32,6 +32,7 @@ import com.loan_app.data.model.Post
 import com.loan_app.data.repository.PostRepository
 import com.loan_app.ui.theme.Loan_AppTheme
 import com.loan_app.ui.view.LoginScreen
+import com.loan_app.ui.view.home.MainHomeScreen
 import com.loan_app.ui.view.post.AllPostsScreen
 import com.loan_app.ui.view.post.SavePostScreen
 import com.loan_app.ui.view.post.SearchPostScreen
@@ -48,10 +49,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            Loan_AppTheme {
-                    InitialScreen()
-//                }
-
+//                    InitialScreen()
+        MainHomeScreen()
 //            Surface(modifier = Modifier.fillMaxSize().fillMaxWidth().fillMaxHeight()) {
 //                Column(modifier = Modifier.fillMaxSize()) {
 ////                SinglePostScreen(postViewModel, 1)
