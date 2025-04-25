@@ -21,4 +21,8 @@ class LoginViewModel () : ViewModel() {
     fun  getMsisdn(): LiveData<String>{
         return msisdn;
     }
+
+    fun otpTrigger(): Unit{
+        Log.i("OTP TRIGGER", "User phone number === ${msisdn.value}")
+    }
 }
