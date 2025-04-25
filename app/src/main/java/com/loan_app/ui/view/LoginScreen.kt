@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.loan_app.ui.view.components.CustomButton
 import com.loan_app.ui.viewmodel.LoginViewModel
 
 @Preview(showBackground = true)
@@ -109,22 +110,7 @@ val msisdnData = viewModel.getMsisdn();
                         fontWeight = FontWeight.Bold
                     )
                 )
-                //Button ----------
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF3A39FF)
-                    ),
-                    shape = RoundedCornerShape(10.dp),
-                    onClick = { viewModel.otpTrigger() },
-                    content = {
-                        Text(
-                            text = "Send OTP",
-                            modifier = Modifier.padding(20.dp),
-                            fontWeight = FontWeight.Bold
-                        )
-                              },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                CustomButton("Send OTP", 20, 1f, {})
             }
         }
     }
