@@ -1,4 +1,4 @@
-package com.loan_app.ui.view.home
+package com.loan_app.ui.view.navigation
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable

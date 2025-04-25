@@ -1,15 +1,12 @@
-package com.loan_app.ui.view.home
+package com.loan_app.ui.view.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.loan_app.ui.view.LoginScreen
 
 
@@ -27,6 +24,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
             LoginScreen()
         }
         composable(route = "settings") {
+            LoginScreen()
+        }
+        composable(route = "Loans") {
             LoginScreen()
         }
         // Add other routes as needed
