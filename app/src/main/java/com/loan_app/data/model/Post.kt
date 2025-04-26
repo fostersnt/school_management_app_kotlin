@@ -3,7 +3,7 @@ package com.loan_app.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "posts")
 data class Post(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

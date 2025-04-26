@@ -1,17 +1,33 @@
 package com.loan_app.data.local.repository
 
 import com.loan_app.data.local.database.AppDatabase
+import com.loan_app.data.model.Post
+import com.loan_app.data.model.User
 
-class LocalBaseRepository<T>(private val db: AppDatabase<T>) {
-    suspend fun upsertData(dataItem: T){
-        db.AppDao.insertOrUpdate(dataItem)
+class LocalBaseRepository(private val db: AppDatabase) {
+    //--------------POST ACTIONS-----------------------
+    suspend fun upsertPostRecord(data: Post){
+        db.appDao.insertOrUpdatePost(data)
     }
 
-    suspend fun deleteRecord(dataItem: T){
-        db.AppDao.deleteRecord(dataItem)
+    suspend fun deletePostRecord(data: Post){
+        db.appDao.deletePostRecord(data)
     }
 
-    fun getAllDataItems(){
-        db.AppDao.retrieveRecords()
+    fun getPostRecords(){
+        db.appDao.getPostRecords()
+    }
+
+    //--------------USER ACTIONS-----------------------
+    suspend fun upsertUserRecord(data: User){
+        db.appDao.insertOrUpdateUser(data)
+    }
+
+    suspend fun deletePostRecord(data: User){
+        db.appDao.deleteUserRecord(data)
+    }
+
+    fun getUserRecords(){
+        db.appDao.getUserRecords()
     }
 }

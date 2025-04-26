@@ -10,13 +10,24 @@ import com.loan_app.data.model.User
 import com.loan_app.data.repository_base.DatabaseOperations
 
 @Dao
-interface BaseDao <T> {
+interface BaseDao {
+   //-----------POST ACTIONS ------------------
    @Upsert
-   suspend fun insertOrUpdate(item: T)
+   suspend fun insertOrUpdatePost(data: Post)
 
    @Delete
-   suspend fun deleteRecord(item: T)
+   suspend fun deletePostRecord(data: Post)
+
+   @Query("SELECT * FROM posts")
+   fun getPostRecords()
+
+   //-----------USER ACTIONS ------------------
+   @Upsert
+   suspend fun insertOrUpdateUser(data: User)
+
+   @Delete
+   suspend fun deleteUserRecord(data: User)
 
    @Query("SELECT * FROM users")
-   fun retrieveRecords()
+   fun getUserRecords()
 }

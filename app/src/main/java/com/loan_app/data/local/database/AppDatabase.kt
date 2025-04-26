@@ -6,6 +6,6 @@ import com.loan_app.data.model.Post
 import com.loan_app.data.model.User
 
 @Database(entities = [Post::class, User::class], version = 1)
-abstract class AppDatabase<T>: RoomDatabase() {
-abstract val  AppDao: BaseDao<T>
+abstract class AppDatabase: RoomDatabase() {
+abstract val  appDao: BaseDao
 }
