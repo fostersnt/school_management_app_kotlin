@@ -1,7 +1,6 @@
-package com.loan_app.data.repository
+package com.loan_app.data.local.repository
 
-import com.loan_app.data.model.Post
-import com.loan_app.data.model.PostPostData
+import com.loan_app.data.model.ApiPostData
 import com.loan_app.data.network.RetrofitInstance
 
 class PostRepository {
@@ -9,6 +8,6 @@ class PostRepository {
 
     suspend fun getPost(id: Int) = api.getPostData(id)
     suspend fun getPosts() = api.getPosts()
-    suspend fun savePostData(post: PostPostData) = api.savePostData(post)
+    suspend fun savePostData(post: ApiPostData) = api.savePostData(post)
     suspend fun searchPost(query: String) = api.searchPost(query)
 }

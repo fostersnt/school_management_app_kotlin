@@ -3,11 +3,10 @@ package com.loan_app.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class Post(
+@Entity(tableName = "users")
+data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val url: String,
-    val title: String,
-    val content: String
+    val firstname: String,
+    val lastname: String
 )

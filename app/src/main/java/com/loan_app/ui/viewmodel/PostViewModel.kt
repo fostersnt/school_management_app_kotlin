@@ -1,14 +1,11 @@
 package com.loan_app.ui.viewmodel
 
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.loan_app.data.model.Post
-import com.loan_app.data.model.PostPostData
-import com.loan_app.data.repository.PostRepository
+import com.loan_app.data.model.ApiPostData
+import com.loan_app.data.local.repository.PostRepository
 import kotlinx.coroutines.launch
 
 class PostViewModel (private val repository: PostRepository) : ViewModel() {
@@ -39,7 +36,7 @@ class PostViewModel (private val repository: PostRepository) : ViewModel() {
 
         fun createPost(url: String, title: String, content: String) {
             viewModelScope.launch {
-                val response = repository.savePostData(PostPostData(url, title, content))
+                val response = repository.savePostData(ApiPostData(url, title, content))
                 if (response.isSuccessful) {
                     fetchPosts()  // Refresh list
                 }

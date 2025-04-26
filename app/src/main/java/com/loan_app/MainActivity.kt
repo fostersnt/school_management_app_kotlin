@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 //import androidx.hilt.navigation.compose.hiltViewModel
-import com.loan_app.data.repository.PostRepository
+import com.loan_app.data.local.repository.PostRepository
 import com.loan_app.ui.view.LoginScreen
 import com.loan_app.ui.view.navigation.MainHomeScreen
 import com.loan_app.ui.viewmodel.PostViewModel
