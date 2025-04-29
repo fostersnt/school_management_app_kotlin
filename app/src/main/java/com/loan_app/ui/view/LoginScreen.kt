@@ -57,9 +57,10 @@ val msisdnData = viewModel.getMsisdn();
                 colors = listOf(Color(0xFFff3779), Color(0xFF0d0551)),
 //                colors = listOf(Color.Red, Color(0xFF262053)),
 //                colors = listOf(Color(0xFF42A5F5), Color(0xFF262053)),
+//                start = Offset(500f, 500f), //NICE ONE
+//                end = Offset(1000f, 1000f),
                 start = Offset(500f, 500f),
-                end = Offset(1000f, 1000f)
-//                colors = listOf(Color(0xFF42A5F5), Color(0xFF478DE0)) // Blue shades
+                end = Offset(950f, 1000f)
             ))
             .padding(20.dp),
     ) {
