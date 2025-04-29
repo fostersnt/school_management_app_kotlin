@@ -55,8 +55,7 @@ val msisdnData = viewModel.getMsisdn();
     ) {
         Text(
             text = "Get started with your phone number",
-//            text = "laboriosam",
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineLarge,
         )
         //Adding space
         Spacer(modifier = Modifier.padding(bottom = 20.dp))

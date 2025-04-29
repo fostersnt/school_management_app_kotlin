@@ -1,10 +1,12 @@
 package com.loan_app.ui.view.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,13 +28,11 @@ fun CustomButton(buttonText: String, paddingValue: Int, btnWidth: Float, btnActi
         content = {
             Text(
                 text = buttonText,
-//                modifier = Modifier.padding(paddingValue.dp),
-//                fontFamily = customFontFamily(),
-//                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
+                style = MaterialTheme.typography.labelLarge
             )
         },
         modifier = Modifier.fillMaxWidth(btnWidth)
+            .height(80.dp)
     )
 }
 

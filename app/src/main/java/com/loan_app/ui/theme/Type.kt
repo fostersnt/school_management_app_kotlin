@@ -20,12 +20,21 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),
     // Other default text styles to override
-    titleLarge = TextStyle(
+    headlineLarge = TextStyle(
         fontFamily = customFontFamily(),
         fontWeight = FontWeight.Light,
         fontSize = 30.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp,
+        color = Color.White,
+        textAlign = TextAlign.Center
+    ),
+    labelLarge = TextStyle(
+        fontFamily = customFontFamily(),
+        fontWeight = FontWeight.Light,
+        fontSize = 20.sp,
+//        lineHeight = 28.sp,
+//        letterSpacing = 0.sp,
         color = Color.White,
         textAlign = TextAlign.Center
     ),
