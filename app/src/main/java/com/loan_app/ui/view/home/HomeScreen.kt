@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,8 +39,8 @@ import com.loan_app.utilities.customFontFamily
 fun HomeScreen(){
     Column(
         modifier = Modifier.fillMaxSize()
-        .background(brush = Brush.linearGradient(listOf(Color(0xFFff3779), Color(0xFF0d0551))))
-        .padding(top = 100.dp)
+        .background(Color(0xFFff3779))
+        .padding(top = 80.dp)
         .clip(RoundedCornerShape(16.dp)) // Apply rounded corners
         .background(Color.White)      // Background to make it visible
         .padding(10.dp)
@@ -59,7 +60,10 @@ fun HomeScreen(){
         }
         Card(
             modifier = Modifier.fillMaxWidth()
-                .height(200.dp),
+                .height(200.dp)
+                .align(
+                    alignment = Alignment.Start
+                ),
 //            colors = CardDefaults.cardColors(containerColor = Color.Green),
 //            shape = RoundedCornerShape(20.dp),
             elevation = CardDefaults.cardElevation(
@@ -67,15 +71,32 @@ fun HomeScreen(){
                 pressedElevation = 6.dp
             )
         ){
-            Text(
-                text = "Hi Foster",
-                modifier = Modifier.padding(10.dp),
-                style = TextStyle(
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFff3779)),
+//                    .background(Color(0xFF0d0551)),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "Wallet Balance",
                     fontFamily = customFontFamily(),
                     fontWeight = FontWeight.Light,
-                    fontSize = 20.sp
+                    fontSize = 20.sp,
+                    color = Color.White
                 )
-            )
+                Spacer(modifier = Modifier.padding(vertical = 10.dp))
+                Text(
+                    "GHs 5,000.00",
+                    style = TextStyle(
+                        fontFamily = customFontFamily(),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 30.sp,
+                        color = Color.White
+                    )
+                )
+            }
         }
     }
 }
