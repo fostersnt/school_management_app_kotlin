@@ -88,8 +88,7 @@ val msisdnData = viewModel.getMsisdn();
 fun LeadingContentItem(){
     Text(
         text = "+233 |",
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
+        style = MaterialTheme.typography.labelMedium,
         modifier = Modifier.padding(10.dp),
     )
 }

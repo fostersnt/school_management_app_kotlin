@@ -1,6 +1,7 @@
 package com.loan_app.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -27,8 +28,9 @@ val Typography = Typography(
         lineHeight = 28.sp,
         letterSpacing = 0.sp,
         color = Color.White,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
     ),
+    //This is for button text
     labelLarge = TextStyle(
         fontFamily = customFontFamily(),
         fontWeight = FontWeight.Light,
@@ -37,6 +39,16 @@ val Typography = Typography(
 //        letterSpacing = 0.sp,
         color = Color.White,
         textAlign = TextAlign.Center
+    ),
+    //This is for inputfield text
+    labelMedium = TextStyle(
+        fontFamily = customFontFamily(),
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+//        lineHeight = 28.sp,
+//        letterSpacing = 0.sp,
+//        color = Color.White,
+//        textAlign = TextAlign.Center
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
