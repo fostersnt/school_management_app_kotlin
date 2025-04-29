@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -44,11 +45,6 @@ viewModel.msisdn.observeAsState().value;
     */
 val msisdnData = viewModel.getMsisdn();
 
-    val customFontFamily = FontFamily(
-        Font(R.font.josefin_slab_light, weight = FontWeight.Light),
-        Font(R.font.dancing_script_regular, weight = FontWeight.Normal)
-    );
-
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -60,12 +56,7 @@ val msisdnData = viewModel.getMsisdn();
         Text(
             text = "Get started with your phone number",
 //            text = "laboriosam",
-            style = TextStyle(
-                fontWeight = FontWeight.Light,
-                fontFamily = customFontFamily,
-                color = Color.White,
-                fontSize = 30.sp, textAlign = TextAlign.Center
-            ),
+            style = MaterialTheme.typography.titleLarge,
         )
         //Adding space
         Spacer(modifier = Modifier.padding(bottom = 20.dp))

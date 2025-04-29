@@ -10,6 +10,8 @@ import com.loan_app.R
 fun customFontFamily(): FontFamily{
     return FontFamily(
         Font(R.font.josefin_slab_light, weight = FontWeight.Light),
-        Font(R.font.dancing_script_regular, weight = FontWeight.Normal)
+        Font(R.font.josefin_slab_regular, weight = FontWeight.Normal),
+        Font(R.font.josefin_slab_bold, weight = FontWeight.Bold),
+        Font(R.font.josefin_slab_thin, weight = FontWeight.Thin)
     )
 }

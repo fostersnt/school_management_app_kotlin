@@ -26,7 +26,7 @@ fun CustomButton(buttonText: String, paddingValue: Int, btnWidth: Float, btnActi
         content = {
             Text(
                 text = buttonText,
-                modifier = Modifier.padding(paddingValue.dp),
+//                modifier = Modifier.padding(paddingValue.dp),
 //                fontFamily = customFontFamily(),
 //                fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
