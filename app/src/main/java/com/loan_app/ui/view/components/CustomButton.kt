@@ -21,7 +21,9 @@ import com.loan_app.utilities.customFontFamily
 fun CustomButton(buttonText: String, paddingValue: Int, btnWidth: Float, btnAction: () -> Unit){
     Button(
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF3A39FF)
+            containerColor = Color(0xFF4A148C)
+//            containerColor = Color(0xFF9B1FAE)
+//            containerColor = Color(0xFF3A39FF)
         ),
         shape = RoundedCornerShape(10.dp),
         onClick = { btnAction() },

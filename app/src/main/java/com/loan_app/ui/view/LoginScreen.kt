@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -53,7 +54,11 @@ val msisdnData = viewModel.getMsisdn();
         .fillMaxSize()
 //        .background(Color(0xFF262053))
             .background(brush = Brush.linearGradient(
-                colors = listOf(Color(0xFF42A5F5), Color(0xFF262053)) // Blue shades
+                colors = listOf(Color(0xFFff3779), Color(0xFF0d0551)),
+//                colors = listOf(Color.Red, Color(0xFF262053)),
+//                colors = listOf(Color(0xFF42A5F5), Color(0xFF262053)),
+                start = Offset(500f, 500f),
+                end = Offset(1000f, 1000f)
 //                colors = listOf(Color(0xFF42A5F5), Color(0xFF478DE0)) // Blue shades
             ))
             .padding(20.dp),
