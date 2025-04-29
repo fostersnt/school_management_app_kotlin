@@ -1,5 +1,6 @@
 package com.loan_app.ui.view.home
 
+import android.text.Layout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -58,6 +59,7 @@ fun HomeScreen(){
                 )
             )
         }
+        //FIRST CARD
         Card(
             modifier = Modifier.fillMaxWidth()
                 .height(200.dp)
@@ -96,6 +98,44 @@ fun HomeScreen(){
                         color = Color.White
                     )
                 )
+            }
+        }
+        //SECOND GROUP OF CARDS
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Card(
+            modifier = Modifier.fillMaxWidth()
+                .height(150.dp)
+                .align(
+                    alignment = Alignment.Start
+                ),
+//            colors = CardDefaults.cardColors(containerColor = Color.Green),
+//            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 2.dp,
+                pressedElevation = 6.dp
+            )
+        ){
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.background(Color(0xFFff3779))
+                        .weight(0.3f)
+                        .fillMaxHeight()
+                ) {  }
+                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                Column(
+                    modifier = Modifier.background(Color(0xFFff3779))
+                        .weight(0.3f)
+                        .fillMaxHeight()
+                ) {  }
+                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                Column(
+                    modifier = Modifier.background(Color(0xFFff3779))
+                        .weight(0.3f)
+                        .fillMaxHeight()
+                ) {  }
             }
         }
     }
