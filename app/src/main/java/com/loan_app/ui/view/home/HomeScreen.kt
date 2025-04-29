@@ -120,7 +120,7 @@ fun HomeScreen(){
                         .background(Color(0xFFff3779))
                         .padding(10.dp)  // Inner padding
                         .height(200.dp),
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
@@ -143,7 +143,7 @@ fun HomeScreen(){
                         .background(Color(0xFFff3779))
                         .padding(10.dp)  // Inner padding
                         .height(200.dp),
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
@@ -166,7 +166,7 @@ fun HomeScreen(){
                         .background(Color(0xFFff3779))
                         .padding(10.dp)  // Inner padding
                         .height(200.dp),
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.SpaceAround,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
