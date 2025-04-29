@@ -1,6 +1,7 @@
 package com.loan_app.ui.view.components
 
 import android.util.Log
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,7 +49,8 @@ fun CustomOutlinedTextField(
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color(0XFFFFFFFF),
             unfocusedContainerColor = Color(0XFFE5E5F0),
-            focusedPlaceholderColor = Color(0xFFEB5757)
+            focusedPlaceholderColor = Color(0xFFEB5757),
+            unfocusedBorderColor = Color(0xFF4A148C)
         ),
         value = "${stateVariable.value}",
         onValueChange = {
