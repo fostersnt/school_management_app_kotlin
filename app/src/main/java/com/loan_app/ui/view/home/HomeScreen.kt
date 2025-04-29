@@ -124,7 +124,7 @@ fun HomeScreen(){
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.splash_icon),
+                        painter = painterResource(id = R.drawable.card_1_image),
                         contentDescription = "App Logo",
                         modifier = Modifier
                             .width(80.dp)
@@ -147,7 +147,7 @@ fun HomeScreen(){
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.splash_icon),
+                        painter = painterResource(id = R.drawable.card_2_image),
                         contentDescription = "App Logo",
                         modifier = Modifier
                             .width(80.dp)
@@ -170,7 +170,7 @@ fun HomeScreen(){
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.splash_icon),
+                        painter = painterResource(id = R.drawable.card_3_image),
                         contentDescription = "App Logo",
                         modifier = Modifier
                             .width(80.dp)
