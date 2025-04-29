@@ -59,8 +59,8 @@ val msisdnData = viewModel.getMsisdn();
 //                colors = listOf(Color(0xFF42A5F5), Color(0xFF262053)),
 //                start = Offset(500f, 500f), //NICE ONE
 //                end = Offset(1000f, 1000f),
-                start = Offset(500f, 500f),
-                end = Offset(950f, 1000f)
+                start = Offset(300f, 200f),
+                end = Offset(1000f, 1000f)
             ))
             .padding(20.dp),
     ) {
