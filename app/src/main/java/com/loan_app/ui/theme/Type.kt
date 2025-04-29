@@ -15,15 +15,16 @@ val Typography = Typography(
     bodyLarge = TextStyle(
 //        fontFamily = FontFamily.Default,
         fontFamily = customFontFamily(),
-        fontWeight = FontWeight.Light,
+        fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.5.sp,
+        color = Color.White
     ),
     // Other default text styles to override
     headlineLarge = TextStyle(
         fontFamily = customFontFamily(),
-        fontWeight = FontWeight.Light,
+        fontWeight = FontWeight.Normal,
         fontSize = 30.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp,
@@ -33,7 +34,7 @@ val Typography = Typography(
     //This is for button text
     labelLarge = TextStyle(
         fontFamily = customFontFamily(),
-        fontWeight = FontWeight.Light,
+        fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
 //        lineHeight = 28.sp,
 //        letterSpacing = 0.sp,
@@ -48,7 +49,7 @@ val Typography = Typography(
 //        lineHeight = 28.sp,
 //        letterSpacing = 0.sp,
 //        color = Color.White,
-//        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,

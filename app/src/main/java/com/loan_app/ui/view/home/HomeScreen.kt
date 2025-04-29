@@ -1,6 +1,7 @@
 package com.loan_app.ui.view.home
 
 import android.text.Layout
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -27,12 +28,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.loan_app.utilities.customFontFamily
+import com.loan_app.R
 
 @Preview(showBackground = true)
 @Composable
@@ -114,12 +118,20 @@ fun HomeScreen(){
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
-                        .padding(16.dp)  // Inner padding
+                        .padding(10.dp)  // Inner padding
                         .height(200.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "HELLO")
+                    Image(
+                        painter = painterResource(id = R.drawable.splash_icon),
+                        contentDescription = "App Logo",
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(80.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(text = "Apply Loan", style = MaterialTheme.typography.bodyLarge)
                 }
                 Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
@@ -129,12 +141,20 @@ fun HomeScreen(){
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
-                        .padding(16.dp)  // Inner padding
+                        .padding(10.dp)  // Inner padding
                         .height(200.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "COUNTRY")
+                    Image(
+                        painter = painterResource(id = R.drawable.splash_icon),
+                        contentDescription = "App Logo",
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(80.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(text = "Loan History", style = MaterialTheme.typography.bodyLarge)
                 }
                 Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
@@ -144,12 +164,20 @@ fun HomeScreen(){
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
-                        .padding(16.dp)  // Inner padding
+                        .padding(10.dp)  // Inner padding
                         .height(200.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "GHANA")
+                    Image(
+                        painter = painterResource(id = R.drawable.splash_icon),
+                        contentDescription = "App Logo",
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(80.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(text = "My Account", style = MaterialTheme.typography.bodyLarge)
                 }
         }
     }
