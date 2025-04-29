@@ -7,7 +7,6 @@ import androidx.room.Query
 import androidx.room.Upsert
 import com.loan_app.data.model.Post
 import com.loan_app.data.model.User
-import com.loan_app.data.repository_base.DatabaseOperations
 
 @Dao
 interface BaseDao {

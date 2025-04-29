@@ -13,26 +13,26 @@ import retrofit2.http.Query
 interface ApiService {
     //------------------------------------- POST ACTIONS -------------------------------------------------
     @GET("posts/{id}")
-    suspend fun getPostData(@Path("id") id: Int): Response<Post>
+    suspend fun fetchPost(@Path("id") id: Int): Response<Post>
 
     @GET("posts")
-    suspend fun getPosts(): Response<List<Post>>
+    suspend fun fetchPosts(): Response<List<Post>>
 
     @POST("posts")
-    suspend fun savePostData(@Body user: ApiPostData): Response<Post>
+    suspend fun savePost(@Body user: ApiPostData): Response<Post>
 
     @GET("posts/search")
     suspend fun searchPost(@Query("query") query: String): Response<List<Post>>
 
     //------------------------------------- USER ACTIONS -------------------------------------------------
     @GET("users/{id}")
-    suspend fun fetchUserData(@Path("id") id: Int): Response<User>
+    suspend fun fetchUser(@Path("id") id: Int): Response<User>
 
     @GET("users")
     suspend fun fetchUsers(): Response<List<User>>
 
     @POST("users")
-    suspend fun saveUserData(@Body user: ApiPostData): Response<User>
+    suspend fun saveUser(@Body user: ApiPostData): Response<User>
 
     @GET("users/search")
     suspend fun searchUser(@Query("query") query: String): Response<List<User>>

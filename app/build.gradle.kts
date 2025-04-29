@@ -93,7 +93,10 @@ dependencies {
 
 //    // Gson (JSON parser)
     implementation(libs.gson.parser)
-//
+
 //    //Live Data
     implementation (libs.livedata.runtime)
+
+    //selection container
+    implementation(libs.androidx.foundation)
 }

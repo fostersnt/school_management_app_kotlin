@@ -18,7 +18,7 @@ class PostViewModel (private val repository: PostRepository) : ViewModel() {
 
         fun fetchPost(id: Int) {
             viewModelScope.launch {
-                val response = repository.getPost(id)
+                val response = repository.fetchPost(id)
                 if (response.isSuccessful) {
                     post.value = response.body()
                 }
@@ -27,7 +27,7 @@ class PostViewModel (private val repository: PostRepository) : ViewModel() {
 
         fun fetchPosts() {
             viewModelScope.launch {
-                val response = repository.getPosts()
+                val response = repository.fetchPosts()
                 if (response.isSuccessful) {
                     posts.value = response.body() ?: emptyList()
                 }
@@ -36,7 +36,7 @@ class PostViewModel (private val repository: PostRepository) : ViewModel() {
 
         fun createPost(url: String, title: String, content: String) {
             viewModelScope.launch {
-                val response = repository.savePostData(ApiPostData(url, title, content))
+                val response = repository.savePost(ApiPostData(url, title, content))
                 if (response.isSuccessful) {
                     fetchPosts()  // Refresh list
                 }

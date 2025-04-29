@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.loan_app.utilities.customFontFamily
 
 @Composable
 fun CustomButton(buttonText: String, paddingValue: Int, btnWidth: Float, btnAction: () -> Unit){
@@ -26,7 +27,8 @@ fun CustomButton(buttonText: String, paddingValue: Int, btnWidth: Float, btnActi
             Text(
                 text = buttonText,
                 modifier = Modifier.padding(paddingValue.dp),
-                fontWeight = FontWeight.Bold,
+//                fontFamily = customFontFamily(),
+//                fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
         },
