@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun MainHomeScreen() {
+fun MainNavigation() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navController = navController) }
