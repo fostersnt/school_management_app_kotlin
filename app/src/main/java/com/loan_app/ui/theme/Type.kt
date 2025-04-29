@@ -19,7 +19,8 @@ val Typography = Typography(
         fontSize = 20.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
-        color = Color.White
+        color = Color.White,
+        textAlign = TextAlign.Center
     ),
     // Other default text styles to override
     headlineLarge = TextStyle(

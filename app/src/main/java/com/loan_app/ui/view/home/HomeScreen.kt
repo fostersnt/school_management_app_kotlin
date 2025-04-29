@@ -51,15 +51,15 @@ fun HomeScreen(){
         .padding(10.dp)
     ) {
         Row(
-            modifier = Modifier.align(Alignment.End),
+            modifier = Modifier.align(Alignment.Start).padding(bottom = 10.dp),
 //            horizontalArrangement = Arrangement.End
         ) {
             Text(
                 text = "Hi Foster",
                 style = TextStyle(
                     fontFamily = customFontFamily(),
-                    fontWeight = FontWeight.Light,
-                    fontSize = 20.sp
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
                 )
             )
         }
