@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -50,7 +51,11 @@ val msisdnData = viewModel.getMsisdn();
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
         .fillMaxSize()
-        .background(Color(0xFF262053))
+//        .background(Color(0xFF262053))
+            .background(brush = Brush.linearGradient(
+                colors = listOf(Color(0xFF42A5F5), Color(0xFF262053)) // Blue shades
+//                colors = listOf(Color(0xFF42A5F5), Color(0xFF478DE0)) // Blue shades
+            ))
             .padding(20.dp),
     ) {
         Text(
