@@ -102,41 +102,55 @@ fun HomeScreen(){
         }
         //SECOND GROUP OF CARDS
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
-        Card(
-            modifier = Modifier.fillMaxWidth()
-                .height(150.dp)
-                .align(
-                    alignment = Alignment.Start
-                ),
-//            colors = CardDefaults.cardColors(containerColor = Color.Green),
-//            shape = RoundedCornerShape(20.dp),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 2.dp,
-                pressedElevation = 6.dp
-            )
-        ){
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.height(150.dp)
             ) {
                 Column(
-                    modifier = Modifier.background(Color(0xFFff3779))
+                    modifier = Modifier.background(Color.White)
                         .weight(0.3f)
                         .fillMaxHeight()
-                ) {  }
-                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                        .clip(shape = RoundedCornerShape(20.dp))
+//                        .fillMaxWidth()
+                        .background(Color(0xFFff3779))
+                        .padding(16.dp)  // Inner padding
+                        .height(200.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "HELLO")
+                }
+                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
-                    modifier = Modifier.background(Color(0xFFff3779))
+                    modifier = Modifier.background(Color.White)
                         .weight(0.3f)
                         .fillMaxHeight()
-                ) {  }
-                Spacer(modifier = Modifier.padding(horizontal = 10.dp))
+                        .clip(shape = RoundedCornerShape(20.dp))
+//                        .fillMaxWidth()
+                        .background(Color(0xFFff3779))
+                        .padding(16.dp)  // Inner padding
+                        .height(200.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "COUNTRY")
+                }
+                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
-                    modifier = Modifier.background(Color(0xFFff3779))
+                    modifier = Modifier.background(Color.White)
                         .weight(0.3f)
                         .fillMaxHeight()
-                ) {  }
-            }
+                        .clip(shape = RoundedCornerShape(20.dp))
+//                        .fillMaxWidth()
+                        .background(Color(0xFFff3779))
+                        .padding(16.dp)  // Inner padding
+                        .height(200.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "GHANA")
+                }
         }
     }
 }
