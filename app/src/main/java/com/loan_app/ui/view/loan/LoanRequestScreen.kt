@@ -14,12 +14,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.loan_app.ui.view.components.CustomButton
 import com.loan_app.utilities.customFontFamily
 
@@ -50,9 +57,27 @@ fun LoanRequestScreen() {
     ) {
         // Available Max Amount
         Text(
-            text = "Available Maximum Loan Amount: \$${availableAmount}",
-            style = MaterialTheme.typography.bodyLarge,
+            text = "Available Maximum Loan Amount:",
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+                fontFamily = customFontFamily(),
+                fontSize = 20.sp
+            ),
             color = Color.Black,
+            modifier = Modifier.padding(bottom = 5.dp)
+        )
+        Text(
+            text = buildAnnotatedString {
+//                append("Available Maximum Loan Amount: ")
+                withStyle(style = SpanStyle(
+                    color = Color(0xFFff3779),
+                    fontSize = 30.sp,
+                    fontFamily = customFontFamily()
+                )){
+                    append("GHs ${availableAmount}")
+                }
+            },
+            style = TextStyle(textAlign = TextAlign.Center),
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
