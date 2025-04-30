@@ -127,7 +127,8 @@ fun LoanRequestScreen() {
                     text = "Loan Term: $selectedTerm",
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.Black,
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = customFontFamily()
                 )
             }
 
