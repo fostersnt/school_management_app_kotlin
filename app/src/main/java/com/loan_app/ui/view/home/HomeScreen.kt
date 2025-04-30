@@ -65,7 +65,7 @@ fun HomeScreen(){
                 style = TextStyle(
                     fontFamily = customFontFamily(),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
+                    fontSize = 30.sp,
                 )
             )
         }
@@ -187,7 +187,27 @@ fun HomeScreen(){
                 }
         }
         //LAST CARD
-        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+//        Spacer(modifier = Modifier.padding(vertical = 5.dp))
+        Row(
+            modifier = Modifier.align(Alignment.Start).padding(bottom = 10.dp).fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Text(
+                text = "Announcements",
+                style = TextStyle(
+                    fontFamily = customFontFamily(),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 30.sp,
+                )
+            )
+            Image(
+                painter = painterResource(R.drawable.announcement_image),
+                contentDescription = "Announcement Icon",
+                modifier = Modifier.width(50.dp).height(50.dp)
+            )
+        }
+//        Spacer(modifier = Modifier.padding(vertical = 5.dp))
         Card(
             modifier = Modifier.fillMaxWidth()
                 .height((columnHeight / 2).dp)
@@ -201,13 +221,14 @@ fun HomeScreen(){
                 pressedElevation = 6.dp
             )
         ){
-            Column(
+            //ANNOUNCEMENT CARD
+            Row(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color(0xFFff3779)),
 //                    .background(Color(0xFF0d0551)),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     "Wallet Balance",
