@@ -98,7 +98,10 @@ fun LoanRequestScreen() {
             ),
             label = { Text(
                 "Enter Expected Loan Amount",
-                style = TextStyle(fontFamily = customFontFamily())
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Black,
+                fontWeight = FontWeight.Normal,
+                fontFamily = customFontFamily()
             ) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -134,9 +137,8 @@ fun LoanRequestScreen() {
             }
 
             DropdownMenu(
-                border = BorderStroke(width = 1.dp, color = Color.Black),
+                border = BorderStroke(width = 1.dp, color = Color.Gray),
                 shape = RoundedCornerShape(10.dp),
-//                containerColor = Color.Red,
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
@@ -204,7 +206,7 @@ fun LoanRequestScreen() {
 fun ShowModal(onDismiss: () -> Unit){
     AlertDialog(
         shape = RectangleShape,
-        onDismissRequest = onDismiss, // Dismiss dialog when user clicks outside
+        onDismissRequest = {}, // Dismiss dialog when user clicks outside
         title = { Text(
             "Modal Title",
             style = TextStyle(fontFamily = customFontFamily(), fontSize = 20.sp)
