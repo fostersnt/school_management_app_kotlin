@@ -101,7 +101,8 @@ fun LoanRequestScreen() {
                 style = MaterialTheme.typography.bodyLarge,
                 color = Color.Black,
                 fontWeight = FontWeight.Normal,
-                fontFamily = customFontFamily()
+                fontFamily = customFontFamily(),
+                fontSize = 20.sp
             ) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
