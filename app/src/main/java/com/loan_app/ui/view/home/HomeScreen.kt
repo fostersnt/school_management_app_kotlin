@@ -186,5 +186,47 @@ fun HomeScreen(){
                     Text(text = "My Account", style = MaterialTheme.typography.bodyLarge)
                 }
         }
+        //LAST CARD
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Card(
+            modifier = Modifier.fillMaxWidth()
+                .height((columnHeight / 2).dp)
+                .align(
+                    alignment = Alignment.Start
+                ),
+//            colors = CardDefaults.cardColors(containerColor = Color.Green),
+//            shape = RoundedCornerShape(20.dp),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 2.dp,
+                pressedElevation = 6.dp
+            )
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFff3779)),
+//                    .background(Color(0xFF0d0551)),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "Wallet Balance",
+                    fontFamily = customFontFamily(),
+                    fontWeight = FontWeight.Light,
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.padding(vertical = 10.dp))
+                Text(
+                    "GHs 5,000.00",
+                    style = TextStyle(
+                        fontFamily = customFontFamily(),
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 30.sp,
+                        color = Color.White
+                    )
+                )
+            }
+        }
     }
 }
