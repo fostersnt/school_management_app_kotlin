@@ -205,13 +205,19 @@ fun ShowModal(onDismiss: () -> Unit){
     AlertDialog(
         shape = RectangleShape,
         onDismissRequest = onDismiss, // Dismiss dialog when user clicks outside
-        title = { Text("Modal Title") },
-        text = { Text("This is the content of the modal dialog.") },
+        title = { Text(
+            "Modal Title",
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 20.sp)
+        ) },
+        text = { Text(
+            text = "Are you sure the above details are correct?",
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp)
+        ) },
         confirmButton = {
             Button(onClick = {
                 onDismiss() // Close the modal
             }) {
-                Text("OK")
+                Text("Proceed")
             }
         },
         dismissButton = {
@@ -221,8 +227,18 @@ fun ShowModal(onDismiss: () -> Unit){
             },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff3779))
             ) {
-                Text("Cancel")
+                Text("Go Back")
             }
         }
     )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun MyModalDisplay(){
+    fun sampleFun(){
+//        return;
+    }
+    ShowModal({sampleFun()})
 }
