@@ -94,7 +94,7 @@ fun LoanRequestScreen() {
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
                 unfocusedContainerColor = Color.White,
-                focusedBorderColor = Color.Gray
+                focusedBorderColor = Color.Gray,
             ),
             label = { Text(
                 "Enter Expected Loan Amount",
