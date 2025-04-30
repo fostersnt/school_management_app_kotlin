@@ -65,7 +65,8 @@ fun LoanRequestScreen() {
             ),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = Color.White,
-                unfocusedContainerColor = Color.White
+                unfocusedContainerColor = Color.White,
+                focusedBorderColor = Color.Gray
             ),
             label = { Text(
                 "Enter Expected Loan Amount",
@@ -91,7 +92,8 @@ fun LoanRequestScreen() {
             .padding(bottom = 16.dp)
             .background(Color.White, shape = MaterialTheme.shapes.small)
             .border(1.dp, Color.Gray, shape = MaterialTheme.shapes.small)
-            .height(60.dp)
+            .height(60.dp),
+            contentAlignment = Alignment.CenterStart
         ) {
             TextButton(onClick = { expanded = !expanded }) {
                 Text(
@@ -105,7 +107,7 @@ fun LoanRequestScreen() {
             DropdownMenu(
                 border = BorderStroke(width = 1.dp, color = Color.Black),
                 shape = RoundedCornerShape(10.dp),
-                containerColor = Color.Red,
+//                containerColor = Color.Red,
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
