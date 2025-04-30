@@ -39,6 +39,8 @@ fun LoanRequestScreen() {
     val customTopPadding = deviceHeight / 4;
     val scrollState = rememberScrollState();
 
+    var canShowModal by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -152,7 +154,7 @@ fun LoanRequestScreen() {
     val enabled = isConfirmed && loanAmount.text.isNotEmpty()
         // Submit Button
         Button(
-            onClick = { /* Handle submit action */ },
+            onClick = { canShowModal = true },
             enabled = isConfirmed && loanAmount.text.isNotEmpty(),
             modifier = Modifier
                 .fillMaxWidth()
@@ -166,4 +168,30 @@ fun LoanRequestScreen() {
             Text(text = "Submit Loan Request")
         }
     }
+    if (canShowModal){
+        ShowModal({canShowModal = !canShowModal})
+    }
+}
+
+@Composable
+fun ShowModal(onDismiss: () -> Unit){
+    AlertDialog(
+        onDismissRequest = onDismiss, // Dismiss dialog when user clicks outside
+        title = { Text("Modal Title") },
+        text = { Text("This is the content of the modal dialog.") },
+        confirmButton = {
+            Button(onClick = {
+                onDismiss() // Close the modal
+            }) {
+                Text("OK")
+            }
+        },
+        dismissButton = {
+            Button(onClick = {
+                onDismiss() // Close the modal
+            }) {
+                Text("Cancel")
+            }
+        }
+    )
 }
