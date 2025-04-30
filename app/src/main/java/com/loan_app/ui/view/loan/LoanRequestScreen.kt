@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
@@ -202,6 +203,7 @@ fun LoanRequestScreen() {
 @Composable
 fun ShowModal(onDismiss: () -> Unit){
     AlertDialog(
+        shape = RectangleShape,
         onDismissRequest = onDismiss, // Dismiss dialog when user clicks outside
         title = { Text("Modal Title") },
         text = { Text("This is the content of the modal dialog.") },
@@ -213,9 +215,12 @@ fun ShowModal(onDismiss: () -> Unit){
             }
         },
         dismissButton = {
-            Button(onClick = {
+            Button(
+                onClick = {
                 onDismiss() // Close the modal
-            }) {
+            },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff3779))
+            ) {
                 Text("Cancel")
             }
         }
