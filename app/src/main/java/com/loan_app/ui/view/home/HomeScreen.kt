@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,8 +41,13 @@ import com.loan_app.R
 
 @Preview(showBackground = true)
 @Composable
-
 fun HomeScreen(){
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp
+    val screenHeight = configuration.screenHeightDp
+
+    val columnHeight = (screenHeight - (0.1 * screenHeight)) / 3;
+
     Column(
         modifier = Modifier.fillMaxSize()
         .background(Color(0xFFff3779))
@@ -66,7 +72,7 @@ fun HomeScreen(){
         //FIRST CARD
         Card(
             modifier = Modifier.fillMaxWidth()
-                .height(200.dp)
+                .height(columnHeight.dp)
                 .align(
                     alignment = Alignment.Start
                 ),
@@ -109,18 +115,18 @@ fun HomeScreen(){
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.height(150.dp)
+                modifier = Modifier.height((columnHeight - (0.1 * columnHeight)).dp)
             ) {
                 Column(
                     modifier = Modifier.background(Color.White)
-                        .weight(0.3f)
+                        .weight(0.25f)
                         .fillMaxHeight()
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
                         .padding(10.dp)  // Inner padding
-                        .height(200.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
+                        .height(columnHeight.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
@@ -136,14 +142,14 @@ fun HomeScreen(){
                 Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
                     modifier = Modifier.background(Color.White)
-                        .weight(0.3f)
+                        .weight(0.25f)
                         .fillMaxHeight()
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
-                        .padding(10.dp)  // Inner padding
-                        .height(200.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
+                        .padding(10.dp),  // Inner padding
+//                        .height(columnHeight.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
@@ -159,14 +165,14 @@ fun HomeScreen(){
                 Spacer(modifier = Modifier.padding(horizontal = 5.dp))
                 Column(
                     modifier = Modifier.background(Color.White)
-                        .weight(0.3f)
+                        .weight(0.25f)
                         .fillMaxHeight()
                         .clip(shape = RoundedCornerShape(20.dp))
 //                        .fillMaxWidth()
                         .background(Color(0xFFff3779))
-                        .padding(10.dp)  // Inner padding
-                        .height(200.dp),
-                    verticalArrangement = Arrangement.SpaceAround,
+                        .padding(10.dp),  // Inner padding
+//                        .height(200.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
