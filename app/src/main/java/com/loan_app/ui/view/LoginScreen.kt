@@ -63,7 +63,7 @@ val msisdnData = viewModel.getMsisdn();
 //                start = Offset(300f, 200f),
 //                end = Offset(1000f, 1000f)
                 start = Offset(600f, 900f),
-                end = Offset(600f, 1000f)
+                end = Offset(1000f, 1000f)
             ))
             .padding(20.dp),
     ) {
