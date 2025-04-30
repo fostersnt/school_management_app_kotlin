@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.loan_app.ui.view.LoginScreen
+import com.loan_app.ui.view.home.HomeScreen
 
 
 @Composable
@@ -18,7 +19,7 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = "home") {
-            LoginScreen()
+            HomeScreen()
         }
         composable(route = "profile") {
             LoginScreen()

@@ -11,6 +11,7 @@ import com.loan_app.data.local.repository.PostRepository
 import com.loan_app.ui.theme.Loan_AppTheme
 import com.loan_app.ui.view.LoginScreen
 import com.loan_app.ui.view.home.HomeScreen
+import com.loan_app.ui.view.navigation.MainNavigation
 import com.loan_app.ui.viewmodel.PostViewModel
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +25,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Loan_AppTheme {
 //                LoginScreen()
-                HomeScreen()
+//                HomeScreen()
+                MainNavigation()
             }
         }
     }
@@ -35,5 +37,5 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun InitialScreen() {
-        LoginScreen()
+    LoginScreen()
 }
