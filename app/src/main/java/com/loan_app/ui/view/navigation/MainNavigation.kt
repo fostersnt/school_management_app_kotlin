@@ -30,7 +30,6 @@ fun MainNavigation() {
 
     Scaffold(
         topBar = {
-            // Show a back button only if the current route is not a bottom tab
             if (currentRoute !in bottomNavRoutes) {
                 TopAppBar(
                     modifier = Modifier.statusBarsPadding(),
@@ -38,27 +37,12 @@ fun MainNavigation() {
                     title = { Text("") },
                     navigationIcon = {
                         IconButton(onClick = {
-                            // Handle the back navigation
-                            navController.navigateUp() // This will pop the current screen and show the previous one
+                            navController.navigateUp()
                         }) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color(0xFFff3779))
                         }
                     }
                 )
-//                Spacer(modifier = Modifier.height(20.dp))
-//                Card(
-//                    modifier = Modifier.padding(20.dp)
-//                        .fillMaxWidth()
-//                        .height(40.dp),
-//                    colors = CardDefaults.cardColors(
-//                        containerColor = Color.White
-//                    )
-//                ) {
-//                    Row {
-//                        Text(text = "ABCD")
-//                        Text(text = "ABCD")
-//                    }
-//                }
             }
         },
         bottomBar = {
