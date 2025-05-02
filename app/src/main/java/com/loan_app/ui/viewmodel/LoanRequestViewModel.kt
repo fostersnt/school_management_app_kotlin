@@ -11,34 +11,52 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoanRequestViewModel(): ViewModel() {
-    var loanAmount =  MutableLiveData("")
-    var selectedTerm =  MutableLiveData("6 Months")
-    var isConfirmed = MutableLiveData(false)
+    private var _loanAmount =  MutableLiveData("");
+    private var _selectedTerm =  MutableLiveData("6 Months");
+    private var _isConfirmed = MutableLiveData(false);
+    private var _canShowModal = MutableLiveData(false);
+    private var _isEnabled = MutableLiveData(false);
+
+    val loanAmount: LiveData<String> =  _loanAmount;
+    val selectedTerm: LiveData<String> =  _selectedTerm;
+    var isConfirmed: LiveData<Boolean> = _isConfirmed;
+    var canShowModal: LiveData<Boolean> = _canShowModal;
+    var isEnabled: LiveData<Boolean> = _isEnabled;
 
     fun setLoanAmount(amount: String): Unit{
-        loanAmount.value = amount
+        _loanAmount.value = amount
         Log.i("setLoanAmount", "VALUE === $amount")
     }
 
     fun setLoanTerm(loanTerm: String): Unit{
-        selectedTerm.value = loanTerm
+        _selectedTerm.value = loanTerm
         Log.i("setLoanAmount", "VALUE === $loanTerm")
     }
 
     fun setConfirmation(confirmation: Boolean): Unit{
-        isConfirmed.value = confirmation
+        _isConfirmed.value = confirmation
         Log.i("setLoanAmount", "VALUE === $confirmation")
     }
 
-    fun getLoanAmount(): LiveData<String>{
-        return loanAmount;
+    fun setIsEnabled(enabled: Boolean): Unit{
+        _isEnabled.value = enabled
+        Log.i("setLoanAmount", "VALUE === $enabled")
     }
 
-    fun getSelectedTerm(): LiveData<String>{
-        return selectedTerm;
+    fun setCanShowModal(showModal: Boolean): Unit{
+        _canShowModal.value = showModal
+        Log.i("setLoanAmount", "VALUE === $showModal")
     }
 
-    fun getConfirmation(): LiveData<Boolean>{
-        return isConfirmed;
-    }
+//    fun getLoanAmount(): LiveData<String>{
+//        return loanAmount;
+//    }
+//
+//    fun getSelectedTerm(): LiveData<String>{
+//        return selectedTerm;
+//    }
+//
+//    fun getConfirmation(): LiveData<Boolean>{
+//        return isConfirmed;
+//    }
 }

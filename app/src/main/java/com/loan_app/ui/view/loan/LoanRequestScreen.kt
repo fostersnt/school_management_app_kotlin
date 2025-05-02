@@ -43,9 +43,11 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
 //    viewModel.selectedTerm.observeAsState("").value
 //    viewModel.isConfirmed.observeAsState(false).value;
 
-    var loanAmount = viewModel.getLoanAmount().observeAsState("").value;
-    var selectedTerm = viewModel.getSelectedTerm().observeAsState("").value;
-    var isConfirmed = viewModel.getConfirmation().observeAsState(false).value;
+    var loanAmount = viewModel.loanAmount.observeAsState("").value;
+    var selectedTerm = viewModel.selectedTerm.observeAsState("").value;
+    var isConfirmed = viewModel.isConfirmed.observeAsState(false).value;
+    var isEnabled = viewModel.isEnabled.observeAsState(false).value;
+    var canShowModalNow = viewModel.canShowModal.observeAsState(false).value;
 
     val availableAmount = 50000 // Example max available amount
     val loanTerms = listOf("6 Months", "12 Months", "24 Months", "36 Months")
@@ -55,7 +57,7 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
     val customTopPadding = deviceHeight / 4;
     val scrollState = rememberScrollState();
 
-    var canShowModal by remember { mutableStateOf(false) }
+    var expanded = false
 
     Column(
         modifier = Modifier
@@ -125,8 +127,6 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
         )
 
         // Loan Term Dropdown
-        var expanded by remember { mutableStateOf(false) }
-
         Box(modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 16.dp)
@@ -189,11 +189,10 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
                 ),
             )
         }
-    val enabled = isConfirmed && loanAmount.isNotEmpty()
         // Submit Button
         Button(
-            onClick = { canShowModal = true },
-            enabled = isConfirmed && loanAmount.isNotEmpty(),
+            onClick = { viewModel.setCanShowModal(true) },
+            enabled = isEnabled,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp)
@@ -206,8 +205,8 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
             Text(text = "Submit Loan Request")
         }
     }
-    if (canShowModal){
-        ShowModal({canShowModal = !canShowModal})
+    if (canShowModalNow){
+        ShowModal({canShowModalNow = !canShowModalNow})
     }
 }
 

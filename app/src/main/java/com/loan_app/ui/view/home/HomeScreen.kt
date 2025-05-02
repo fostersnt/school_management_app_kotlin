@@ -20,9 +20,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -120,9 +123,9 @@ fun HomeScreen(){
                     "GHs 5,000.00",
                     style = TextStyle(
                         fontFamily = customFontFamily(),
-                        fontWeight = FontWeight.Normal,
+                        fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
-                        color = Color.Black
+                        color = Color(0xFFff3779)
                     )
                 )
             }
@@ -133,7 +136,7 @@ fun HomeScreen(){
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .height((columnHeight - (0.1 * columnHeight)).dp)
+                    .height((columnHeight / 2).dp)
                     .fillMaxWidth(1f)
             ) {
                 Card(
@@ -162,14 +165,6 @@ fun HomeScreen(){
                         verticalArrangement = Arrangement.SpaceEvenly,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.card_1_image),
-                            contentDescription = "App Logo",
-                            modifier = Modifier
-                                .width(80.dp)
-                                .height(80.dp),
-                            contentScale = ContentScale.Crop
-                        )
                         Text(
                             text = "Apply Loan",
                             style = MaterialTheme.typography.bodyLarge,
@@ -204,14 +199,6 @@ fun HomeScreen(){
                         verticalArrangement = Arrangement.SpaceEvenly,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.card_2_image),
-                            contentDescription = "App Logo",
-                            modifier = Modifier
-                                .width(80.dp)
-                                .height(80.dp),
-                            contentScale = ContentScale.Crop
-                        )
                         Text(
                             text = "Loan History",
                             style = MaterialTheme.typography.bodyLarge,
@@ -246,14 +233,6 @@ fun HomeScreen(){
                         verticalArrangement = Arrangement.SpaceEvenly,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.card_1_image),
-                            contentDescription = "App Logo",
-                            modifier = Modifier
-                                .width(80.dp)
-                                .height(80.dp),
-                            contentScale = ContentScale.Crop
-                        )
                         Text(
                             text = "My Account",
                             style = MaterialTheme.typography.bodyLarge,
@@ -263,32 +242,24 @@ fun HomeScreen(){
                 }
         }
         //LAST CARD
-//        Spacer(modifier = Modifier.padding(vertical = 5.dp))
-        Row(
-            modifier = Modifier
-                .align(Alignment.Start)
-                .padding(bottom = 10.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Text(
-                text = "Announcements",
-                style = TextStyle(
-                    fontFamily = customFontFamily(),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp,
-                )
-            )
-            Image(
-                painter = painterResource(R.drawable.announcement_image),
-                contentDescription = "Announcement Icon",
-                modifier = Modifier
-                    .width(50.dp)
-                    .height(50.dp)
-            )
-        }
-//        Spacer(modifier = Modifier.padding(vertical = 5.dp))
+//        Row(
+//            modifier = Modifier
+//                .align(Alignment.Start)
+//                .padding(bottom = 10.dp)
+//                .fillMaxWidth(),
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.SpaceEvenly
+//        ) {
+//            Text(
+//                text = "Announcements",
+//                style = TextStyle(
+//                    fontFamily = customFontFamily(),
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 30.sp,
+//                )
+//            )
+//        }
+        Spacer(modifier = Modifier.height(20.dp))
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -296,8 +267,6 @@ fun HomeScreen(){
                 .align(
                     alignment = Alignment.Start
                 ),
-//            colors = CardDefaults.cardColors(containerColor = Color.Green),
-//            shape = RoundedCornerShape(20.dp),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 2.dp,
                 pressedElevation = 6.dp
@@ -307,7 +276,8 @@ fun HomeScreen(){
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFff3779)),
+                    .background(Color.White),
+//                    .background(Color(0xFFff3779)),
 //                    .background(Color(0xFF0d0551)),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
@@ -315,9 +285,9 @@ fun HomeScreen(){
                 Text(
                     "Wallet Balance",
                     fontFamily = customFontFamily(),
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Normal,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.Black
                 )
                 Spacer(modifier = Modifier.padding(vertical = 10.dp))
                 Text(
@@ -326,7 +296,7 @@ fun HomeScreen(){
                         fontFamily = customFontFamily(),
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
-                        color = Color.White
+                        color = Color.Black
                     )
                 )
             }
