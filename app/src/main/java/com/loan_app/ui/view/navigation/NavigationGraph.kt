@@ -22,7 +22,7 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         composable(route = "home") {
             HomeScreen(navController = navController)
         }
-        composable(route = "loanrequest") {
+        composable(route = "loan_request") {
             LoanRequestScreen(navController = navController)
         }
         composable(route = "profile") {

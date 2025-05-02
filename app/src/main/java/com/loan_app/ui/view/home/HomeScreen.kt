@@ -154,13 +154,13 @@ fun HomeScreen(navController: NavController){
                     ),
                     onClick = {
                         Log.i("HomeScreen", "Apply Loan is clicked")
-                        navController.navigate("loanrequest"){
+                        navController.navigate("loan_request"){
                             // When navigating away from the Home screen, clear the back stack
-                            popUpTo("home") {
-                                inclusive = true // This makes sure the Home screen itself is cleared
-                            }
-                            launchSingleTop = true // Prevent multiple instances of the same screen
-                            restoreState = true // Restore the previous state when navigating back
+//                            popUpTo("home") {
+//                                inclusive = true // This makes sure the Home screen itself is cleared
+//                            }
+//                            launchSingleTop = true // Prevent multiple instances of the same screen
+//                            restoreState = true // Restore the previous state when navigating back
                         };
                     }
                 ){
