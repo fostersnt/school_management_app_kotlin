@@ -21,6 +21,7 @@ liveDataVersion = "1.7.8"
 splashscreen = "1.0.1"
 selectionContainer = "1.8.0"
 constraintBox = "1.1.1"
+material2 = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -74,6 +75,8 @@ livedata-runtime = {module = "androidx.compose.runtime:runtime-livedata", name =
 androidx-foundation = {module = "androidx.compose.foundation:foundation", name = "androidx-foundation", version.ref = "selectionContainer"}
 #Constraint Box
 androidx-constraint-box = {module = "androidx.constraintlayout:constraintlayout-compose", name = "constraint-box", version.ref = "constraintBox"}
+#material2
+androidx-material2 = {module = "androidx.compose.material:material", name = "material2", version.ref = "material2"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

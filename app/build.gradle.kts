@@ -102,4 +102,6 @@ dependencies {
 
     //Constraint Box
     implementation(libs.androidx.constraint.box)
+    //Material2
+    implementation(libs.androidx.material2)
 }
