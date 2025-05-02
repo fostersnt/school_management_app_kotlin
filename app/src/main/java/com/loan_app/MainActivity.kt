@@ -34,8 +34,8 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun InitialScreen() {
-    LoginScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun InitialScreen() {
+//    LoginScreen()
+//}

@@ -24,14 +24,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.loan_app.ui.view.components.CustomButton
 import com.loan_app.ui.view.components.CustomOutlinedTextField
 import com.loan_app.ui.viewmodel.LoginViewModel
 import com.loan_app.R
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = viewModel()){
+fun LoginScreen(viewModel: LoginViewModel = viewModel(), navController: NavController){
 //fun LoginScreen(viewModel: LoginViewModel = viewModel()){
     /*
     This line below observes the msisdn state variable defined inside the LoginViewModel. It will cause

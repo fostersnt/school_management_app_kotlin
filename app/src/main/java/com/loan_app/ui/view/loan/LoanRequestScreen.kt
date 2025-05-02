@@ -30,15 +30,16 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.loan_app.ui.view.components.CustomButton
 import com.loan_app.ui.viewmodel.LoanRequestViewModel
 import com.loan_app.utilities.customFontFamily
 import java.util.Objects
 
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
+fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel(), navController: NavController) {
 //    viewModel.loanAmount.observeAsState("").value;
 //    viewModel.selectedTerm.observeAsState("").value
 //    viewModel.isConfirmed.observeAsState(false).value;
@@ -190,6 +191,7 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
             )
         }
         // Submit Button
+        isEnabled = isConfirmed && loanAmount.isNotEmpty();
         Button(
             onClick = { viewModel.setCanShowModal(true) },
             enabled = isEnabled,
@@ -206,7 +208,7 @@ fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
         }
     }
     if (canShowModalNow){
-        ShowModal({canShowModalNow = !canShowModalNow})
+        ShowModal({viewModel.setCanShowModal(!canShowModalNow)})
     }
 }
 

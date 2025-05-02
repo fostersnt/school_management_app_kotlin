@@ -20,16 +20,19 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = "home") {
-            HomeScreen()
+            HomeScreen(navController = navController)
+        }
+        composable(route = "loanrequest") {
+            LoanRequestScreen(navController = navController)
         }
         composable(route = "profile") {
-            LoanRequestScreen()
+            LoginScreen(navController = navController)
         }
         composable(route = "settings") {
-            LoginScreen()
+            LoginScreen(navController = navController)
         }
         composable(route = "Loans") {
-            LoginScreen()
+            LoginScreen(navController = navController)
         }
         // Add other routes as needed
     }

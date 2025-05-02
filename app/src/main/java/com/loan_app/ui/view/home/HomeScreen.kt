@@ -44,12 +44,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.loan_app.utilities.customFontFamily
 import com.loan_app.R
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavController){
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
     val screenHeight = configuration.screenHeightDp
@@ -57,6 +59,8 @@ fun HomeScreen(){
     val columnHeight = (screenHeight - (0.1 * screenHeight)) / 3;
     val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10; //20 represent the padding that has been applied to the main Column Container
     val scrollState = rememberScrollState();
+
+//    val navController = rememberNavController();
 
     Column(
         modifier = Modifier
@@ -148,7 +152,17 @@ fun HomeScreen(){
                         defaultElevation = 10.dp,
                         pressedElevation = 10.dp
                     ),
-                    onClick = { Log.i("HomeScreen", "Apply Loan is clicked")}
+                    onClick = {
+                        Log.i("HomeScreen", "Apply Loan is clicked")
+                        navController.navigate("loanrequest"){
+                            // When navigating away from the Home screen, clear the back stack
+                            popUpTo("home") {
+                                inclusive = true // This makes sure the Home screen itself is cleared
+                            }
+                            launchSingleTop = true // Prevent multiple instances of the same screen
+                            restoreState = true // Restore the previous state when navigating back
+                        };
+                    }
                 ){
                     Column(
                         modifier = Modifier
@@ -268,8 +282,8 @@ fun HomeScreen(){
                     alignment = Alignment.Start
                 ),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 2.dp,
-                pressedElevation = 6.dp
+                defaultElevation = 5.dp,
+                pressedElevation = 8.dp
             )
         ){
             //ANNOUNCEMENT CARD

@@ -19,6 +19,7 @@ val Typography = Typography(
         fontSize = 20.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
+//        color = Color.Red,
         color = Color.White,
         textAlign = TextAlign.Center
     ),
