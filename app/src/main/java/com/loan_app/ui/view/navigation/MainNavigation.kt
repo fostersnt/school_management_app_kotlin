@@ -11,6 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
@@ -33,13 +34,14 @@ fun MainNavigation() {
             if (currentRoute !in bottomNavRoutes) {
                 TopAppBar(
                     modifier = Modifier.statusBarsPadding(),
-                    title = { Text("App Title") },
+                    backgroundColor = Color.White,
+                    title = { Text("") },
                     navigationIcon = {
                         IconButton(onClick = {
                             // Handle the back navigation
                             navController.navigateUp() // This will pop the current screen and show the previous one
                         }) {
-                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color(0xFFff3779))
                         }
                     }
                 )
