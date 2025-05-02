@@ -20,6 +20,7 @@ gsonVersion = "2.10.1"
 liveDataVersion = "1.7.8"
 splashscreen = "1.0.1"
 selectionContainer = "1.8.0"
+constraintBox = "1.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -71,6 +72,9 @@ gson-parser = {module = "com.google.code.gson:gson", name = "gson-parser", versi
 livedata-runtime = {module = "androidx.compose.runtime:runtime-livedata", name = "livedata-runtime", version.ref = "liveDataVersion"}
 #selection container
 androidx-foundation = {module = "androidx.compose.foundation:foundation", name = "androidx-foundation", version.ref = "selectionContainer"}
+#Constraint Box
+androidx-constraint-box = {module = "androidx.constraintlayout:constraintlayout-compose", name = "constraint-box", version.ref = "constraintBox"}
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

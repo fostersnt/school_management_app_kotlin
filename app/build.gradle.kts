@@ -99,4 +99,7 @@ dependencies {
 
     //selection container
     implementation(libs.androidx.foundation)
+
+    //Constraint Box
+    implementation(libs.androidx.constraint.box)
 }

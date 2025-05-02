@@ -1,6 +1,7 @@
 package com.loan_app.ui.view.home
 
 import android.text.Layout
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,6 +37,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,67 +52,77 @@ fun HomeScreen(){
     val screenHeight = configuration.screenHeightDp
 
     val columnHeight = (screenHeight - (0.1 * screenHeight)) / 3;
+    val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10; //20 represent the padding that has been applied to the main Column Container
     val scrollState = rememberScrollState();
 
     Column(
-        modifier = Modifier.fillMaxSize()
-        .background(Color(0xFFff3779))
-        .padding(top = 80.dp)
-        .clip(RoundedCornerShape(16.dp)) // Apply rounded corners
-        .background(Color.White)      // Background to make it visible
-        .padding(10.dp)
+        modifier = Modifier
+            .fillMaxSize()
+//        .background(Color(0xFFff3779))
+        .padding(20.dp)
+//        .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)) // Apply rounded corners
+//        .background(Color(0xFFF9FBFB))      // Background to make it visible
+//        .padding(10.dp)
             .verticalScroll(state = scrollState)
     ) {
         Row(
-            modifier = Modifier.align(Alignment.Start).padding(bottom = 10.dp),
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(bottom = 10.dp),
 //            horizontalArrangement = Arrangement.End
         ) {
             Text(
                 text = "Hi Foster",
                 style = TextStyle(
                     fontFamily = customFontFamily(),
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Normal,
                     fontSize = 30.sp,
                 )
             )
         }
         //FIRST CARD
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(columnHeight.dp)
                 .align(
                     alignment = Alignment.Start
                 ),
 //            colors = CardDefaults.cardColors(containerColor = Color.Green),
-//            shape = RoundedCornerShape(20.dp),
+            shape = RoundedCornerShape(20.dp),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 2.dp,
-                pressedElevation = 6.dp
+                defaultElevation = 10.dp,
+                pressedElevation = 10.dp
             )
         ){
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFff3779)),
+                    .background(Color.White),
+//                    .border(
+//                        width = 1.dp,
+//                        color = Color(0xFFff3779),
+//                        shape = RoundedCornerShape(10.dp)
+//                    ),
 //                    .background(Color(0xFF0d0551)),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "Wallet Balance",
+                    "Loan Balance",
                     fontFamily = customFontFamily(),
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Normal,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.Black
                 )
                 Spacer(modifier = Modifier.padding(vertical = 10.dp))
                 Text(
                     "GHs 5,000.00",
                     style = TextStyle(
                         fontFamily = customFontFamily(),
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Normal,
                         fontSize = 30.sp,
-                        color = Color.White
+                        color = Color.Black
                     )
                 )
             }
@@ -120,81 +132,143 @@ fun HomeScreen(){
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.height((columnHeight - (0.1 * columnHeight)).dp)
+                modifier = Modifier
+                    .height((columnHeight - (0.1 * columnHeight)).dp)
+                    .fillMaxWidth(1f)
             ) {
-                Column(
-                    modifier = Modifier.background(Color.White)
-                        .weight(0.25f)
-                        .fillMaxHeight()
-                        .clip(shape = RoundedCornerShape(20.dp))
-//                        .fillMaxWidth()
-                        .background(Color(0xFFff3779))
-                        .padding(10.dp)  // Inner padding
+                Card(
+                    modifier = Modifier
+                        .width(miniCardWidth.dp)
                         .height(columnHeight.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.card_1_image),
-                        contentDescription = "App Logo",
+                    shape = RoundedCornerShape(20.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 10.dp,
+                        pressedElevation = 10.dp
+                    ),
+                    onClick = { Log.i("HomeScreen", "Apply Loan is clicked")}
+                ){
+                    Column(
                         modifier = Modifier
-                            .width(80.dp)
-                            .height(80.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(text = "Apply Loan", style = MaterialTheme.typography.bodyLarge)
+                            .background(Color.White)
+//                            .weight(0.25f)
+                            .fillMaxHeight()
+//                            .clip(shape = RoundedCornerShape(20.dp))
+                        .fillMaxWidth()
+                            .background(Color.White)
+//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
+//                        .background(Color(0xFFff3779))
+                            .padding(10.dp),  // Inner padding
+//                            .height(columnHeight.dp),
+                        verticalArrangement = Arrangement.SpaceEvenly,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.card_1_image),
+                            contentDescription = "App Logo",
+                            modifier = Modifier
+                                .width(80.dp)
+                                .height(80.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Text(
+                            text = "Apply Loan",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Black, textAlign = TextAlign.Center
+                        )
+                    }
                 }
-                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
-                Column(
-                    modifier = Modifier.background(Color.White)
-                        .weight(0.25f)
-                        .fillMaxHeight()
-                        .clip(shape = RoundedCornerShape(20.dp))
-//                        .fillMaxWidth()
-                        .background(Color(0xFFff3779))
-                        .padding(10.dp),  // Inner padding
-//                        .height(columnHeight.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.card_2_image),
-                        contentDescription = "App Logo",
+//                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
+                Card(
+                    modifier = Modifier
+                        .width(miniCardWidth.dp)
+                        .height(columnHeight.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 10.dp,
+                        pressedElevation = 10.dp
+                    ),
+                    onClick = { Log.i("HomeScreen", "Loan History is clicked")}
+                ){
+                    Column(
                         modifier = Modifier
-                            .width(80.dp)
-                            .height(80.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(text = "Loan History", style = MaterialTheme.typography.bodyLarge)
+                            .background(Color.White)
+//                            .weight(0.25f)
+                            .fillMaxHeight()
+//                            .clip(shape = RoundedCornerShape(20.dp))
+                        .fillMaxWidth()
+                            .background(Color.White)
+//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
+//                        .background(Color(0xFFff3779))
+                            .padding(10.dp),  // Inner padding
+//                            .height(columnHeight.dp),
+                        verticalArrangement = Arrangement.SpaceEvenly,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.card_2_image),
+                            contentDescription = "App Logo",
+                            modifier = Modifier
+                                .width(80.dp)
+                                .height(80.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Text(
+                            text = "Loan History",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Black, textAlign = TextAlign.Center
+                            )
+                    }
                 }
-                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
-                Column(
-                    modifier = Modifier.background(Color.White)
-                        .weight(0.25f)
-                        .fillMaxHeight()
-                        .clip(shape = RoundedCornerShape(20.dp))
-//                        .fillMaxWidth()
-                        .background(Color(0xFFff3779))
-                        .padding(10.dp),  // Inner padding
-//                        .height(200.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.card_3_image),
-                        contentDescription = "App Logo",
+//                Spacer(modifier = Modifier.padding(horizontal = 22.dp))
+                Card(
+                    modifier = Modifier
+                        .width(miniCardWidth.dp)
+                        .height(columnHeight.dp),
+                    shape = RoundedCornerShape(20.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 10.dp,
+                        pressedElevation = 10.dp
+                    ),
+                    onClick = { Log.i("HomeScreen", "My Account is clicked")}
+                ){
+                    Column(
                         modifier = Modifier
-                            .width(80.dp)
-                            .height(80.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(text = "My Account", style = MaterialTheme.typography.bodyLarge)
+                            .background(Color.White)
+//                            .weight(0.25f)
+                            .fillMaxHeight()
+//                            .clip(shape = RoundedCornerShape(20.dp))
+                        .fillMaxWidth()
+                            .background(Color.White)
+//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
+//                        .background(Color(0xFFff3779))
+                            .padding(10.dp),  // Inner padding
+//                            .height(columnHeight.dp),
+                        verticalArrangement = Arrangement.SpaceEvenly,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.card_1_image),
+                            contentDescription = "App Logo",
+                            modifier = Modifier
+                                .width(80.dp)
+                                .height(80.dp),
+                            contentScale = ContentScale.Crop
+                        )
+                        Text(
+                            text = "My Account",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Black, textAlign = TextAlign.Center
+                            )
+                    }
                 }
         }
         //LAST CARD
 //        Spacer(modifier = Modifier.padding(vertical = 5.dp))
         Row(
-            modifier = Modifier.align(Alignment.Start).padding(bottom = 10.dp).fillMaxWidth(),
+            modifier = Modifier
+                .align(Alignment.Start)
+                .padding(bottom = 10.dp)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -209,12 +283,15 @@ fun HomeScreen(){
             Image(
                 painter = painterResource(R.drawable.announcement_image),
                 contentDescription = "Announcement Icon",
-                modifier = Modifier.width(50.dp).height(50.dp)
+                modifier = Modifier
+                    .width(50.dp)
+                    .height(50.dp)
             )
         }
 //        Spacer(modifier = Modifier.padding(vertical = 5.dp))
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height((columnHeight / 2).dp)
                 .align(
                     alignment = Alignment.Start

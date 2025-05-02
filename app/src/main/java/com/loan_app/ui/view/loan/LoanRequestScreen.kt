@@ -10,6 +10,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,16 +29,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.loan_app.ui.view.components.CustomButton
+import com.loan_app.ui.viewmodel.LoanRequestViewModel
 import com.loan_app.utilities.customFontFamily
+import java.util.Objects
 
 
 @Preview(showBackground = true)
 @Composable
-fun LoanRequestScreen() {
-    var loanAmount by remember { mutableStateOf(TextFieldValue("")) }
-    var selectedTerm by remember { mutableStateOf("6 Months") }
-    var isConfirmed by remember { mutableStateOf(false) }
+fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel()) {
+//    viewModel.loanAmount.observeAsState("").value;
+//    viewModel.selectedTerm.observeAsState("").value
+//    viewModel.isConfirmed.observeAsState(false).value;
+
+    var loanAmount = viewModel.getLoanAmount().observeAsState("").value;
+    var selectedTerm = viewModel.getSelectedTerm().observeAsState("").value;
+    var isConfirmed = viewModel.getConfirmation().observeAsState(false).value;
 
     val availableAmount = 50000 // Example max available amount
     val loanTerms = listOf("6 Months", "12 Months", "24 Months", "36 Months")
@@ -85,7 +93,7 @@ fun LoanRequestScreen() {
         // Loan Amount Input Field
         OutlinedTextField(
             value = loanAmount,
-            onValueChange = { loanAmount = it },
+            onValueChange = { viewModel.setLoanAmount(it) },
             textStyle = TextStyle(
                 fontWeight = FontWeight.Normal,
                 fontFamily = customFontFamily(),
@@ -147,7 +155,7 @@ fun LoanRequestScreen() {
                     DropdownMenuItem(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                        selectedTerm = term
+                            viewModel.setLoanTerm(term)
                         expanded = false
                     }, text = {
                         Text(
@@ -167,7 +175,7 @@ fun LoanRequestScreen() {
         ) {
             Checkbox(
                 checked = isConfirmed,
-                onCheckedChange = { isConfirmed = it },
+                onCheckedChange = { viewModel.setConfirmation(it) },
                 modifier = Modifier.padding(end = 8.dp),
                 colors = CheckboxDefaults.colors(
                     checkmarkColor = Color.White,
@@ -181,11 +189,11 @@ fun LoanRequestScreen() {
                 ),
             )
         }
-    val enabled = isConfirmed && loanAmount.text.isNotEmpty()
+    val enabled = isConfirmed && loanAmount.isNotEmpty()
         // Submit Button
         Button(
             onClick = { canShowModal = true },
-            enabled = isConfirmed && loanAmount.text.isNotEmpty(),
+            enabled = isConfirmed && loanAmount.isNotEmpty(),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp)

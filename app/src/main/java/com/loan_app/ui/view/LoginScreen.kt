@@ -74,16 +74,16 @@ val msisdnData = viewModel.getMsisdn();
         //Adding space
         Spacer(modifier = Modifier.padding(bottom = 20.dp))
         //Input field
-        CustomOutlinedTextField(
-            "",
-            { LeadingContentItem() },
-            viewModel.msisdn,
-            {viewModel.onMsisdnChanged(msisdnData.value.toString())}
-        )
+//        CustomOutlinedTextField(
+//            "",
+//            { LeadingContentItem() },
+//            viewModel.msisdn,
+//            {viewModel.onMsisdnChanged(msisdnData.value.toString())}
+//        )
         //Space
         Spacer(modifier = Modifier.padding(bottom = 20.dp))
         //
-        CustomButton("Send OTP", 20, 1f, {viewModel.otpTrigger()})
+//        CustomButton("Send OTP", 20, 1f, {viewModel.otpTrigger()})
     }
 }
 
