@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,13 +46,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import com.loan_app.utilities.customFontFamily
 import com.loan_app.R
+import com.loan_app.ui.view.navigation.AppRoutes
 
 //@Preview(showBackground = true)
 @Composable
 fun HomeScreen(navController: NavController){
+
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
     val screenHeight = configuration.screenHeightDp
@@ -61,12 +65,12 @@ fun HomeScreen(navController: NavController){
     val scrollState = rememberScrollState();
 
 //    val navController = rememberNavController();
-
     Column(
         modifier = Modifier
             .fillMaxSize()
 //        .background(Color(0xFFff3779))
         .padding(20.dp)
+            .statusBarsPadding()
 //        .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)) // Apply rounded corners
 //        .background(Color(0xFFF9FBFB))      // Background to make it visible
 //        .padding(10.dp)
@@ -154,14 +158,17 @@ fun HomeScreen(navController: NavController){
                     ),
                     onClick = {
                         Log.i("HomeScreen", "Apply Loan is clicked")
-                        navController.navigate("loan_request"){
-                            // When navigating away from the Home screen, clear the back stack
-//                            popUpTo("home") {
-//                                inclusive = true // This makes sure the Home screen itself is cleared
+                        navController.navigate("test_screen")
+//                        navController.navigate("test_screen"){
+//
+//                            popUpTo(navController.graph.findStartDestination().id) {
+//                                saveState = true
 //                            }
-//                            launchSingleTop = true // Prevent multiple instances of the same screen
-//                            restoreState = true // Restore the previous state when navigating back
-                        };
+//
+//                            launchSingleTop = true
+//
+//                            restoreState = true
+//                        }
                     }
                 ){
                     Column(

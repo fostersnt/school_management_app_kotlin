@@ -39,10 +39,12 @@ import java.util.Objects
 
 //@Preview(showBackground = true)
 @Composable
-fun LoanRequestScreen(viewModel: LoanRequestViewModel = viewModel(), navController: NavController) {
+fun LoanRequestScreen(navController: NavController) {
 //    viewModel.loanAmount.observeAsState("").value;
 //    viewModel.selectedTerm.observeAsState("").value
 //    viewModel.isConfirmed.observeAsState(false).value;
+
+    val viewModel: LoanRequestViewModel = viewModel();
 
     var loanAmount = viewModel.loanAmount.observeAsState("").value;
     var selectedTerm = viewModel.selectedTerm.observeAsState("").value;

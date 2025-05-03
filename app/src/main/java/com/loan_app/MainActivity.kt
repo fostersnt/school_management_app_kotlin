@@ -4,14 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
 import com.loan_app.data.local.repository.PostRepository
 import com.loan_app.ui.theme.Loan_AppTheme
-import com.loan_app.ui.view.LoginScreen
-import com.loan_app.ui.view.home.HomeScreen
-import com.loan_app.ui.view.navigation.MainNavigation
+import com.loan_app.ui.view.navigation.BottomNavigationBar
+import com.loan_app.ui.view.navigation.NavigationGraph
 import com.loan_app.ui.viewmodel.PostViewModel
 
 class MainActivity : ComponentActivity() {
@@ -23,19 +22,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+            val navController = rememberNavController();
             Loan_AppTheme {
-//                LoginScreen()
-//                HomeScreen()
-                MainNavigation()
+//                BottomNavigationBar(navController)
+                NavigationGraph(navController, paddingValues = PaddingValues());
             }
         }
     }
 }
-
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun InitialScreen() {
-//    LoginScreen()
-//}
