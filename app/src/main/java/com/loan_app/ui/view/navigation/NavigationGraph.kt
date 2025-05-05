@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.loan_app.ui.view.user.LoginScreen
 import com.loan_app.ui.view.home.HomeScreen
+import com.loan_app.ui.view.loan.LoanHistoryScreen
 import com.loan_app.ui.view.loan.LoanRequestScreen
 import com.loan_app.ui.view.user.ProfileScreen
 import com.loan_app.ui.view.user.SettingsScreen
@@ -44,6 +45,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         }
         composable(route = AppRoutes.test_screen) {
             TestScreen(navController)
+        }
+        composable(route = AppRoutes.loan_history_screen) {
+            LoanHistoryScreen(navController)
         }
     }
 }

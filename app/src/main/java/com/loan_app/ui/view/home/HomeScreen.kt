@@ -1,13 +1,10 @@
 package com.loan_app.ui.view.home
 
-import android.text.Layout
 import android.util.Log
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,33 +18,22 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.rememberNavController
 import com.loan_app.utilities.customFontFamily
 import com.loan_app.R
 import com.loan_app.ui.view.navigation.AppRoutes
@@ -64,23 +50,17 @@ fun HomeScreen(navController: NavController){
     val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10; //20 represent the padding that has been applied to the main Column Container
     val scrollState = rememberScrollState();
 
-//    val navController = rememberNavController();
     Column(
         modifier = Modifier
             .fillMaxSize()
-//        .background(Color(0xFFff3779))
         .padding(20.dp)
             .statusBarsPadding()
-//        .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)) // Apply rounded corners
-//        .background(Color(0xFFF9FBFB))      // Background to make it visible
-//        .padding(10.dp)
             .verticalScroll(state = scrollState)
     ) {
         Row(
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(bottom = 10.dp),
-//            horizontalArrangement = Arrangement.End
         ) {
             Text(
                 text = "Hi Foster",
@@ -99,7 +79,6 @@ fun HomeScreen(navController: NavController){
                 .align(
                     alignment = Alignment.Start
                 ),
-//            colors = CardDefaults.cardColors(containerColor = Color.Green),
             shape = RoundedCornerShape(20.dp),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp,
@@ -110,12 +89,6 @@ fun HomeScreen(navController: NavController){
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.White),
-//                    .border(
-//                        width = 1.dp,
-//                        color = Color(0xFFff3779),
-//                        shape = RoundedCornerShape(10.dp)
-//                    ),
-//                    .background(Color(0xFF0d0551)),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -144,132 +117,18 @@ fun HomeScreen(navController: NavController){
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .height((columnHeight / 2).dp)
+                    .height((columnHeight - (0.1 * columnHeight)).dp)
                     .fillMaxWidth(1f)
             ) {
-                Card(
-                    modifier = Modifier
-                        .width(miniCardWidth.dp)
-                        .height(columnHeight.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 10.dp,
-                        pressedElevation = 10.dp
-                    ),
-                    onClick = {
-                        Log.i("HomeScreen", "Apply Loan is clicked")
-                        navController.navigate(AppRoutes.loan_request_screen)
-                    }
-                ){
-                    Column(
-                        modifier = Modifier
-                            .background(Color.White)
-//                            .weight(0.25f)
-                            .fillMaxHeight()
-//                            .clip(shape = RoundedCornerShape(20.dp))
-                        .fillMaxWidth()
-                            .background(Color.White)
-//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
-//                        .background(Color(0xFFff3779))
-                            .padding(10.dp),  // Inner padding
-//                            .height(columnHeight.dp),
-                        verticalArrangement = Arrangement.SpaceEvenly,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Apply Loan",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = Color.Black, textAlign = TextAlign.Center
-                        )
-                    }
-                }
-//                Spacer(modifier = Modifier.padding(horizontal = 5.dp))
-                Card(
-                    modifier = Modifier
-                        .width(miniCardWidth.dp)
-                        .height(columnHeight.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 10.dp,
-                        pressedElevation = 10.dp
-                    ),
-                    onClick = { Log.i("HomeScreen", "Loan History is clicked")}
-                ){
-                    Column(
-                        modifier = Modifier
-                            .background(Color.White)
-//                            .weight(0.25f)
-                            .fillMaxHeight()
-//                            .clip(shape = RoundedCornerShape(20.dp))
-                        .fillMaxWidth()
-                            .background(Color.White)
-//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
-//                        .background(Color(0xFFff3779))
-                            .padding(10.dp),  // Inner padding
-//                            .height(columnHeight.dp),
-                        verticalArrangement = Arrangement.SpaceEvenly,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Loan History",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = Color.Black, textAlign = TextAlign.Center
-                            )
-                    }
-                }
-//                Spacer(modifier = Modifier.padding(horizontal = 22.dp))
-                Card(
-                    modifier = Modifier
-                        .width(miniCardWidth.dp)
-                        .height(columnHeight.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 10.dp,
-                        pressedElevation = 10.dp
-                    ),
-                    onClick = { Log.i("HomeScreen", "My Account is clicked")}
-                ){
-                    Column(
-                        modifier = Modifier
-                            .background(Color.White)
-//                            .weight(0.25f)
-                            .fillMaxHeight()
-//                            .clip(shape = RoundedCornerShape(20.dp))
-                        .fillMaxWidth()
-                            .background(Color.White)
-//                            .border(width = 1.dp, color = Color(0xFFff3779), shape = RoundedCornerShape(10.dp))
-//                        .background(Color(0xFFff3779))
-                            .padding(10.dp),  // Inner padding
-//                            .height(columnHeight.dp),
-                        verticalArrangement = Arrangement.SpaceEvenly,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "My Account",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = Color.Black, textAlign = TextAlign.Center
-                            )
-                    }
-                }
+                val img1 = R.drawable.card_1_image;
+                val img2 = R.drawable.card_2_image;
+                val img3 = R.drawable.card_3_image;
+
+                CustomCard(navController, "Apply Loan", AppRoutes.loan_request_screen, miniCardWidth, columnHeight, img1)
+                CustomCard(navController, "Loan History", AppRoutes.settings_screen, miniCardWidth, columnHeight, img2)
+                CustomCard(navController, "My Account", AppRoutes.loan_history_screen, miniCardWidth, columnHeight, img3)
         }
-        //LAST CARD
-//        Row(
-//            modifier = Modifier
-//                .align(Alignment.Start)
-//                .padding(bottom = 10.dp)
-//                .fillMaxWidth(),
-//            verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.SpaceEvenly
-//        ) {
-//            Text(
-//                text = "Announcements",
-//                style = TextStyle(
-//                    fontFamily = customFontFamily(),
-//                    fontWeight = FontWeight.Bold,
-//                    fontSize = 30.sp,
-//                )
-//            )
-//        }
+
         Spacer(modifier = Modifier.height(20.dp))
         Card(
             modifier = Modifier
@@ -311,6 +170,53 @@ fun HomeScreen(navController: NavController){
                     )
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun CustomCard(
+    navController: NavController,
+    label: String,
+    myRoute: String,
+    miniCardWidth: Double,
+    columnHeight: Double,
+    imageIcon: Int
+){
+    Card(
+        modifier = Modifier
+            .width(miniCardWidth.dp),
+//            .height(columnHeight.dp),
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp,
+            pressedElevation = 10.dp
+        ),
+        onClick = {
+            Log.i("HomeScreen", "Apply Loan is clicked")
+            navController.navigate(route = myRoute)
+        }
+    ){
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+//                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = imageIcon),
+                contentDescription = "",
+                Modifier.width((miniCardWidth).dp).height((columnHeight / 2).dp)
+            )
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.Black, textAlign = TextAlign.Center
+            )
         }
     }
 }

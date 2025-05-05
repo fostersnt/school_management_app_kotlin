@@ -5,6 +5,7 @@ object AppRoutes {
     val home_screen = "home"
     val profile_screen = "profile"
     val settings_screen = "settings"
+    val loan_history_screen = "loan_history"
     val loan_request_screen = "loan_request"
     val test_screen = "test_screen"
     val bottom_navigation_screen = "bottom_navigation_screen"

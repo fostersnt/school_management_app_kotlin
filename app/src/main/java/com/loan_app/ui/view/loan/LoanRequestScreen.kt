@@ -49,6 +49,7 @@ fun LoanRequestScreen(navController: NavController) {
             "100",
             "400",
             selectedTerm,
+            selectedMomoAccount,
             "12-05-2025"
         );
     }
@@ -217,6 +218,7 @@ fun ShowModal(
     interest: String,
     loanAmount: String,
     loanTerm: String,
+    momoAccount: String,
     firstRepaymentDate: String
 ){
     AlertDialog(
@@ -238,6 +240,7 @@ fun ShowModal(
                 InfoRow("Interest:", interest)
                 InfoRow("Loan Amount:", loanAmount)
                 InfoRow("Loan Term:", loanTerm)
+                InfoRow("Momo Account:", momoAccount)
                 InfoRow("1st Repayment Date:", firstRepaymentDate)
             }
         },
