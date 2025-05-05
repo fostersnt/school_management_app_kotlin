@@ -33,7 +33,6 @@ import com.loan_app.utilities.customFontFamily
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoanRequestScreen(navController: NavController) {
-    fun onSubmit(loanAmount: String, term: String) = {}
     var loanAmount by remember { mutableStateOf("") }
     var selectedTerm by remember { mutableStateOf("") }
     var selectedMomoAccount by remember { mutableStateOf("") }
@@ -136,6 +135,10 @@ fun LoanRequestScreen(navController: NavController) {
             }
 
             //MOMO ACCOUNT SELECTION
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(text = "Select Momo Account", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
+            Spacer(modifier = Modifier.height(8.dp))
             Column {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
@@ -157,8 +160,8 @@ fun LoanRequestScreen(navController: NavController) {
                     Spacer(Modifier.padding(vertical = 20.dp))
                 }
                 DropdownMenu(
-                    expanded = isExpanded,
-                    onDismissRequest = {isExpanded = false}
+                    expanded = isExpandedMomo,
+                    onDismissRequest = {isExpandedMomo = false}
                 ) {
                     momoAccounts.forEach { momo ->
                         DropdownMenuItem(
