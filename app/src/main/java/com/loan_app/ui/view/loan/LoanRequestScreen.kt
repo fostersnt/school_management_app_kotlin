@@ -203,7 +203,7 @@ fun LoanRequestScreen(navController: NavController) {
                 shape = RectangleShape,
                 enabled = loanAmount.isNotEmpty() && selectedTerm.isNotEmpty()
             ) {
-                Text("Submit Application")
+                Text("Next")
             }
         }
     }
@@ -248,7 +248,7 @@ fun ShowModal(
                     onDismiss() // Close the modal
                 },
             ) {
-                Text("Proceed")
+                Text("Submit")
             }
         },
         dismissButton = {
