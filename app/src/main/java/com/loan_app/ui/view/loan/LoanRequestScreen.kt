@@ -2,6 +2,7 @@ package com.loan_app.ui.view.loan
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,7 +43,14 @@ fun LoanRequestScreen(navController: NavController) {
     var canShowModal by remember { mutableStateOf(false) }
 
     if (canShowModal == true){
-        ShowModal({canShowModal = !canShowModal}, loanAmount);
+        ShowModal(
+            { canShowModal = !canShowModal },
+            loanAmount,
+            "100",
+            "400",
+            selectedTerm,
+            "12-05-2025"
+        );
     }
 
     val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
@@ -49,11 +58,11 @@ fun LoanRequestScreen(navController: NavController) {
 
     fun getMaxLoanAmount(term: String): Int {
         return when (term) {
-            "12 months" -> 10000
-            "24 months" -> 20000
-            "36 months" -> 30000
-            "48 months" -> 40000
-            "60 months" -> 50000
+            "1 months" -> 10000
+            "2 months" -> 20000
+            "3 months" -> 30000
+            "4 months" -> 40000
+            "5 months" -> 50000
             else -> 0
         }
     }
@@ -176,7 +185,7 @@ fun LoanRequestScreen(navController: NavController) {
 
             // Max Loan Amount Display
             Text(
-                text = "Maximum Available Loan: $${maxLoanAmount}",
+                text = "Maximum Available Loan: Ghs $maxLoanAmount",
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -202,24 +211,34 @@ fun LoanRequestScreen(navController: NavController) {
 
 
 @Composable
-fun ShowModal(onDismiss: () -> Unit, amount: String){
+fun ShowModal(
+    onDismiss: () -> Unit,
+    principal: String,
+    interest: String,
+    loanAmount: String,
+    loanTerm: String,
+    firstRepaymentDate: String
+){
     AlertDialog(
+        containerColor = Color.White,
         shape = RectangleShape,
         onDismissRequest = {}, // Dismiss dialog when user clicks outside
         title = { Text(
-            "Modal Title",
+            "Loan Details",
             style = TextStyle(fontFamily = customFontFamily(), fontSize = 20.sp)
         ) },
         text = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Are you sure the above details are correct?",
+                    text = "Please review the loan details below:",
                     style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp)
                 )
-                Text(
-                    text = "Loan Amount: $amount",
-                    style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp)
-                )
+                Spacer(Modifier.height(20.dp))
+                InfoRow("Principal:", principal)
+                InfoRow("Interest:", interest)
+                InfoRow("Loan Amount:", loanAmount)
+                InfoRow("Loan Term:", loanTerm)
+                InfoRow("1st Repayment Date:", firstRepaymentDate)
             }
         },
         confirmButton = {
@@ -240,6 +259,26 @@ fun ShowModal(onDismiss: () -> Unit, amount: String){
             }
         }
     )
+}
+
+@Composable
+fun InfoRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            label,
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp),
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            value,
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.End
+        )
+    }
 }
 
 
