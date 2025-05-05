@@ -60,15 +60,15 @@ import com.loan_app.ui.viewmodel.LoginViewModel
 //    }
 //}
 
-fun ProfileScreen(
-    navController: NavController,
-    userName: String,
-    email: String,
-    bio: String,
-    profileImageUrl: String,
-    onEditClick: () -> Unit,
-    onLogoutClick: () -> Unit
-) {
+fun ProfileScreen(navController: NavController) {
+
+    val userName: String = "Foster"
+    val email: String = "fostersnt@gmail.com"
+    val bio: String = "I am a Man"
+    val profileImageUrl: String = "image_url.png"
+    fun onEditClick() = {  }
+    fun onLogoutClick() = {}
+
     Scaffold(
         topBar = {
             TopAppBar (
@@ -119,14 +119,14 @@ fun ProfileScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-                onClick = onEditClick,
+                onClick = {onEditClick()},
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Edit Profile")
             }
 
             OutlinedButton(
-                onClick = onLogoutClick,
+                onClick = {onLogoutClick()},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 8.dp)

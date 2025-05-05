@@ -158,17 +158,7 @@ fun HomeScreen(navController: NavController){
                     ),
                     onClick = {
                         Log.i("HomeScreen", "Apply Loan is clicked")
-                        navController.navigate("test_screen")
-//                        navController.navigate("test_screen"){
-//
-//                            popUpTo(navController.graph.findStartDestination().id) {
-//                                saveState = true
-//                            }
-//
-//                            launchSingleTop = true
-//
-//                            restoreState = true
-//                        }
+                        navController.navigate(AppRoutes.loan_request_screen)
                     }
                 ){
                     Column(

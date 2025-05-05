@@ -33,7 +33,7 @@ fun TestScreen(navController: NavController){
             .padding(20.dp),
     ) {
         Text(
-            text = "SETTINGS SCREEN",
+            text = "TEST SCREEN",
             style = MaterialTheme.typography.headlineLarge,
             color = Color.Black
         )
