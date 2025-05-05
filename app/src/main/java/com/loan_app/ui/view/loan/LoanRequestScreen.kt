@@ -242,14 +242,18 @@ fun ShowModal(
             }
         },
         confirmButton = {
-            Button(onClick = {
-                onDismiss() // Close the modal
-            }) {
+            Button(
+                shape = RectangleShape,
+                onClick = {
+                    onDismiss() // Close the modal
+                },
+            ) {
                 Text("Proceed")
             }
         },
         dismissButton = {
             Button(
+                shape = RectangleShape,
                 onClick = {
                 onDismiss() // Close the modal
             },
