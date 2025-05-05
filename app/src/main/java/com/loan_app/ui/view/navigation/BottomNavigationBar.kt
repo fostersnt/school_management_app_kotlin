@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.loan_app.ui.view.home.HomeScreen
@@ -52,7 +53,8 @@ fun BottomNavigationBar(navController: NavHostController) {
                 }
             }
         },
-    ) {
+    )
+    {
         BottomTabScreenContent(Modifier.padding(it), selectedIndex, navController)
     }
 

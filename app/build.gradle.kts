@@ -104,4 +104,6 @@ dependencies {
     implementation(libs.androidx.constraint.box)
     //Material2
     implementation(libs.androidx.material2)
+    //AsyncImage
+    implementation(libs.async.image)
 }
