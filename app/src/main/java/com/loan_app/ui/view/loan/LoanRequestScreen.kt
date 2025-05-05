@@ -233,11 +233,11 @@ import java.util.Objects
 fun LoanRequestScreen(navController: NavController) {
     fun onSubmit(loanAmount: String, term: String) = {}
     var loanAmount by remember { mutableStateOf("") }
-    var selectedTerm by remember { mutableStateOf("Loan term") }
+    var selectedTerm by remember { mutableStateOf("") }
     var isExpanded by remember { mutableStateOf(false) }
 
     // List of payment terms
-    val paymentTerms = listOf("12 months", "24 months", "36 months", "48 months", "60 months")
+    val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
 
     // Function to calculate the max loan based on the selected term
     fun getMaxLoanAmount(term: String): Int {
@@ -274,23 +274,24 @@ fun LoanRequestScreen(navController: NavController) {
                 .fillMaxSize()
         ) {
             // Loan Amount Input Field
-            Text(text = "Preferred Loan Amount", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Preferred Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 value = loanAmount,
                 onValueChange = { loanAmount = it },
-                label = { Text("Enter Loan Amount") },
+                label = { Text("Enter Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = Color(0xFF00729C)
-                )
+                    unfocusedBorderColor = Color(0xFF00729C),
+                ),
+                textStyle = TextStyle(textAlign = TextAlign.Start)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Payment Term Dropdown
-            Text(text = "Select Payment Term", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Select Payment Term", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
             Spacer(modifier = Modifier.height(8.dp))
 
             Column {
@@ -319,7 +320,7 @@ fun LoanRequestScreen(navController: NavController) {
                 ) {
                     paymentTerms.forEach { term ->
                         DropdownMenuItem(
-                            text = { Text(term, style = TextStyle(fontFamily = customFontFamily(), color = Color.Black)) },
+                            text = { Text(term, style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                             onClick = { isExpanded = false; selectedTerm = term }
                         )
                     }
@@ -345,7 +346,8 @@ fun LoanRequestScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF00729C)
                 ),
-                shape = RectangleShape
+                shape = RectangleShape,
+                enabled = loanAmount.isNotEmpty() && selectedTerm.isNotEmpty()
             ) {
                 Text("Submit Application")
             }
