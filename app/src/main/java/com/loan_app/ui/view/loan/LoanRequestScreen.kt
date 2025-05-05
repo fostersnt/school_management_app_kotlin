@@ -36,7 +36,9 @@ fun LoanRequestScreen(navController: NavController) {
     fun onSubmit(loanAmount: String, term: String) = {}
     var loanAmount by remember { mutableStateOf("") }
     var selectedTerm by remember { mutableStateOf("") }
+    var selectedMomoAccount by remember { mutableStateOf("") }
     var isExpanded by remember { mutableStateOf(false) }
+    var isExpandedMomo by remember { mutableStateOf(false) }
     var canShowModal by remember { mutableStateOf(false) }
 
     if (canShowModal == true){
@@ -44,6 +46,7 @@ fun LoanRequestScreen(navController: NavController) {
     }
 
     val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
+    val momoAccounts = listOf("0553255225", "0242677689")
 
     fun getMaxLoanAmount(term: String): Int {
         return when (term) {
@@ -98,6 +101,7 @@ fun LoanRequestScreen(navController: NavController) {
             Text(text = "Select Payment Term", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
             Spacer(modifier = Modifier.height(8.dp))
 
+            //LOAN TERM SELECTION
             Column {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
@@ -126,6 +130,40 @@ fun LoanRequestScreen(navController: NavController) {
                         DropdownMenuItem(
                             text = { Text(term, style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                             onClick = { isExpanded = false; selectedTerm = term }
+                        )
+                    }
+                }
+            }
+
+            //MOMO ACCOUNT SELECTION
+            Column {
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
+                    onClick = {isExpandedMomo = !isExpandedMomo},
+                    shape = RectangleShape,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(text = selectedMomoAccount, style = TextStyle(fontFamily = customFontFamily(), color = Color.Black))
+                        Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "", tint = Color.Black)
+                    }
+                    Spacer(Modifier.padding(vertical = 20.dp))
+                }
+                DropdownMenu(
+                    expanded = isExpanded,
+                    onDismissRequest = {isExpanded = false}
+                ) {
+                    momoAccounts.forEach { momo ->
+                        DropdownMenuItem(
+                            text = { Text(momo, style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
+                            onClick = { isExpandedMomo = false; selectedMomoAccount = momo }
                         )
                     }
                 }
