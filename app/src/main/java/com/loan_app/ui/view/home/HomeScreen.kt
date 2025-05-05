@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,6 +22,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,11 +43,13 @@ import com.loan_app.ui.view.navigation.AppRoutes
 fun HomeScreen(navController: NavController){
 
     val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp
-    val screenHeight = configuration.screenHeightDp
+    val screenWidth = remember { configuration.screenWidthDp }
+    val screenHeight = remember { configuration.screenHeightDp }
 
-    val columnHeight = (screenHeight - (0.1 * screenHeight)) / 3;
-    val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10; //20 represent the padding that has been applied to the main Column Container
+    val myCustomFontFamily = remember { customFontFamily() }
+
+    val columnHeight = remember { (screenHeight - (0.1 * screenHeight)) / 3 };
+    val miniCardWidth = remember { ((screenWidth - (0.1 * screenWidth)) / 3) - 10 }; //20 represent the padding that has been applied to the main Column Container
     val scrollState = rememberScrollState();
 
     Column(
@@ -65,7 +67,7 @@ fun HomeScreen(navController: NavController){
             Text(
                 text = "Hi Foster",
                 style = TextStyle(
-                    fontFamily = customFontFamily(),
+                    fontFamily = myCustomFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 30.sp,
                 )
@@ -94,16 +96,16 @@ fun HomeScreen(navController: NavController){
             ) {
                 Text(
                     "Loan Balance",
-                    fontFamily = customFontFamily(),
+                    fontFamily = myCustomFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 20.sp,
                     color = Color.Black
                 )
-                Spacer(modifier = Modifier.padding(vertical = 10.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     "GHs 5,000.00",
                     style = TextStyle(
-                        fontFamily = customFontFamily(),
+                        fontFamily = myCustomFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
                         color = Color(0xFFff3779)
@@ -112,7 +114,7 @@ fun HomeScreen(navController: NavController){
             }
         }
         //SECOND GROUP OF CARDS
-        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        Spacer(modifier = Modifier.height(10.dp))
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
@@ -154,16 +156,16 @@ fun HomeScreen(navController: NavController){
             ) {
                 Text(
                     "Wallet Balance",
-                    fontFamily = customFontFamily(),
+                    fontFamily = myCustomFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 20.sp,
                     color = Color.Black
                 )
-                Spacer(modifier = Modifier.padding(vertical = 10.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     "GHs 5,000.00",
                     style = TextStyle(
-                        fontFamily = customFontFamily(),
+                        fontFamily = myCustomFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 30.sp,
                         color = Color.Black
@@ -193,7 +195,7 @@ fun CustomCard(
             pressedElevation = 10.dp
         ),
         onClick = {
-            Log.i("HomeScreen", "Apply Loan is clicked")
+            Log.i("HomeScreen", label)
             navController.navigate(route = myRoute)
         }
     ){
