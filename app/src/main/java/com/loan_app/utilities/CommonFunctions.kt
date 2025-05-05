@@ -1,5 +1,7 @@
 package com.loan_app.utilities
 
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -15,3 +17,9 @@ fun customFontFamily(): FontFamily{
         Font(R.font.josefin_slab_thin, weight = FontWeight.Thin)
     )
 }
+
+val CustomColorScheme = lightColorScheme(
+    primary = Color(0xFF00729C),
+    onPrimary = Color.White,
+    // Define other colors as needed
+)

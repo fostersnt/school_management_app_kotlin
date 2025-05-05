@@ -20,6 +20,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -256,8 +257,13 @@ fun LoanRequestScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier.statusBarsPadding(),
                 title = { Text("Loan Application") },
-                navigationIcon = {}
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                }
             )
         }
     ) { innerPadding ->
