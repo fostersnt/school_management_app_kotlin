@@ -27,11 +27,22 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
                 },
                 selected = currentRoute == item.route,
                 onClick = {
-                    when(currentIndex){
-                        0 -> navController.navigate(AppRoutes.HOME_SCREEN)
-                        1 -> navController.navigate(AppRoutes.PROFILE_SCREEN)
-                        2 -> navController.navigate(AppRoutes.SETTINGS_SCREEN)
+                    val targetRoute = item.route
+
+                    if (currentRoute != targetRoute) {
+                        navController.navigate(targetRoute) {
+                            popUpTo(AppRoutes.HOME_SCREEN) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
+//                    when(currentIndex){
+//                        0 -> navController.navigate(AppRoutes.HOME_SCREEN)
+//                        1 -> navController.navigate(AppRoutes.PROFILE_SCREEN)
+//                        2 -> navController.navigate(AppRoutes.SETTINGS_SCREEN)
+//                    }
                 },
             )
         }
