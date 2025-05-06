@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +38,12 @@ import com.loan_app.R
 import com.loan_app.data.model.AppColors
 import com.loan_app.data.model.AppRoutes
 import com.loan_app.utilities.customFontFamily
+
+private val cardImages = listOf(
+    R.drawable.card_1_image,
+    R.drawable.card_2_image,
+    R.drawable.card_3_image
+)
 
 @Composable
 fun HomeScreen(navController: NavController){
@@ -114,13 +121,9 @@ fun HomeScreen(navController: NavController){
                     .fillMaxWidth()
                     .height(200.dp)
             ) {
-                val img1 = R.drawable.card_1_image;
-                val img2 = R.drawable.card_2_image;
-                val img3 = R.drawable.card_3_image;
-
-                CustomCard(navController, "Apply Loan", AppRoutes.LOAN_REQUEST_SCREEN, img1)
-                CustomCard(navController, "Loan History", AppRoutes.LOAN_HISTORY_SCREEN, img2)
-                CustomCard(navController, "My Account", AppRoutes.TEST_SCREEN, img3)
+                CustomCard(navController, "Apply Loan", AppRoutes.LOAN_REQUEST_SCREEN, cardImages[0])
+                CustomCard(navController, "Loan History", AppRoutes.LOAN_HISTORY_SCREEN, cardImages[1])
+                CustomCard(navController, "My Account", AppRoutes.TEST_SCREEN, cardImages[2])
             }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -175,8 +178,10 @@ fun CustomCard(
     imageIcon: Int
 ){
     val configuration = LocalConfiguration.current;
-    val screenWidth = remember { configuration.screenWidthDp }
-    val miniCardWidth = remember { ((screenWidth - (0.1 * screenWidth)) / 3) - 10 };
+    val screenWidth = configuration.screenWidthDp;
+    val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10;
+
+//    val painter = remember(imageIcon) { painterResource(id = imageIcon) }
 
     Card(
         modifier = Modifier
@@ -201,7 +206,8 @@ fun CustomCard(
             Image(
                 painter = painterResource(id = imageIcon),
                 contentDescription = "",
-                Modifier.width(100.dp).height((100).dp)
+                Modifier.aspectRatio(1f)
+//                Modifier.width(100.dp).height((100).dp)
             )
             Text(
                 text = label,

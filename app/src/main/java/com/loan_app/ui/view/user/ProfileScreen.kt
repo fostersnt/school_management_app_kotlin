@@ -38,24 +38,6 @@ import coil.compose.AsyncImage
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-//fun ProfileScreen(navController: NavController){
-//
-//    Column(
-//        verticalArrangement = Arrangement.Center,
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(Color.White)
-//            .padding(20.dp),
-//    ) {
-//        Text(
-//            text = "PROFILE SCREEN",
-//            style = MaterialTheme.typography.headlineLarge,
-//            color = Color.Black
-//        )
-//    }
-//}
-
 fun ProfileScreen(navController: NavController) {
 
     val userName: String = "Foster"
