@@ -1,5 +1,6 @@
 package com.loan_app.utilities
 
+import androidx.compose.material.lightColors
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
@@ -8,6 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.res.fontResource
 import com.loan_app.R
+import com.loan_app.data.model.AppColors
 
 fun customFontFamily(): FontFamily{
     return FontFamily(
@@ -18,8 +20,20 @@ fun customFontFamily(): FontFamily{
     )
 }
 
+//val CustomColorScheme = lightColorScheme(
+//    primary = Color(0xFF00729C),
+//    onPrimary = Color.White,
+//    // Define other colors as needed
+//)
+
 val CustomColorScheme = lightColorScheme(
-    primary = Color(0xFF00729C),
+    primary = Color(AppColors.BACKGROUND_COLOR),
+//    primary = Color(0xFF005A7A),
+    secondary = Color(0xFFff3779),
+    background = Color.White,
+    surface = Color(AppColors.WHITE_COLOR),
     onPrimary = Color.White,
-    // Define other colors as needed
+    onSecondary = Color.White,
+    onBackground = Color.Black,
+    onSurface = Color.Black
 )

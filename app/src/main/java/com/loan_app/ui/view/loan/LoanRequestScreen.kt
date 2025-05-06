@@ -11,7 +11,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.IconButton
-import androidx.compose.material.TopAppBar
+//import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -36,7 +36,7 @@ import com.loan_app.utilities.customFontFamily
 //import androidx.compose.runtime.getValue
 
 //@Preview(showBackground = true)
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun LoanRequestScreen(navController: NavController) {
     var loanAmount by rememberSaveable { mutableStateOf("") }
@@ -80,7 +80,7 @@ fun LoanRequestScreen(navController: NavController) {
         topBar = {
             TopAppBar(
                 modifier = Modifier.statusBarsPadding(),
-                title = { Text("Loan Application") },
+                title = { "" },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
@@ -114,7 +114,11 @@ fun LoanRequestScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Payment Term Dropdown
-            Text(text = "Select Payment Term", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
+            Text(
+                text = "Select Payment Term",
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Black,
+            )
             Spacer(modifier = Modifier.height(8.dp))
 
             //LOAN TERM SELECTION
@@ -130,7 +134,7 @@ fun LoanRequestScreen(navController: NavController) {
                     )
                 ) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().padding(start = 10.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -168,7 +172,7 @@ fun LoanRequestScreen(navController: NavController) {
                     )
                 ) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().padding(start = 10.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
