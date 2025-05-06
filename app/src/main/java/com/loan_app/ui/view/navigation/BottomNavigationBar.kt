@@ -1,8 +1,6 @@
 package com.loan_app.ui.view.navigation
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -16,9 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.loan_app.ui.view.home.HomeScreen
 import com.loan_app.ui.view.user.ProfileScreen
 import com.loan_app.ui.view.user.SettingsScreen
