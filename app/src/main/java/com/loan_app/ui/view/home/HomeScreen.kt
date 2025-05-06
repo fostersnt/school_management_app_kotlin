@@ -1,6 +1,5 @@
 package com.loan_app.ui.view.home
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -48,7 +47,7 @@ fun HomeScreen(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxSize()
-        .padding(20.dp)
+            .padding(20.dp)
             .statusBarsPadding()
             .verticalScroll(state = scrollState)
     ) {
@@ -121,7 +120,7 @@ fun HomeScreen(navController: NavController){
 
                 CustomCard(navController, "Apply Loan", AppRoutes.LOAN_REQUEST_SCREEN, img1)
                 CustomCard(navController, "Loan History", AppRoutes.LOAN_HISTORY_SCREEN, img2)
-                CustomCard(navController, "My Account", AppRoutes.SETTINGS_SCREEN, img3)
+                CustomCard(navController, "My Account", AppRoutes.TEST_SCREEN, img3)
             }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -183,13 +182,11 @@ fun CustomCard(
         modifier = Modifier
             .width(miniCardWidth.dp)
             .fillMaxHeight(),
-//        shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp,
             pressedElevation = 10.dp
         ),
         onClick = {
-            Log.i("HomeScreen", label)
             navController.navigate(route = myRoute)
         }
     ){
@@ -198,7 +195,6 @@ fun CustomCard(
                 .background(Color.White)
                 .fillMaxHeight()
                 .fillMaxWidth(),
-//                .padding(10.dp),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

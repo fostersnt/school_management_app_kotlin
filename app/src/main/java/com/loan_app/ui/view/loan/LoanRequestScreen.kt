@@ -3,8 +3,10 @@ package com.loan_app.ui.view.loan
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.ExperimentalMaterialApi
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.loan_app.data.model.AppColors
 import com.loan_app.utilities.customFontFamily
 //import androidx.compose.runtime.getValue
 
@@ -72,7 +75,6 @@ fun LoanRequestScreen(navController: NavController) {
     val maxLoanAmount by remember(selectedTerm) {
         mutableStateOf(getMaxLoanAmount(selectedTerm))
     }
-//    val maxLoanAmount = getMaxLoanAmount(selectedTerm)
 
     Scaffold(
         topBar = {
@@ -101,9 +103,10 @@ fun LoanRequestScreen(navController: NavController) {
                 onValueChange = { loanAmount = it },
                 label = { Text("Enter Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .background(Color(AppColors.WHITE_COLOR)),
                 colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = Color(0xFF00729C),
+                    unfocusedBorderColor = Color(AppColors.BACKGROUND_COLOR),
                 ),
                 textStyle = TextStyle(textAlign = TextAlign.Start)
             )
