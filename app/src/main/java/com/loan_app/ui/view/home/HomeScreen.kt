@@ -22,10 +22,9 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,22 +41,11 @@ import com.loan_app.data.model.AppColors
 import com.loan_app.data.model.AppRoutes
 import com.loan_app.utilities.customFontFamily
 
-//@Preview(showBackground = true)
 @Composable
 fun HomeScreen(navController: NavController){
 
-//    val configuration = LocalConfiguration.current;
-////    val configuration = config.value.current;
-//    val screenWidth = remember { configuration.screenWidthDp }
-//    val screenHeight = remember { configuration.screenHeightDp }
-////
-//    val columnHeight = remember { (screenHeight - (0.1 * screenHeight)) / 3 } ;
-//    val miniCardWidth = remember { mutableDoubleStateOf(((screenWidth - (0.1 * screenWidth)) / 3) - 10) };
-
     val scrollState = rememberScrollState();
-//    val miniCardWidth = 200.0
-//    val columnHeight = 200.0
-    val myCustomFontFamily = remember { customFontFamily() }
+    val myCustomFontFamily = customFontFamily()
 
     Column(
         modifier = Modifier
@@ -134,8 +122,8 @@ fun HomeScreen(navController: NavController){
                 val img3 = R.drawable.card_3_image;
 
                 CustomCard(navController, "Apply Loan", AppRoutes.LOAN_REQUEST_SCREEN, img1)
-                CustomCard(navController, "Loan History", AppRoutes.SETTINGS_SCREEN, img2)
-                CustomCard(navController, "My Account", AppRoutes.LOAN_HISTORY_SCREEN, img3)
+                CustomCard(navController, "Loan History", AppRoutes.LOAN_HISTORY_SCREEN, img2)
+                CustomCard(navController, "My Account", AppRoutes.SETTINGS_SCREEN, img3)
             }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -190,11 +178,7 @@ fun CustomCard(
     imageIcon: Int
 ){
     val configuration = LocalConfiguration.current;
-//    val configuration = config.value.current;
     val screenWidth = remember { configuration.screenWidthDp }
-//    val screenHeight = remember { configuration.screenHeightDp }
-//
-//    val columnHeight = remember { (screenHeight - (0.1 * screenHeight)) / 3 } ;
     val miniCardWidth = remember { ((screenWidth - (0.1 * screenWidth)) / 3) - 10 };
 
     Card(
@@ -217,7 +201,7 @@ fun CustomCard(
                 .fillMaxHeight()
                 .fillMaxWidth(),
 //                .padding(10.dp),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(

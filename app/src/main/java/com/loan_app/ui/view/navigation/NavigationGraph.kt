@@ -23,7 +23,7 @@ import com.loan_app.ui.viewmodel.LoanRequestViewModel
 fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValues) {
     NavHost(
         navController = navController,
-        startDestination = AppRoutes.BOTTOM_NAVIGATION_SCREEN,
+        startDestination = AppRoutes.HOME_SCREEN,
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = AppRoutes.LOGIN_SCREEN) {
@@ -32,9 +32,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         composable(route = AppRoutes.HOME_SCREEN) {
             HomeScreen(navController = navController)
         }
-        composable(route = AppRoutes.BOTTOM_NAVIGATION_SCREEN) {
-            BottomNavigationBar(navController = navController)
-        }
+//        composable(route = AppRoutes.BOTTOM_NAVIGATION_SCREEN) {
+//            BottomNavigationBar(navController = navController)
+//        }
         composable(route = AppRoutes.LOAN_REQUEST_SCREEN) {
             LoanRequestScreen(navController = navController)
         }

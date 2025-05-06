@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.loan_app.data.model.AppRoutes
 
 data class BottomNavItem(
     val title: String,
@@ -17,17 +18,17 @@ object BottomNavItems {
         BottomNavItem(
             title = "Home",
             icon = Icons.Filled.Home,
-            route = "home"
+            route = AppRoutes.HOME_SCREEN
         ),
         BottomNavItem(
             title = "Profile",
             icon = Icons.Filled.Person,
-            route = "profile"
+            route = AppRoutes.PROFILE_SCREEN
         ),
         BottomNavItem(
             title = "Settings",
             icon = Icons.Filled.Settings,
-            route = "settings"
+            route = AppRoutes.SETTINGS_SCREEN
         )
     )
 }
