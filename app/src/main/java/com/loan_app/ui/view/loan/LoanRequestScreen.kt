@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,22 +30,22 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.loan_app.utilities.customFontFamily
-
+//import androidx.compose.runtime.getValue
 
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun LoanRequestScreen(navController: NavController) {
-    var loanAmount by remember { mutableStateOf("") }
-    var selectedTerm by remember { mutableStateOf("") }
-    var selectedMomoAccount by remember { mutableStateOf("") }
-    var isExpanded by remember { mutableStateOf(false) }
-    var isExpandedMomo by remember { mutableStateOf(false) }
-    var canShowModal by remember { mutableStateOf(false) }
+    var loanAmount by rememberSaveable { mutableStateOf("") }
+    var selectedTerm by rememberSaveable { mutableStateOf("") }
+    var selectedMomoAccount by rememberSaveable { mutableStateOf("") }
+    var isExpanded by rememberSaveable { mutableStateOf(false) }
+    var isExpandedMomo by rememberSaveable { mutableStateOf(false) }
+    var canShowModal by rememberSaveable { mutableStateOf(false) }
 
     if (canShowModal == true){
         ShowModal(
-            { canShowModal = !canShowModal },
+          onDismiss =   { canShowModal = false },
             loanAmount,
             "100",
             "400",
@@ -68,7 +69,10 @@ fun LoanRequestScreen(navController: NavController) {
         }
     }
 
-    val maxLoanAmount = getMaxLoanAmount(selectedTerm)
+    val maxLoanAmount by remember(selectedTerm) {
+        mutableStateOf(getMaxLoanAmount(selectedTerm))
+    }
+//    val maxLoanAmount = getMaxLoanAmount(selectedTerm)
 
     Scaffold(
         topBar = {
@@ -117,6 +121,7 @@ fun LoanRequestScreen(navController: NavController) {
                     border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
                     onClick = {isExpanded = !isExpanded},
                     shape = RectangleShape,
+                    contentPadding = PaddingValues(vertical = 20.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White
                     )
@@ -129,7 +134,6 @@ fun LoanRequestScreen(navController: NavController) {
                         Text(text = selectedTerm, style = TextStyle(fontFamily = customFontFamily(), color = Color.Black))
                         Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "", tint = Color.Black)
                     }
-                    Spacer(Modifier.padding(vertical = 20.dp))
                 }
                 DropdownMenu(
                     expanded = isExpanded,
@@ -155,6 +159,7 @@ fun LoanRequestScreen(navController: NavController) {
                     border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
                     onClick = {isExpandedMomo = !isExpandedMomo},
                     shape = RectangleShape,
+                    contentPadding = PaddingValues(vertical = 20.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White
                     )
@@ -167,7 +172,6 @@ fun LoanRequestScreen(navController: NavController) {
                         Text(text = selectedMomoAccount, style = TextStyle(fontFamily = customFontFamily(), color = Color.Black))
                         Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = "", tint = Color.Black)
                     }
-                    Spacer(Modifier.padding(vertical = 20.dp))
                 }
                 DropdownMenu(
                     expanded = isExpandedMomo,

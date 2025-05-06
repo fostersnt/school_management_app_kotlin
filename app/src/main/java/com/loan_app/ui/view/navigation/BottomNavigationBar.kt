@@ -38,11 +38,6 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
                             restoreState = true
                         }
                     }
-//                    when(currentIndex){
-//                        0 -> navController.navigate(AppRoutes.HOME_SCREEN)
-//                        1 -> navController.navigate(AppRoutes.PROFILE_SCREEN)
-//                        2 -> navController.navigate(AppRoutes.SETTINGS_SCREEN)
-//                    }
                 },
             )
         }
