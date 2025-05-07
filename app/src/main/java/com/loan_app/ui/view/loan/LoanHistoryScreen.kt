@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.loan_app.data.model.AppColors
+import com.loan_app.ui.viewmodel.LoanHistoryItem
 import com.loan_app.ui.viewmodel.LoanHistoryViewModel
 import com.loan_app.ui.viewmodel.LoanStatus
 
@@ -63,7 +64,7 @@ fun LoanHistoryScreen(navController: NavController, viewModel: LoanHistoryViewMo
 }
 
 @Composable
-fun LoanHistoryCard(loan: com.loan_app.ui.viewmodel.LoanHistoryItem) {
+fun LoanHistoryCard(loan: LoanHistoryItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -82,7 +83,8 @@ fun LoanHistoryCard(loan: com.loan_app.ui.viewmodel.LoanHistoryItem) {
             Spacer(modifier = Modifier.height(8.dp))
             Text("Amount: ${loan.amount}")
             Text("Term: ${loan.term}")
-            Text("Date: ${loan.date}")
+            Text("Request Date: ${loan.requestDate}")
+            Text("Completed Date: ${loan.completedDate}")
         }
     }
 }
