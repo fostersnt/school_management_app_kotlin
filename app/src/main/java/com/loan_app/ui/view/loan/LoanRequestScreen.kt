@@ -57,21 +57,24 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
     val isExpanded = uiState.isExpanded
     val isExpandedMomo = uiState.isExpandedMomo
     val canShowModal = uiState.canShowModal
+    val principalAmount = uiState.principalAmount
+    val interestAmount = uiState.loanInterest
+    val paymentTerms = uiState.loanTermList
+//    val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
 
 
     if (canShowModal == true){
         ShowModal(
           onDismiss =   { viewModel.setCanShowModal(false) },
-            loanAmount,
-            "100",
-            "400",
-            selectedTerm,
+            principal = principalAmount,
+            interest = interestAmount,
+            loanAmount = loanAmount,
+            loanTerm = selectedTerm,
             selectedMomoAccount,
             "12-05-2025"
         );
     }
 
-    val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
     val momoAccounts = listOf("0553255225", "0242677689")
 
     val systemUiController = rememberSystemUiController()
@@ -116,8 +119,11 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
             Text(text = "Preferred Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
-                value = loanAmount,
-                onValueChange = { viewModel.setLoanAmount(it) },
+                value = "$principalAmount",
+                onValueChange = {
+                    viewModel.setPrincipalAmount(it)
+                    viewModel.setLoanTermList(it)
+                                },
                 label = { Text("Enter Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier
@@ -222,6 +228,8 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
             // Submit Button
             Button(
                 onClick = {
+                    viewModel.setInterestAmount()
+                    viewModel.setLoanAmount()
                     viewModel.setCanShowModal(true)
                     Log.i("LoanRequestScreen", "CURRENT VALUES === $uiState")
                           },
@@ -231,7 +239,7 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
                     containerColor = Color(0xFF00729C)
                 ),
                 shape = RectangleShape,
-                enabled = loanAmount.isNotEmpty() && selectedTerm.isNotEmpty()
+                enabled = principalAmount.isNotEmpty() && selectedTerm.isNotEmpty()
             ) {
                 Text("Next")
             }
@@ -266,11 +274,11 @@ fun ShowModal(
                 )
                 Spacer(Modifier.height(20.dp))
                 Divider()
-                InfoRow("Principal:", principal)
+                InfoRow("Principal:", "$principal")
                 Divider()
-                InfoRow("Interest:", interest)
+                InfoRow("Interest:", "$interest")
                 Divider()
-                InfoRow("Loan Amount:", loanAmount)
+                InfoRow("Loan Amount:", "$loanAmount")
                 Divider()
                 InfoRow("Loan Term:", loanTerm)
                 Divider()
