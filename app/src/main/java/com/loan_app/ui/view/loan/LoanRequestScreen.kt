@@ -46,7 +46,9 @@ import com.loan_app.utilities.customFontFamily
 @Composable
 fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewModel = viewModel()) {
 
-    val uiState by viewModel.uiState.observeAsState(LoanUIState())
+    val uiState by viewModel.uiState.collectAsState()
+
+//    val uiState by viewModel.uiState.observeAsState(LoanUIState())
 
     val loanAmount = uiState.loanAmount
     val selectedTerm = uiState.selectedTerm
