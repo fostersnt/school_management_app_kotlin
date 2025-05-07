@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 import com.loan_app.ui.viewmodel.LoanRequestViewModel
 import com.loan_app.ui.viewmodel.LoanUIState
@@ -73,11 +74,20 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
     val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
     val momoAccounts = listOf("0553255225", "0242677689")
 
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                modifier = Modifier.statusBarsPadding(),
-                title = { "" },
+//                modifier = Modifier.statusBarsPadding(),
+                title = { "Apply Loan" },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(AppColors.BACKGROUND_COLOR),
                     titleContentColor = Color(AppColors.WHITE_COLOR)

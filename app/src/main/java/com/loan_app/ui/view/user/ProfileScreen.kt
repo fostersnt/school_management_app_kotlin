@@ -25,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +35,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.loan_app.data.model.AppColors
 
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,6 +49,15 @@ fun ProfileScreen(navController: NavController) {
     val profileImageUrl: String = "image_url.png"
     fun onEditClick() = {  }
     fun onLogoutClick() = {}
+
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
+        )
+    }
 
     Scaffold(
         topBar = {
