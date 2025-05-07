@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Divider
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.IconButton
@@ -55,17 +56,17 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
     val canShowModal = uiState.canShowModal
 
 
-//    if (canShowModal == true){
-//        ShowModal(
-//          onDismiss =   { viewModel.setCanShowModal(false) },
-//            loanAmount,
-//            "100",
-//            "400",
-//            selectedTerm,
-//            selectedMomoAccount,
-//            "12-05-2025"
-//        );
-//    }
+    if (canShowModal == true){
+        ShowModal(
+          onDismiss =   { viewModel.setCanShowModal(false) },
+            loanAmount,
+            "100",
+            "400",
+            selectedTerm,
+            selectedMomoAccount,
+            "12-05-2025"
+        );
+    }
 
     val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
     val momoAccounts = listOf("0553255225", "0242677689")
@@ -217,79 +218,85 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
 }
 
 
-//@Composable
-//fun ShowModal(
-//    onDismiss: () -> Unit,
-//    principal: String,
-//    interest: String,
-//    loanAmount: String,
-//    loanTerm: String,
-//    momoAccount: String,
-//    firstRepaymentDate: String
-//){
-//    AlertDialog(
-//        containerColor = Color.White,
-//        shape = RectangleShape,
-//        onDismissRequest = {}, // Dismiss dialog when user clicks outside
-//        title = { Text(
-//            "Loan Details",
-//            style = TextStyle(fontFamily = customFontFamily(), fontSize = 20.sp)
-//        ) },
-//        text = {
-//            Column(modifier = Modifier.fillMaxWidth()) {
-//                Text(
-//                    text = "Please review the loan details below:",
-//                    style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp)
-//                )
-//                Spacer(Modifier.height(20.dp))
-//                InfoRow("Principal:", principal)
-//                InfoRow("Interest:", interest)
-//                InfoRow("Loan Amount:", loanAmount)
-//                InfoRow("Loan Term:", loanTerm)
-//                InfoRow("Momo Account:", momoAccount)
-//                InfoRow("1st Repayment Date:", firstRepaymentDate)
-//            }
-//        },
-//        confirmButton = {
-//            Button(
-//                shape = RectangleShape,
-//                onClick = {
-//                    onDismiss() // Close the modal
-//                },
-//            ) {
-//                Text("Submit")
-//            }
-//        },
-//        dismissButton = {
-//            Button(
-//                shape = RectangleShape,
-//                onClick = {
-//                onDismiss() // Close the modal
-//            },
-//                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff3779))
-//            ) {
-//                Text("Go Back")
-//            }
-//        }
-//    )
-//}
-//
-//@Composable
-//fun InfoRow(label: String, value: String) {
-//    Row(
-//        modifier = Modifier.fillMaxWidth(),
-//        horizontalArrangement = Arrangement.SpaceBetween
-//    ) {
-//        Text(
-//            label,
-//            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp),
-//            modifier = Modifier.weight(1f)
-//        )
-//        Text(
-//            value,
-//            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
-//            modifier = Modifier.weight(1f),
-//            textAlign = TextAlign.End
-//        )
-//    }
-//}
+@Composable
+fun ShowModal(
+    onDismiss: () -> Unit,
+    principal: String,
+    interest: String,
+    loanAmount: String,
+    loanTerm: String,
+    momoAccount: String,
+    firstRepaymentDate: String
+){
+    AlertDialog(
+        containerColor = Color.White,
+        shape = RectangleShape,
+        onDismissRequest = {}, // Dismiss dialog when user clicks outside
+        title = { Text(
+            "Loan Details",
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 20.sp)
+        ) },
+        text = {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = "Please review the loan details below:",
+                    style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp)
+                )
+                Spacer(Modifier.height(20.dp))
+                Divider()
+                InfoRow("Principal:", principal)
+                Divider()
+                InfoRow("Interest:", interest)
+                Divider()
+                InfoRow("Loan Amount:", loanAmount)
+                Divider()
+                InfoRow("Loan Term:", loanTerm)
+                Divider()
+                InfoRow("Momo Account:", momoAccount)
+                Divider()
+                InfoRow("1st Repayment Date:", firstRepaymentDate)
+            }
+        },
+        confirmButton = {
+            Button(
+                shape = RectangleShape,
+                onClick = {
+                    onDismiss() // Close the modal
+                },
+            ) {
+                Text("Submit")
+            }
+        },
+        dismissButton = {
+            Button(
+                shape = RectangleShape,
+                onClick = {
+                onDismiss() // Close the modal
+            },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFff3779))
+            ) {
+                Text("Go Back")
+            }
+        }
+    )
+}
+
+@Composable
+fun InfoRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            label,
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp),
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            value,
+            style = TextStyle(fontFamily = customFontFamily(), fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
+            modifier = Modifier.weight(1f),
+            textAlign = TextAlign.End
+        )
+    }
+}
