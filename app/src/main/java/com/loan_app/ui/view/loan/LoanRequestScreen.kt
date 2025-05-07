@@ -60,6 +60,7 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
     val principalAmount = uiState.principalAmount
     val interestAmount = uiState.loanInterest
     val paymentTerms = uiState.loanTermList
+    val errorMessage = uiState.errorMessage
 //    val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
 
 
@@ -90,7 +91,7 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
         topBar = {
             TopAppBar(
 //                modifier = Modifier.statusBarsPadding(),
-                title = { "Apply Loan" },
+                title = { Text("Apply Loan") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(AppColors.BACKGROUND_COLOR),
                     titleContentColor = Color(AppColors.WHITE_COLOR)
@@ -115,6 +116,10 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
+            //ERROR MESSAGE
+            Text(text = errorMessage, style = MaterialTheme.typography.bodyMedium, color = Color.Red)
+            Spacer(modifier = Modifier.height(20.dp))
+
             // Loan Amount Input Field
             Text(text = "Preferred Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black)
             Spacer(modifier = Modifier.height(8.dp))
@@ -122,7 +127,7 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
                 value = "$principalAmount",
                 onValueChange = {
                     viewModel.setPrincipalAmount(it)
-                    viewModel.setLoanTermList(it)
+                    viewModel.setLoanTermList()
                                 },
                 label = { Text("Enter Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
@@ -150,7 +155,10 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
-                    onClick = {viewModel.setIsExpanded(!isExpanded)},
+                    onClick = {
+
+                        viewModel.setIsExpanded(!isExpanded)
+                              },
                     shape = RectangleShape,
                     contentPadding = PaddingValues(vertical = 20.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -274,7 +282,7 @@ fun ShowModal(
                 )
                 Spacer(Modifier.height(20.dp))
                 Divider()
-                InfoRow("Principal:", "$principal")
+                InfoRow("Principal:", "$principal.00")
                 Divider()
                 InfoRow("Interest:", "$interest")
                 Divider()

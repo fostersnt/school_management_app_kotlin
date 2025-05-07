@@ -54,12 +54,14 @@ data class LoanUIState(
     var canShowModal: Boolean = false,
     var loanTermList: List<String> = listOf<String>(),
     var loanInterest: String = "",
-    var principalAmount: String = ""
+    var principalAmount: String = "",
+    var errorMessage: String = ""
 )
 
 class LoanRequestViewModel : ViewModel() {
 
     private val defaultInterestRate: Double = 0.15
+    private val maxLoanMoney = 500;
 
     private val _uiState = MutableStateFlow(LoanUIState())
     val uiState: StateFlow<LoanUIState> = _uiState
@@ -68,7 +70,16 @@ class LoanRequestViewModel : ViewModel() {
         _uiState.update { it.update() }
     }
 
-    fun setPrincipalAmount(principal: String) = updateState { copy(principalAmount = ((principal.toDoubleOrNull() ?: 0.00) + (0.00)).toString()) }
+    fun setPrincipalAmount(principal: String){
+        val amount = principal.toDoubleOrNull() ?: 0.0
+        updateState { copy(principalAmount = principal) }
+
+        if (amount > maxLoanMoney){
+            updateState { copy(errorMessage = "Loan cannot exceed ($maxLoanMoney)") }
+        }else{
+            updateState { copy(errorMessage = "") }
+        }
+    }
 
     fun setLoanTerm(term: String) = updateState { copy(selectedTerm = term) }
 
@@ -84,17 +95,20 @@ class LoanRequestViewModel : ViewModel() {
 
 //    private val principalLoan = _uiState.value.loanAmount * defaultInterestRate * _uiState.value.selectedTerm
 
-    fun setLoanTermList(principal: String, ) {
-        val numericLoanAmount = principal.toDoubleOrNull() ?: 0.0
+    fun setLoanTermList() {
+        val numericLoanAmount = uiState.value.principalAmount.toDoubleOrNull() ?: 0.0
         when {
             numericLoanAmount <= 200 -> updateState { copy(loanTermList = listOf("15 days", "30 days")) }
-            numericLoanAmount > 200 && numericLoanAmount <= 500 -> updateState { copy(loanTermList = listOf("15 days", "30 days", "45 days")) }
-            else -> updateState { copy(loanTermList = listOf<String>()) }
+            (numericLoanAmount > 200 && numericLoanAmount <= 500) -> updateState { copy(loanTermList = listOf("15 days", "30 days", "45 days")) }
+            else -> {
+                updateState { copy(loanTermList = listOf<String>()) }
+                updateState { copy(selectedTerm = "") }
+            }
         }
     }
 
     fun setInterestAmount(){
-        val amount = _uiState.value.principalAmount.toDoubleOrNull() ?: 0.0;
+        val amount = uiState.value.principalAmount.toDoubleOrNull() ?: 0.0;
         when(_uiState.value.selectedTerm.lowercase()){
             "15 days" -> updateState { copy(loanInterest = (defaultInterestRate * amount * 1).toString()) }
             "30 days" -> updateState { copy(loanInterest = (defaultInterestRate * amount * 2).toString()) }
