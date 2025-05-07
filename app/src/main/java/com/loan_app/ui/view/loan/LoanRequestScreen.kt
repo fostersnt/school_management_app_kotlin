@@ -78,9 +78,19 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
             TopAppBar(
                 modifier = Modifier.statusBarsPadding(),
                 title = { "" },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color(AppColors.BACKGROUND_COLOR),
+                    titleContentColor = Color(AppColors.WHITE_COLOR)
+                ),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color(
+                                AppColors.WHITE_COLOR
+                            )
+                        )
                     }
                 }
             )

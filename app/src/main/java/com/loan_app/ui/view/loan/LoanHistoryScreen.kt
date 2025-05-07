@@ -32,12 +32,18 @@ fun LoanHistoryScreen(navController: NavController, viewModel: LoanHistoryViewMo
                 title = { Text("Loan History") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(AppColors.BACKGROUND_COLOR),
-                    titleContentColor = Color.White
+                    titleContentColor = Color(AppColors.WHITE_COLOR)
                 ),
                 navigationIcon = {IconButton(onClick = {
                     navController.popBackStack()
                 }) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "")
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "",
+                        tint = Color(
+                            AppColors.WHITE_COLOR
+                        )
+                    )
                 }}
             )
         }
