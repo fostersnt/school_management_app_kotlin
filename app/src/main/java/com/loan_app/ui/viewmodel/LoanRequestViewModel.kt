@@ -1,70 +1,36 @@
 package com.loan_app.ui.viewmodel
 
-import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+data class LoanUIState(
+    var loanAmount: String = "",
+    var selectedTerm: String = "",
+    var selectedMomoAccount: String = "",
+    var isExpanded: Boolean = false,
+    var isExpandedMomo: Boolean = false,
+    var canShowModal: Boolean = false
+)
+
 class LoanRequestViewModel(): ViewModel() {
 
-    private var _loanAmount = MutableLiveData("")
-    private var _selectedTerm = MutableLiveData("")
-    private var _selectedMomoAccount = MutableLiveData("")
-    private var _isExpanded = MutableLiveData(false)
-    private var _isExpandedMomo = MutableLiveData(false)
-    private var _canShowModal = MutableLiveData(false)
+    private var _uiState = MutableLiveData(LoanUIState())
+    val uiState: LiveData<LoanUIState> = _uiState
 
-    val loanAmount: LiveData<String> =  _loanAmount;
-    val selectedMomoAccount: LiveData<String> = _selectedMomoAccount;
-    val selectedTerm: LiveData<String> =  _selectedTerm;
-    val canShowModal: LiveData<Boolean> = _canShowModal;
-    val isExpandedMomo: LiveData<Boolean> = _isExpandedMomo;
-    val isExpanded: LiveData<Boolean> = _isExpanded;
-
-    fun setLoanAmount(incoming: String): Unit{
-        _loanAmount.value = incoming
-        Log.i("setLoanAmount", "VALUE === $incoming")
+    private fun updateState(update: LoanUIState.() -> LoanUIState) {
+        _uiState.value = _uiState.value?.update()
     }
 
-    fun setLoanTerm(incoming: String): Unit{
-        _selectedTerm.value = incoming
-        Log.i("setLoanAmount", "VALUE === $incoming")
-    }
+    fun setLoanAmount(amount: String) = updateState { copy(loanAmount = amount) }
 
-    fun setSelectedMomoAccount(incoming: String): Unit{
-        _selectedMomoAccount.value = incoming
-        Log.i("setLoanAmount", "VALUE === $incoming")
-    }
+    fun setLoanTerm(term: String) = updateState { copy(selectedTerm = term) }
 
-    fun setIsExpanded(incoming: Boolean): Unit{
-        _isExpanded.value = incoming
-        Log.i("setLoanAmount", "VALUE === $incoming")
-    }
-    fun setIsExpandedMomo(incoming: Boolean): Unit{
-        _isExpandedMomo.value = incoming
-        Log.i("setLoanAmount", "VALUE === $incoming")
-    }
+    fun setSelectedMomoAccount(account: String) = updateState { copy(selectedMomoAccount = account) }
 
-    fun setCanShowModal(showModal: Boolean): Unit{
-        _canShowModal.value = showModal
-        Log.i("setLoanAmount", "VALUE === $showModal")
-    }
+    fun setIsExpanded(expanded: Boolean) = updateState { copy(isExpanded = expanded) }
 
-//    fun getLoanAmount(): LiveData<String>{
-//        return loanAmount;
-//    }
-//
-//    fun getSelectedTerm(): LiveData<String>{
-//        return selectedTerm;
-//    }
-//
-//    fun getConfirmation(): LiveData<Boolean>{
-//        return isConfirmed;
-//    }
+    fun setIsExpandedMomo(expanded: Boolean) = updateState { copy(isExpandedMomo = expanded) }
+
+    fun setCanShowModal(show: Boolean) = updateState { copy(canShowModal = show) }
 }

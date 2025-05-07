@@ -31,7 +31,7 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
 
                     if (currentRoute != targetRoute) {
                         navController.navigate(targetRoute) {
-                            popUpTo(AppRoutes.HOME_SCREEN) {
+                            popUpTo(navController.graph.startDestinationId) {
                                 saveState = true
                             }
                             launchSingleTop = true
