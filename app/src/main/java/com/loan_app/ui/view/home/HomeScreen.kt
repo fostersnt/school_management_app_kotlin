@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +47,14 @@ private val cardImages = listOf(
 )
 
 @Composable
+//fun HomeScreen(navController: NavController){
+//    Button(
+//        onClick = {navController.navigate(AppRoutes.LOAN_REQUEST_SCREEN)}
+//    ) {
+//        Text(text = "NEXT")
+//    }
+//}
+
 fun HomeScreen(navController: NavController){
 
     val scrollState = rememberScrollState();
@@ -181,8 +190,6 @@ fun CustomCard(
     val screenWidth = configuration.screenWidthDp;
     val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10;
 
-//    val painter = remember(imageIcon) { painterResource(id = imageIcon) }
-
     Card(
         modifier = Modifier
             .width(miniCardWidth.dp)
@@ -207,7 +214,6 @@ fun CustomCard(
                 painter = painterResource(id = imageIcon),
                 contentDescription = "",
                 Modifier.aspectRatio(1f)
-//                Modifier.width(100.dp).height((100).dp)
             )
             Text(
                 text = label,

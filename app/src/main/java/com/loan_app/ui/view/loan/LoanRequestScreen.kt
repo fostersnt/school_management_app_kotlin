@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,26 +30,28 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.loan_app.data.model.AppColors
+import com.loan_app.ui.viewmodel.LoanRequestViewModel
 import com.loan_app.utilities.customFontFamily
 //import androidx.compose.runtime.getValue
 
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun LoanRequestScreen(navController: NavController) {
-    var loanAmount by rememberSaveable { mutableStateOf("") }
-    var selectedTerm by rememberSaveable { mutableStateOf("") }
-    var selectedMomoAccount by rememberSaveable { mutableStateOf("") }
-    var isExpanded by rememberSaveable { mutableStateOf(false) }
-    var isExpandedMomo by rememberSaveable { mutableStateOf(false) }
-    var canShowModal by rememberSaveable { mutableStateOf(false) }
+fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewModel = viewModel()) {
+    val loanAmount by viewModel.loanAmount.observeAsState("");
+    val selectedTerm by viewModel.selectedTerm.observeAsState("");
+    val selectedMomoAccount by viewModel.selectedMomoAccount.observeAsState("");
+    val isExpanded by viewModel.isExpanded.observeAsState(false);
+    val isExpandedMomo by viewModel.isExpandedMomo.observeAsState(false);
+    val canShowModal by viewModel.canShowModal.observeAsState(false);
 
     if (canShowModal == true){
         ShowModal(
-          onDismiss =   { canShowModal = false },
+          onDismiss =   { viewModel.setCanShowModal(false) },
             loanAmount,
             "100",
             "400",
@@ -60,21 +63,6 @@ fun LoanRequestScreen(navController: NavController) {
 
     val paymentTerms = listOf("1 months", "2 months", "3 months", "4 months", "5 months")
     val momoAccounts = listOf("0553255225", "0242677689")
-
-    fun getMaxLoanAmount(term: String): Int {
-        return when (term) {
-            "1 months" -> 10000
-            "2 months" -> 20000
-            "3 months" -> 30000
-            "4 months" -> 40000
-            "5 months" -> 50000
-            else -> 0
-        }
-    }
-
-    val maxLoanAmount by remember(selectedTerm) {
-        mutableStateOf(getMaxLoanAmount(selectedTerm))
-    }
 
     Scaffold(
         topBar = {
@@ -100,7 +88,7 @@ fun LoanRequestScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 value = loanAmount,
-                onValueChange = { loanAmount = it },
+                onValueChange = { viewModel.setLoanAmount(it) },
                 label = { Text("Enter Loan Amount", style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth()
@@ -126,7 +114,7 @@ fun LoanRequestScreen(navController: NavController) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
-                    onClick = {isExpanded = !isExpanded},
+                    onClick = {viewModel.setIsExpanded(!isExpanded)},
                     shape = RectangleShape,
                     contentPadding = PaddingValues(vertical = 20.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -144,12 +132,12 @@ fun LoanRequestScreen(navController: NavController) {
                 }
                 DropdownMenu(
                     expanded = isExpanded,
-                    onDismissRequest = {isExpanded = false}
+                    onDismissRequest = {viewModel.setIsExpanded(false)}
                 ) {
                     paymentTerms.forEach { term ->
                         DropdownMenuItem(
                             text = { Text(term, style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
-                            onClick = { isExpanded = false; selectedTerm = term }
+                            onClick = { viewModel.setIsExpanded(false); viewModel.setLoanTerm(term) }
                         )
                     }
                 }
@@ -164,7 +152,7 @@ fun LoanRequestScreen(navController: NavController) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     border = BorderStroke(width = 1.dp, color = Color(0xFF00729C)),
-                    onClick = {isExpandedMomo = !isExpandedMomo},
+                    onClick = {viewModel.setIsExpandedMomo(!isExpandedMomo)},
                     shape = RectangleShape,
                     contentPadding = PaddingValues(vertical = 20.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -182,12 +170,12 @@ fun LoanRequestScreen(navController: NavController) {
                 }
                 DropdownMenu(
                     expanded = isExpandedMomo,
-                    onDismissRequest = {isExpandedMomo = false}
+                    onDismissRequest = {viewModel.setIsExpandedMomo(false)}
                 ) {
                     momoAccounts.forEach { momo ->
                         DropdownMenuItem(
                             text = { Text(momo, style = MaterialTheme.typography.bodyMedium, color = Color.Black) },
-                            onClick = { isExpandedMomo = false; selectedMomoAccount = momo }
+                            onClick = { viewModel.setIsExpandedMomo(false); viewModel.setSelectedMomoAccount(momo) }
                         )
                     }
                 }
@@ -196,17 +184,17 @@ fun LoanRequestScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Max Loan Amount Display
-            Text(
-                text = "Maximum Available Loan: Ghs $maxLoanAmount",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.primary
-            )
+//            Text(
+//                text = "Maximum Available Loan: Ghs $maxLoanAmount",
+//                style = MaterialTheme.typography.bodyLarge,
+//                color = MaterialTheme.colorScheme.primary
+//            )
 
             Spacer(modifier = Modifier.height(32.dp))
 
             // Submit Button
             Button(
-                onClick = { canShowModal = true },
+                onClick = { viewModel.setCanShowModal(true) },
                 modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(vertical = 20.dp),
                 colors = ButtonDefaults.buttonColors(
