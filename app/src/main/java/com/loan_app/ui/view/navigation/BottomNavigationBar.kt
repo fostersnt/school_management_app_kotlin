@@ -34,7 +34,7 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
                         text = item.title,
                         fontSize = 16.sp,
                         fontFamily = customFontFamily(),
-                        color = Color.Black,
+//                        color = Color.Black,
                     )
                 },
                 selected = currentRoute == item.route,

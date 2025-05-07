@@ -3,6 +3,7 @@ package com.loan_app.ui.view.loan
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -49,15 +50,25 @@ fun LoanHistoryScreen(navController: NavController, viewModel: LoanHistoryViewMo
             )
         }
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
-                .fillMaxSize()
-        ) {
-            items(loans) { loan ->
-                LoanHistoryCard(loan)
-                Spacer(modifier = Modifier.height(12.dp))
+        if(loans.isNotEmpty()){
+            LazyColumn(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .padding(16.dp)
+                    .fillMaxSize()
+            ) {
+                items(loans) { loan ->
+                    LoanHistoryCard(loan)
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
+            }
+        }else{
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text(text = "No history available", style = MaterialTheme.typography.bodyLarge)
             }
         }
     }
