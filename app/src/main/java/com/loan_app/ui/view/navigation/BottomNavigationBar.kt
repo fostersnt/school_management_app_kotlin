@@ -3,19 +3,31 @@ package com.loan_app.ui.view.navigation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.loan_app.data.model.AppColors
 import com.loan_app.data.model.AppRoutes
 import com.loan_app.utilities.customFontFamily
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController, currentRoute: String?) {
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color(AppColors.WHITE_COLOR),
+//        contentColor = Color(AppColors.WHITE_COLOR)
+    ) {
         BottomNavItems.list.forEachIndexed { currentIndex, item ->
             NavigationBarItem(
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color(AppColors.BACKGROUND_COLOR),
+                    selectedIconColor = Color(AppColors.WHITE_COLOR),
+                    unselectedIconColor = Color(AppColors.BACKGROUND_COLOR),
+                    selectedTextColor = Color(AppColors.TEXT_COLOR_TEA_BLUE),
+                    unselectedTextColor = Color(AppColors.TEXT_COLOR_TEA_BLUE)
+                ),
                 icon = { Icon(imageVector = item.icon, contentDescription = item.title) },
                 label = {
                     Text(
