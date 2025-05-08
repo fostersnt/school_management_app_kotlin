@@ -62,20 +62,7 @@ class MainActivity : ComponentActivity() {
 //
         askNotificationPermission()
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("DEVICE TOKEN ERROR", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-//            val msg = getString(R.string.msg_token_fmt, token)
-            Log.d("DEVICE TOKEN", token)
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
-        })
+        FirebaseTokenManager.getDeviceToken()
 
         setContent {
             Loan_AppTheme {
