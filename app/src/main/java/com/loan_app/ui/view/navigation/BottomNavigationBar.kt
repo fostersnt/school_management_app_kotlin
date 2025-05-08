@@ -4,17 +4,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.loan_app.data.model.AppColors
 import com.loan_app.data.model.AppRoutes
 import com.loan_app.utilities.customFontFamily
 
 @Composable
-fun BottomNavigationBar(navController: NavHostController, currentRoute: String?) {
+fun BottomNavigationBar(navController: NavController, currentRoute: String?) {
     NavigationBar(
         containerColor = Color(AppColors.WHITE_COLOR),
 //        contentColor = Color(AppColors.WHITE_COLOR)
@@ -58,7 +62,7 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
 
 
 //fun BottomNavigationBar(navController: NavHostController) {
-//    var selectedIndex by remember { mutableIntStateOf(0) }
+//    var selectedIndex = rememberSaveable { mutableIntStateOf(0) }
 //
 //    Scaffold(
 ////        topBar = {
@@ -77,9 +81,9 @@ fun BottomNavigationBar(navController: NavHostController, currentRoute: String?)
 //                                color = Color.Black,
 //                            )
 //                        },
-//                        selected = selectedIndex == currentIndex,
+//                        selected = selectedIndex.intValue == currentIndex,
 //                        onClick = {
-//                            selectedIndex = currentIndex
+//                            selectedIndex.intValue = currentIndex
 ////                            if (selectedIndex == 0){
 ////                                navController.navigate(AppRoutes.HOME_SCREEN)
 ////                            }else if (selectedIndex == 1){

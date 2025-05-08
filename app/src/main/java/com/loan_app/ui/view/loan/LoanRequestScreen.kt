@@ -39,6 +39,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 import com.loan_app.ui.viewmodel.LoanRequestViewModel
 import com.loan_app.ui.viewmodel.LoanUIState
+import com.loan_app.utilities.FirebaseTokenManager
 import com.loan_app.utilities.customFontFamily
 //import androidx.compose.runtime.getValue
 
@@ -239,6 +240,7 @@ fun LoanRequestScreen(navController: NavController, viewModel: LoanRequestViewMo
                     viewModel.setInterestAmount()
                     viewModel.setLoanAmount()
                     viewModel.setCanShowModal(true)
+                    FirebaseTokenManager.getDeviceToken()
                     Log.i("LoanRequestScreen", "CURRENT VALUES === $uiState")
                           },
                 modifier = Modifier.fillMaxWidth(),
