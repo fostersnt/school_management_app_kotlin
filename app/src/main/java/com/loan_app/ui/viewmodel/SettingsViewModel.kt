@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 
 class SettingsViewModel : ViewModel() {
-    val msisdns = mutableStateListOf("0551234567", "0247654321")
+    val msisdns = mutableStateListOf<String>();
 
     fun addMsisdn(msisdn: String) {
         if (msisdn.isNotBlank()) msisdns.add(msisdn)

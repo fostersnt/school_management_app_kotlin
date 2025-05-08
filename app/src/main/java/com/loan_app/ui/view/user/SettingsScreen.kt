@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -81,9 +82,10 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
         if(viewModel.msisdns.isEmpty()){
             Column(
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp)
             ) {
-                Text("No MSISDNs yet. Click the + button to add.", color = Color.Gray)
+                Text("No MoMo Account yet. Click the + button to add.", color = Color.Gray, textAlign = TextAlign.Center)
             }
         }else{
             Column(modifier = Modifier
