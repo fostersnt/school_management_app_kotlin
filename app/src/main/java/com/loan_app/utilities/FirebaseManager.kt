@@ -11,6 +11,7 @@ object FirebaseTokenManager {
                 if (task.isSuccessful) {
                     val token = task.result
                     Log.i("FCM", "Token: $token")
+                    //SEND THE DEVICE TOKEN TO YOUR BACK-END AND STORE IT FOR IDENTIFICATION
 //                    onTokenReceived(token)
                 } else {
                     Log.i("FCM", "Fetching FCM token failed", task.exception)

@@ -34,6 +34,17 @@ val Typography = Typography(
 //        color = Color.White,
 //        textAlign = TextAlign.Center
     ),
+    bodySmall = TextStyle(
+//        fontFamily = FontFamily.Default,
+        fontFamily = customFontFamily(),
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+//        lineHeight = 24.sp,
+//        letterSpacing = 0.5.sp,
+//        color = Color.Red,
+//        color = Color.White,
+//        textAlign = TextAlign.Center
+    ),
     // Other default text styles to override
     headlineLarge = TextStyle(
         fontFamily = customFontFamily(),

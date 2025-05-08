@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 import com.loan_app.ui.viewmodel.LoanHistoryItem
 import com.loan_app.ui.viewmodel.LoanHistoryViewModel
@@ -27,6 +28,15 @@ import com.loan_app.ui.viewmodel.LoanStatus
 @Composable
 fun LoanHistoryScreen(navController: NavController, viewModel: LoanHistoryViewModel = viewModel()) {
     val loans by viewModel.loanHistory.collectAsState()
+
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -83,19 +93,19 @@ fun LoanHistoryCard(loan: LoanHistoryItem) {
         elevation = CardDefaults.cardElevation(4.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(11.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Loan ID: ${loan.id}", fontWeight = FontWeight.Bold)
+                Text("Loan ID: ${loan.id}", fontWeight = FontWeight.Bold, color = Color(AppColors.TEXT_COLOR_TEA_BLUE))
                 StatusChip(loan.status)
             }
             Spacer(modifier = Modifier.height(8.dp))
-            Text("Amount: ${loan.amount}")
-            Text("Term: ${loan.term}")
-            Text("Request Date: ${loan.requestDate}")
-            Text("Completed Date: ${loan.completedDate}")
+            Text("Amount: ${loan.amount}", style = MaterialTheme.typography.bodySmall)
+            Text("Term: ${loan.term}", style = MaterialTheme.typography.bodySmall)
+            Text("Request Date: ${loan.requestDate}", style = MaterialTheme.typography.bodySmall)
+            Text("Completed Date: ${loan.completedDate}", style = MaterialTheme.typography.bodySmall)
         }
     }
 }

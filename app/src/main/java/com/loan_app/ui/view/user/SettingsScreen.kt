@@ -16,10 +16,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 import com.loan_app.ui.viewmodel.SettingsViewModel
 
@@ -29,29 +31,49 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
     var showDialog by remember { mutableStateOf(false) }
     var newMsisdn by remember { mutableStateOf(TextFieldValue("")) }
 
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
+        )
+    }
+
     Scaffold(
-//        topBar = {
-//            TopAppBar(
-//                title = { Text("Momo Accounts") },
-//                colors = TopAppBarDefaults.topAppBarColors(
-//                    containerColor = MaterialTheme.colorScheme.primary,
-//                    titleContentColor = Color.White
-//                ),
-//                navigationIcon = {
-//                    IconButton(onClick = { navController.popBackStack() }) {
-//                        Icon(
-//                            imageVector = Icons.Default.ArrowBack,
-//                            contentDescription = "Back",
-//                            tint = Color(
-//                                AppColors.WHITE_COLOR
-//                            )
-//                        )
-//                    }
-//                }
-//            )
-//        },
+        topBar = {
+            TopAppBar(
+                title = { Text("Momo Accounts") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = Color.White
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color(
+                                AppColors.WHITE_COLOR
+                            )
+                        )
+                    }
+                }
+            )
+        },
         floatingActionButton = {
-            FloatingActionButton(onClick = { showDialog = true }) {
+            FloatingActionButton(
+                onClick = { showDialog = true },
+                shape = RoundedCornerShape(30.dp),
+                containerColor = Color(
+                    AppColors.BACKGROUND_COLOR
+                ),
+                contentColor = Color(AppColors.WHITE_COLOR),
+                elevation = FloatingActionButtonDefaults.elevation(
+                    defaultElevation = 10.dp,
+                    pressedElevation = 10.dp
+                )
+            ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
         }
