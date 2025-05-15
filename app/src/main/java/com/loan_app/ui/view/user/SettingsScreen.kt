@@ -44,7 +44,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Momo Accounts") },
+                title = { Text("Settings", style = MaterialTheme.typography.titleLarge) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White

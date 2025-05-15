@@ -49,7 +49,7 @@ fun ProfileScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Momo Accounts") },
+                title = { Text("Student Profile", style = MaterialTheme.typography.titleLarge) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White
@@ -72,20 +72,20 @@ fun ProfileScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
                 .padding(paddingValue)
+                .verticalScroll(rememberScrollState())
         ) {
             Column(
                 modifier = Modifier
-                    .heightIn(min = screenHeight * 2 / 3)
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
+//                    .heightIn(min = screenHeight * 2 / 3)
+                    .fillMaxSize()
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
-                        .background(Color(0xFF388E3C))
+//                        .background(Color(0xFF388E3C))
                         .padding(24.dp),
                     contentAlignment = Alignment.Center
                 ) {
@@ -93,23 +93,23 @@ fun ProfileScreen(navController: NavController) {
                         Icon(
                             imageVector = Icons.Default.Person,
                             contentDescription = null,
-                            tint = Color.White,
+//                            tint = Color.White,
                             modifier = Modifier.size(64.dp)
                         )
                         Text(
                             text = "Ama Mensah",
-                            color = Color.White,
+//                            color = Color.White,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = "Student ID: JHS1-2025-0013",
-                            color = Color.White.copy(alpha = 0.8f),
+//                            color = Color.White.copy(alpha = 0.8f),
                             fontSize = 14.sp
                         )
                         Text(
                             text = "Class: JHS 1 - Green",
-                            color = Color.White.copy(alpha = 0.8f),
+//                            color = Color.White.copy(alpha = 0.8f),
                             fontSize = 14.sp
                         )
                     }
@@ -129,16 +129,13 @@ fun ProfileScreen(navController: NavController) {
                 Button(
                     onClick = {  },
                     modifier = Modifier.fillMaxWidth()
-                        .height(50.dp),
+                        .height(80.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(AppColors.BACKGROUND_COLOR),
-                        contentColor = Color(
-                            AppColors.WHITE_COLOR
-                        )
+                        backgroundColor = Color(AppColors.BACKGROUND_COLOR)
                     )
                 ) {
-                    Text("Edit Profile")
+                    Text("Edit Profile", color = Color(AppColors.WHITE_COLOR))
                 }
             }
         }

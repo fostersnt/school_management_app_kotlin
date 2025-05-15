@@ -64,6 +64,15 @@ val Typography = Typography(
 //        color = Color.White,
         textAlign = TextAlign.Center,
     ),
+    titleLarge = TextStyle(
+        fontFamily = customFontFamily(),
+        fontWeight = FontWeight.Normal,
+        fontSize = 25.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+//        color = Color.White,
+        textAlign = TextAlign.Center,
+    ),
     //This is for button text
     labelLarge = TextStyle(
         fontFamily = customFontFamily(),
