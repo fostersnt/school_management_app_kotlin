@@ -49,7 +49,7 @@ fun ProfileScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Student Profile", style = MaterialTheme.typography.titleLarge) },
+                title = { Text("Profile", style = MaterialTheme.typography.titleLarge) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White

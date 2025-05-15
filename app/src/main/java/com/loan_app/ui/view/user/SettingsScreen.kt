@@ -62,22 +62,22 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                 }
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { showDialog = true },
-                shape = RoundedCornerShape(30.dp),
-                containerColor = Color(
-                    AppColors.BACKGROUND_COLOR
-                ),
-                contentColor = Color(AppColors.WHITE_COLOR),
-                elevation = FloatingActionButtonDefaults.elevation(
-                    defaultElevation = 10.dp,
-                    pressedElevation = 10.dp
-                )
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(
+//                onClick = { showDialog = true },
+//                shape = RoundedCornerShape(30.dp),
+//                containerColor = Color(
+//                    AppColors.BACKGROUND_COLOR
+//                ),
+//                contentColor = Color(AppColors.WHITE_COLOR),
+//                elevation = FloatingActionButtonDefaults.elevation(
+//                    defaultElevation = 10.dp,
+//                    pressedElevation = 10.dp
+//                )
+//            ) {
+//                Icon(Icons.Default.Add, contentDescription = "Add")
+//            }
+//        }
     ) { padding ->
         if(viewModel.msisdns.isEmpty()){
             Column(
@@ -85,7 +85,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp)
             ) {
-                Text("No MoMo Account yet. Click the + button to add.", color = Color.Gray, textAlign = TextAlign.Center)
+                Text("-------", color = Color.Gray, textAlign = TextAlign.Center)
             }
         }else{
             Column(modifier = Modifier
