@@ -94,10 +94,10 @@ import com.loan_app.utilities.customFontFamily
 
 fun HomeScreen(navController: NavController) {
     val menuItems = listOf(
-        MenuItem("Students", Icons.Default.Person, "25"),
-        MenuItem("Attendance", Icons.Default.Check),
-        MenuItem("Homework", Icons.Default.Edit),
-        MenuItem("Exams", Icons.Default.Warning)
+        MenuItem("Students", Icons.Default.Person, "25", AppRoutes.ATTENDANCE_SCREEN),
+        MenuItem("Attendance", Icons.Default.Check, "", ""),
+        MenuItem("Homework", Icons.Default.Edit, "", ""),
+        MenuItem("Exams", Icons.Default.Warning, "", "")
     )
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
@@ -153,7 +153,7 @@ fun MenuCard(item: MenuItem, navController: NavController) {
             .clip(RoundedCornerShape(16.dp))
             .background(Color(AppColors.BACKGROUND_COLOR))
             .padding(horizontal = 16.dp)
-            .clickable(enabled = true, onClick = {navController.navigate(AppRoutes.TEST_SCREEN)}),
+            .clickable(enabled = true, onClick = {navController.navigate(item.targetRoute)}),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -186,6 +186,7 @@ fun MenuCard(item: MenuItem, navController: NavController) {
 data class MenuItem(
     val title: String,
     val icon: ImageVector,
-    val count: String? = null
+    val count: String? = null,
+    val targetRoute: String
 )
 

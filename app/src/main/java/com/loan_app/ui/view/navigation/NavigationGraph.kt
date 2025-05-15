@@ -13,6 +13,7 @@ import com.loan_app.ui.view.user.LoginScreen
 import com.loan_app.ui.view.home.HomeScreen
 import com.loan_app.ui.view.loan.LoanHistoryScreen
 import com.loan_app.ui.view.loan.LoanRequestScreen
+import com.loan_app.ui.view.student.AttendanceScreen
 import com.loan_app.ui.view.user.ProfileScreen
 import com.loan_app.ui.view.user.SettingsScreen
 import com.loan_app.ui.view.user.TestScreen
@@ -49,6 +50,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         }
         composable(route = AppRoutes.LOAN_HISTORY_SCREEN) {
             LoanHistoryScreen(navController)
+        }
+        composable(route = AppRoutes.ATTENDANCE_SCREEN) {
+            AttendanceScreen(navController)
         }
     }
 }

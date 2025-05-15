@@ -9,4 +9,5 @@ object AppRoutes {
     const val LOAN_REQUEST_SCREEN = "loan_request"
     const val TEST_SCREEN = "test_screen"
     const val BOTTOM_NAVIGATION_SCREEN = "bottom_navigation_screen"
+    const val ATTENDANCE_SCREEN = "attendance_screen"
 }
