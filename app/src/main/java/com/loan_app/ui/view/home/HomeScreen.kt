@@ -68,36 +68,13 @@ import com.loan_app.utilities.customFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-//fun HomeScreen(navController: NavController) {
-//    val menuItems = listOf(
-//        MenuItem("Students", Icons.Default.Person, "25"),
-//        MenuItem("Attendance", Icons.Default.Check),
-//        MenuItem("Homework", Icons.Default.Edit),
-//        MenuItem("Exams", Icons.Default.Warning)
-//    )
-//
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(Color(0xFFF5F5F5)) // Light background
-//            .padding(16.dp)
-//    ) {
-//        TopAppBarSection()
-//        Spacer(modifier = Modifier.height(24.dp))
-//
-//        menuItems.forEach { item ->
-//            MenuCard(item = item)
-//            Spacer(modifier = Modifier.height(12.dp))
-//        }
-//    }
-//}
 
 fun HomeScreen(navController: NavController) {
     val menuItems = listOf(
         MenuItem("Students", Icons.Default.Person, "25", AppRoutes.ATTENDANCE_SCREEN),
-        MenuItem("Attendance", Icons.Default.Check, "", ""),
-        MenuItem("Homework", Icons.Default.Edit, "", ""),
-        MenuItem("Exams", Icons.Default.Warning, "", "")
+        MenuItem("Attendance", Icons.Default.Check, "", AppRoutes.ATTENDANCE_SCREEN),
+        MenuItem("Homework", Icons.Default.Edit, "", AppRoutes.ATTENDANCE_SCREEN),
+        MenuItem("Exams", Icons.Default.Warning, "", AppRoutes.ATTENDANCE_SCREEN)
     )
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
