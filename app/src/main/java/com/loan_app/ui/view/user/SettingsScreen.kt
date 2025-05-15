@@ -25,6 +25,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 import com.loan_app.ui.viewmodel.SettingsViewModel
+import com.loan_app.utilities.customFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,7 +86,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp)
             ) {
-                Text("-------", color = Color.Gray, textAlign = TextAlign.Center)
+                Text("Development in progress...", color = Color.Gray, textAlign = TextAlign.Center, fontFamily = customFontFamily())
             }
         }else{
             Column(modifier = Modifier
