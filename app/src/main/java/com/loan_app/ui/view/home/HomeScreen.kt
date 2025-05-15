@@ -21,7 +21,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
@@ -31,10 +33,13 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -58,6 +63,7 @@ import com.loan_app.data.model.AppRoutes
 import com.loan_app.ui.view.navigation.BottomNavigationBar
 import com.loan_app.utilities.customFontFamily
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 //fun HomeScreen(navController: NavController) {
 //    val menuItems = listOf(
@@ -93,26 +99,49 @@ fun HomeScreen(navController: NavController) {
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
-            .padding(16.dp)
-    ) {
-        TopAppBarSection()
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Occupy at least 2/3 of the screen height
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Momo Accounts") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = Color.White
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color(
+                                AppColors.WHITE_COLOR
+                            )
+                        )
+                    }
+                }
+            )
+        }
+    ) { paddingValue ->
         Column(
             modifier = Modifier
-                .heightIn(min = screenHeight * 2 / 3)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
+                .background(Color(0xFFF5F5F5))
+                .padding(paddingValue)
         ) {
-            menuItems.forEach { item ->
-                MenuCard(item = item)
-                Spacer(modifier = Modifier.height(12.dp))
+//            TopAppBarSection()
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Occupy at least 2/3 of the screen height
+            Column(
+                modifier = Modifier
+                    .heightIn(min = screenHeight * 2 / 3)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+            ) {
+                menuItems.forEach { item ->
+                    MenuCard(item = item)
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
             }
         }
     }
@@ -143,22 +172,27 @@ fun MenuCard(item: MenuItem) {
             .fillMaxWidth()
             .height(60.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFF388E3C))
+            .background(Color(AppColors.BACKGROUND_COLOR))
             .padding(horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            imageVector = item.icon,
-            contentDescription = null,
-            tint = Color.White
-        )
-        Spacer(modifier = Modifier.width(12.dp))
-        Text(
-            text = item.title,
-            color = Color.White,
-            fontSize = 18.sp,
-            modifier = Modifier.weight(1f)
-        )
+        Row(
+            modifier = Modifier.fillMaxSize(0.4f)
+        ) {
+            Icon(
+                imageVector = item.icon,
+                contentDescription = null,
+                tint = Color.White
+            )
+//            Spacer(modifier = Modifier.width(12.dp))
+            Text(
+                text = item.title,
+                color = Color.White,
+                fontSize = 18.sp,
+                modifier = Modifier.weight(1f)
+            )
+        }
         item.count?.let {
             Text(
                 text = it,
