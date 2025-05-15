@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -58,6 +59,30 @@ import com.loan_app.ui.view.navigation.BottomNavigationBar
 import com.loan_app.utilities.customFontFamily
 
 @Composable
+//fun HomeScreen(navController: NavController) {
+//    val menuItems = listOf(
+//        MenuItem("Students", Icons.Default.Person, "25"),
+//        MenuItem("Attendance", Icons.Default.Check),
+//        MenuItem("Homework", Icons.Default.Edit),
+//        MenuItem("Exams", Icons.Default.Warning)
+//    )
+//
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .background(Color(0xFFF5F5F5)) // Light background
+//            .padding(16.dp)
+//    ) {
+//        TopAppBarSection()
+//        Spacer(modifier = Modifier.height(24.dp))
+//
+//        menuItems.forEach { item ->
+//            MenuCard(item = item)
+//            Spacer(modifier = Modifier.height(12.dp))
+//        }
+//    }
+//}
+
 fun HomeScreen(navController: NavController) {
     val menuItems = listOf(
         MenuItem("Students", Icons.Default.Person, "25"),
@@ -66,28 +91,41 @@ fun HomeScreen(navController: NavController) {
         MenuItem("Exams", Icons.Default.Warning)
     )
 
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5)) // Light background
+            .background(Color(0xFFF5F5F5))
             .padding(16.dp)
     ) {
         TopAppBarSection()
-        Spacer(modifier = Modifier.height(24.dp))
 
-        menuItems.forEach { item ->
-            MenuCard(item = item)
-            Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Occupy at least 2/3 of the screen height
+        Column(
+            modifier = Modifier
+                .heightIn(min = screenHeight * 2 / 3)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
+            menuItems.forEach { item ->
+                MenuCard(item = item)
+                Spacer(modifier = Modifier.height(12.dp))
+            }
         }
     }
 }
+
 
 @Composable
 fun TopAppBarSection() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF2E7D32), shape = RoundedCornerShape(16.dp))
+            .background(Color(AppColors.BACKGROUND_COLOR), shape = RoundedCornerShape(16.dp))
+//            .background(Color(0xFF2E7D32), shape = RoundedCornerShape(16.dp))
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
