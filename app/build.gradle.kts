@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.loan_app"
+    namespace = "com.school_management_app"
     compileSdk = 35
 
     defaultConfig {

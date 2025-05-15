@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Loan_App"
+rootProject.name = "School_Management_App"
 include(":app")
 include(":libfacesdk")
 project(":libfacesdk").projectDir = File(rootProject.projectDir, "libfacesdk")
