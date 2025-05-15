@@ -112,4 +112,10 @@ dependencies {
     implementation(platform(libs.firebase.bom)) // ✅ Import the BoM
     implementation(libs.firebase.messaging)     // ✅ Messaging
 //    implementation(libs.firebase.analytics)
+    implementation (project(":libfacesdk"))
+
+//    implementation("androidx.camera:camera-camera2:1.1.0")
+//    implementation("androidx.camera:camera-lifecycle:1.1.0")
+//    implementation()
+
 }

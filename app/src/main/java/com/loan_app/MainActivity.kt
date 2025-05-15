@@ -18,6 +18,9 @@ import android.Manifest
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.ocp.facesdk.FaceBox
+import com.ocp.facesdk.FaceDetectionParam
+import com.ocp.facesdk.FaceSDK
 
 //import com.loan_app.utilities.FirebaseTokenManager
 
@@ -59,7 +62,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         FirebaseApp.initializeApp(this)
-//
+
         askNotificationPermission()
 
         FirebaseTokenManager.getDeviceToken()

@@ -26,6 +26,8 @@ asyncImageVersion = "2.2.2"
 firebase-bom = "32.7.2"
 firebase-plugin = "4.4.2"
 #firebase-plugin = "4.3.15"
+cameraView = "1.2.3"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -87,6 +89,8 @@ async-image = {module = "io.coil-kt:coil-compose", name = "async-image", version
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+androidx-camera-view = {module = "androidx.camera:camera-view", name = "androidx-camera-view", version.ref = "cameraView"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

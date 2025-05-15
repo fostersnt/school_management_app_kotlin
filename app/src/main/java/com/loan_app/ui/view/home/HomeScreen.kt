@@ -3,6 +3,7 @@ package com.loan_app.ui.view.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +13,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -31,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -50,131 +54,130 @@ private val cardImages = listOf(
 )
 
 @Composable
-//fun HomeScreen(navController: NavHostController){
-//    Button(
-//        onClick = {navController.navigate(AppRoutes.LOAN_REQUEST_SCREEN)}
-//    ) {
-//        Text(text = "NEXT")
-//    }
-//}
-
-fun HomeScreen(navController: NavController){
-
-    val scrollState = rememberScrollState();
+fun HomeScreen(navController: NavController) {
     val myCustomFontFamily = customFontFamily()
 
-    Column(
+    Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp)
-            .statusBarsPadding()
-            .verticalScroll(state = scrollState)
+            .background(Color.White),
+//        bottomBar = { BottomNavigationBar(navController, "") }
+    ) { paddingValues ->
+        LazyColumn(
+            contentPadding = paddingValues,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            item {
+                Text(
+                    text = "Hi Foster 👋",
+                    style = TextStyle(
+                        fontFamily = myCustomFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 26.sp
+                    ),
+                    modifier = Modifier.padding(vertical = 16.dp)
+                )
+            }
+
+            item {
+                InfoCard(
+                    title = "Loan Balance",
+                    value = "GHs 5,000.00",
+                    valueColor = Color(AppColors.BACKGROUND_COLOR),
+                    myCustomFontFamily
+                )
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    text = "Quick Actions",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    QuickActionCard(navController, "Apply", AppRoutes.LOAN_REQUEST_SCREEN, cardImages[0])
+                    QuickActionCard(navController, "History", AppRoutes.LOAN_HISTORY_SCREEN, cardImages[1])
+                    QuickActionCard(navController, "Account", AppRoutes.TEST_SCREEN, cardImages[2])
+                }
+            }
+
+//            item {
+//                Spacer(modifier = Modifier.height(20.dp))
+//                InfoCard(
+//                    title = "Wallet Balance",
+//                    value = "GHs 5,000.00",
+//                    valueColor = Color.Black,
+//                    myCustomFontFamily
+//                )
+//            }
+        }
+    }
+}
+
+@Composable
+fun InfoCard(
+    title: String,
+    value: String,
+    valueColor: Color,
+    fontFamily: FontFamily
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(AppColors.WHITE_COLOR)) // light gray background
+//        colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5)) // light gray background
     ) {
         Row(
             modifier = Modifier
-                .align(Alignment.Start)
-                .padding(bottom = 10.dp),
+                .fillMaxSize()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Hi Foster",
-                style = TextStyle(
-                    fontFamily = myCustomFontFamily,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 30.sp,
-                )
-            )
-        }
-        //FIRST CARD
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .align(
-                    alignment = Alignment.Start
-                ),
-            shape = RoundedCornerShape(20.dp),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 10.dp,
-                pressedElevation = 10.dp
-            )
-        ){
-            Column(
+            // Decorative Icon or Badge
+            Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .size(50.dp)
+                    .background(
+                        color = Color(0xFFE0F7FA),
+                        shape = RoundedCornerShape(12.dp)
+                    ),
+                contentAlignment = Alignment.Center
             ) {
-                Text(
-                    "Loan Balance",
-                    fontFamily = myCustomFontFamily,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 20.sp,
-                    color = Color.Black
+                Image(
+                    painter = painterResource(id = R.drawable.splash_icon), // Replace with your icon
+                    contentDescription = null,
+                    modifier = Modifier.size(30.dp)
                 )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    "GHs 5,000.00",
-                    style = TextStyle(
-                        fontFamily = myCustomFontFamily,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
-                        color = Color(AppColors.BACKGROUND_COLOR)
-                    )
-                )
-            }
-        }
-        //SECOND GROUP OF CARDS
-        Spacer(modifier = Modifier.height(10.dp))
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            ) {
-                CustomCard(navController, "Apply Loan", AppRoutes.LOAN_REQUEST_SCREEN, cardImages[0])
-                CustomCard(navController, "Loan History", AppRoutes.LOAN_HISTORY_SCREEN, cardImages[1])
-                CustomCard(navController, "My Account", AppRoutes.TEST_SCREEN, cardImages[2])
             }
 
-        Spacer(modifier = Modifier.height(20.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .align(
-                    alignment = Alignment.Start
-                ),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 5.dp,
-                pressedElevation = 8.dp
-            )
-        ){
-            //ANNOUNCEMENT CARD
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-                    .background(Color.White),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Column(
+                verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    "Wallet Balance",
-                    fontFamily = myCustomFontFamily,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 20.sp,
-                    color = Color.Black
+                    text = title,
+                    fontFamily = fontFamily,
+                    fontSize = 14.sp,
+                    color = Color.Gray
                 )
-                Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    "GHs 5,000.00",
+                    text = value,
                     style = TextStyle(
-                        fontFamily = myCustomFontFamily,
+                        fontFamily = fontFamily,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 30.sp,
-                        color = Color.Black
+                        fontSize = 22.sp,
+                        color = valueColor
                     )
                 )
             }
@@ -182,46 +185,75 @@ fun HomeScreen(navController: NavController){
     }
 }
 
+
+//@Composable
+//fun InfoCard(title: String, value: String, valueColor: Color, fontFamily: FontFamily) {
+//    Card(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .height(180.dp),
+//        shape = RoundedCornerShape(20.dp),
+//        elevation = CardDefaults.cardElevation(8.dp)
+//    ) {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .background(Color.White)
+//                .padding(16.dp),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            Text(title, fontFamily = fontFamily, fontSize = 18.sp)
+//            Spacer(modifier = Modifier.height(10.dp))
+//            Text(
+//                value,
+//                style = TextStyle(
+//                    fontFamily = fontFamily,
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 28.sp,
+//                    color = valueColor
+//                )
+//            )
+//        }
+//    }
+//}
+
 @Composable
-fun CustomCard(
+fun QuickActionCard(
     navController: NavController,
     label: String,
-    myRoute: String,
-    imageIcon: Int
-){
-    val configuration = LocalConfiguration.current;
-    val screenWidth = configuration.screenWidthDp;
-    val miniCardWidth = ((screenWidth - (0.1 * screenWidth)) / 3) - 10;
-
+    route: String,
+    iconRes: Int
+) {
     Card(
         modifier = Modifier
-            .width(miniCardWidth.dp)
-            .fillMaxHeight(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp,
-            pressedElevation = 10.dp
-        ),
-        onClick = {
-            navController.navigate(route = myRoute)
-        }
-    ){
+            .width(100.dp)
+            .height(130.dp)
+            .background(Color(AppColors.WHITE_COLOR)),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(6.dp),
+        onClick = { navController.navigate(route) }
+    ) {
         Column(
             modifier = Modifier
                 .background(Color.White)
-                .fillMaxHeight()
-                .fillMaxWidth(),
+                .padding(8.dp)
+                .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = imageIcon),
-                contentDescription = "",
-                Modifier.aspectRatio(1f)
+                painter = painterResource(id = iconRes),
+                contentDescription = null,
+                modifier = Modifier
+                    .height(50.dp)
+                    .aspectRatio(1f)
             )
             Text(
                 text = label,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.Black, textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.Black
             )
         }
     }

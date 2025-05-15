@@ -1,5 +1,6 @@
 package com.loan_app.ui.view.user
 
+import android.content.res.AssetManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.loan_app.ui.viewmodel.LoginViewModel
+import com.ocp.facesdk.FaceSDK
 
 //@Preview(showBackground = true)
 @Composable
