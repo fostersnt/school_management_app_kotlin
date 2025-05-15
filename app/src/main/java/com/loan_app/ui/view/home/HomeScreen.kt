@@ -58,7 +58,7 @@ import com.loan_app.ui.view.navigation.BottomNavigationBar
 import com.loan_app.utilities.customFontFamily
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val menuItems = listOf(
         MenuItem("Students", Icons.Default.Person, "25"),
         MenuItem("Attendance", Icons.Default.Check),
