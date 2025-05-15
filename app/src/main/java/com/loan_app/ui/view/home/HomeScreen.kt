@@ -41,6 +41,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,6 +58,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.R
 import com.loan_app.data.model.AppColors
 import com.loan_app.data.model.AppRoutes
@@ -99,25 +101,34 @@ fun HomeScreen(navController: NavController) {
 
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
 
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Momo Accounts") },
+                title = { Text("Dashboard") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White
                 ),
-                navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back",
-                            tint = Color(
-                                AppColors.WHITE_COLOR
-                            )
-                        )
-                    }
-                }
+//                navigationIcon = {
+//                    IconButton(onClick = { navController.popBackStack() }) {
+//                        Icon(
+//                            imageVector = Icons.Default.ArrowBack,
+//                            contentDescription = "Back",
+//                            tint = Color(
+//                                AppColors.WHITE_COLOR
+//                            )
+//                        )
+//                    }
+//                }
             )
         }
     ) { paddingValue ->
@@ -125,11 +136,11 @@ fun HomeScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(paddingValue)
+                .padding(20.dp).padding(paddingValue)
         ) {
 //            TopAppBarSection()
 
-            Spacer(modifier = Modifier.height(16.dp))
+//            Spacer(modifier = Modifier.height(16.dp))
 
             // Occupy at least 2/3 of the screen height
             Column(
@@ -170,7 +181,7 @@ fun MenuCard(item: MenuItem) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(100.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(Color(AppColors.BACKGROUND_COLOR))
             .padding(horizontal = 16.dp),
