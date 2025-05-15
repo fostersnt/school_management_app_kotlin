@@ -20,9 +20,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -30,7 +38,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -47,214 +57,84 @@ import com.loan_app.data.model.AppRoutes
 import com.loan_app.ui.view.navigation.BottomNavigationBar
 import com.loan_app.utilities.customFontFamily
 
-private val cardImages = listOf(
-    R.drawable.card_1_image,
-    R.drawable.card_2_image,
-    R.drawable.card_3_image
-)
-
 @Composable
-fun HomeScreen(navController: NavController) {
-    val myCustomFontFamily = customFontFamily()
+fun HomeScreen() {
+    val menuItems = listOf(
+        MenuItem("Students", Icons.Default.Person, "25"),
+        MenuItem("Attendance", Icons.Default.Check),
+        MenuItem("Homework", Icons.Default.Edit),
+        MenuItem("Exams", Icons.Default.Warning)
+    )
 
-    Scaffold(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
-//        bottomBar = { BottomNavigationBar(navController, "") }
-    ) { paddingValues ->
-        LazyColumn(
-            contentPadding = paddingValues,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            item {
-                Text(
-                    text = "Hi Foster 👋",
-                    style = TextStyle(
-                        fontFamily = myCustomFontFamily,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 26.sp
-                    ),
-                    modifier = Modifier.padding(vertical = 16.dp)
-                )
-            }
+            .background(Color(0xFFF5F5F5)) // Light background
+            .padding(16.dp)
+    ) {
+        TopAppBarSection()
+        Spacer(modifier = Modifier.height(24.dp))
 
-            item {
-                InfoCard(
-                    title = "Loan Balance",
-                    value = "GHs 5,000.00",
-                    valueColor = Color(AppColors.BACKGROUND_COLOR),
-                    myCustomFontFamily
-                )
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "Quick Actions",
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    QuickActionCard(navController, "Apply", AppRoutes.LOAN_REQUEST_SCREEN, cardImages[0])
-                    QuickActionCard(navController, "History", AppRoutes.LOAN_HISTORY_SCREEN, cardImages[1])
-                    QuickActionCard(navController, "Account", AppRoutes.TEST_SCREEN, cardImages[2])
-                }
-            }
-
-//            item {
-//                Spacer(modifier = Modifier.height(20.dp))
-//                InfoCard(
-//                    title = "Wallet Balance",
-//                    value = "GHs 5,000.00",
-//                    valueColor = Color.Black,
-//                    myCustomFontFamily
-//                )
-//            }
+        menuItems.forEach { item ->
+            MenuCard(item = item)
+            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
 
 @Composable
-fun InfoCard(
-    title: String,
-    value: String,
-    valueColor: Color,
-    fontFamily: FontFamily
-) {
-    Card(
+fun TopAppBarSection() {
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp),
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(AppColors.WHITE_COLOR)) // light gray background
-//        colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5)) // light gray background
+            .background(Color(0xFF2E7D32), shape = RoundedCornerShape(16.dp))
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Decorative Icon or Badge
-            Box(
-                modifier = Modifier
-                    .size(50.dp)
-                    .background(
-                        color = Color(0xFFE0F7FA),
-                        shape = RoundedCornerShape(12.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.splash_icon), // Replace with your icon
-                    contentDescription = null,
-                    modifier = Modifier.size(30.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Column(
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = title,
-                    fontFamily = fontFamily,
-                    fontSize = 14.sp,
-                    color = Color.Gray
-                )
-                Text(
-                    text = value,
-                    style = TextStyle(
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 22.sp,
-                        color = valueColor
-                    )
-                )
-            }
-        }
+        Icon(imageVector = Icons.Default.Person, contentDescription = null, tint = Color.White)
+        Text(text = "Dashboard", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Icon(imageVector = Icons.Default.Notifications, contentDescription = null, tint = Color.White)
     }
 }
-
-
-//@Composable
-//fun InfoCard(title: String, value: String, valueColor: Color, fontFamily: FontFamily) {
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(180.dp),
-//        shape = RoundedCornerShape(20.dp),
-//        elevation = CardDefaults.cardElevation(8.dp)
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .background(Color.White)
-//                .padding(16.dp),
-//            verticalArrangement = Arrangement.Center,
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ) {
-//            Text(title, fontFamily = fontFamily, fontSize = 18.sp)
-//            Spacer(modifier = Modifier.height(10.dp))
-//            Text(
-//                value,
-//                style = TextStyle(
-//                    fontFamily = fontFamily,
-//                    fontWeight = FontWeight.Bold,
-//                    fontSize = 28.sp,
-//                    color = valueColor
-//                )
-//            )
-//        }
-//    }
-//}
 
 @Composable
-fun QuickActionCard(
-    navController: NavController,
-    label: String,
-    route: String,
-    iconRes: Int
-) {
-    Card(
+fun MenuCard(item: MenuItem) {
+    Row(
         modifier = Modifier
-            .width(100.dp)
-            .height(130.dp)
-            .background(Color(AppColors.WHITE_COLOR)),
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(6.dp),
-        onClick = { navController.navigate(route) }
+            .fillMaxWidth()
+            .height(60.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(Color(0xFF388E3C))
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Column(
-            modifier = Modifier
-                .background(Color.White)
-                .padding(8.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(id = iconRes),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(50.dp)
-                    .aspectRatio(1f)
-            )
+        Icon(
+            imageVector = item.icon,
+            contentDescription = null,
+            tint = Color.White
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Text(
+            text = item.title,
+            color = Color.White,
+            fontSize = 18.sp,
+            modifier = Modifier.weight(1f)
+        )
+        item.count?.let {
             Text(
-                text = label,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color.Black
+                text = it,
+                color = Color.White,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
             )
         }
     }
 }
+
+data class MenuItem(
+    val title: String,
+    val icon: ImageVector,
+    val count: String? = null
+)
+
