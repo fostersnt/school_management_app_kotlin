@@ -2,6 +2,7 @@ package com.loan_app.ui.view.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -106,7 +107,6 @@ fun HomeScreen(navController: NavController) {
     SideEffect {
         systemUiController.setStatusBarColor(
             color = Color(AppColors.BACKGROUND_COLOR),
-            darkIcons = false // Set to true if background is light
         )
     }
 
@@ -117,18 +117,7 @@ fun HomeScreen(navController: NavController) {
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White
-                ),
-//                navigationIcon = {
-//                    IconButton(onClick = { navController.popBackStack() }) {
-//                        Icon(
-//                            imageVector = Icons.Default.ArrowBack,
-//                            contentDescription = "Back",
-//                            tint = Color(
-//                                AppColors.WHITE_COLOR
-//                            )
-//                        )
-//                    }
-//                }
+                )
             )
         }
     ) { paddingValue ->
@@ -138,11 +127,6 @@ fun HomeScreen(navController: NavController) {
                 .background(Color(0xFFF5F5F5))
                 .padding(20.dp).padding(paddingValue)
         ) {
-//            TopAppBarSection()
-
-//            Spacer(modifier = Modifier.height(16.dp))
-
-            // Occupy at least 2/3 of the screen height
             Column(
                 modifier = Modifier
                     .heightIn(min = screenHeight * 2 / 3)
@@ -150,7 +134,7 @@ fun HomeScreen(navController: NavController) {
                     .verticalScroll(rememberScrollState())
             ) {
                 menuItems.forEach { item ->
-                    MenuCard(item = item)
+                    MenuCard(item = item, navController = navController)
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
@@ -159,32 +143,17 @@ fun HomeScreen(navController: NavController) {
 }
 
 
-@Composable
-fun TopAppBarSection() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(AppColors.BACKGROUND_COLOR), shape = RoundedCornerShape(16.dp))
-//            .background(Color(0xFF2E7D32), shape = RoundedCornerShape(16.dp))
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Icon(imageVector = Icons.Default.Person, contentDescription = null, tint = Color.White)
-        Text(text = "Dashboard", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-        Icon(imageVector = Icons.Default.Notifications, contentDescription = null, tint = Color.White)
-    }
-}
 
 @Composable
-fun MenuCard(item: MenuItem) {
+fun MenuCard(item: MenuItem, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(Color(AppColors.BACKGROUND_COLOR))
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .clickable(enabled = true, onClick = {navController.navigate(AppRoutes.TEST_SCREEN)}),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -196,7 +165,6 @@ fun MenuCard(item: MenuItem) {
                 contentDescription = null,
                 tint = Color.White
             )
-//            Spacer(modifier = Modifier.width(12.dp))
             Text(
                 text = item.title,
                 color = Color.White,

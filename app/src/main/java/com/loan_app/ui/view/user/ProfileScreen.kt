@@ -1,130 +1,165 @@
 package com.loan_app.ui.view.user
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loan_app.data.model.AppColors
 
 //@Preview(showBackground = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(navController: NavController) {
-
-    val userName: String = "Foster"
-    val email: String = "fostersnt@gmail.com"
-    val bio: String = "I am a Man"
-    val profileImageUrl: String = "image_url.png"
-    fun onEditClick() = {  }
-    fun onLogoutClick() = {}
-
-    val systemUiController = rememberSystemUiController()
-
-    SideEffect {
-        systemUiController.setStatusBarColor(
-            color = Color(AppColors.BACKGROUND_COLOR),
-            darkIcons = false // Set to true if background is light
-        )
-    }
+    val screenHeight = LocalConfiguration.current.screenHeightDp.dp
 
     Scaffold(
         topBar = {
-            TopAppBar (
-                title = { Text("Profile") },
+            TopAppBar(
+                title = { Text("Momo Accounts") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = Color.White
+                ),
                 navigationIcon = {
-                    IconButton(onClick = {
-                        navController.popBackStack()
-                    }) {
-                        Icon(
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        androidx.compose.material3.Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = "Back",
+                            tint = Color(
+                                AppColors.WHITE_COLOR
+                            )
                         )
                     }
-                },
+                }
             )
         }
-    ) { innerPadding ->
+    ) {paddingValue ->
         Column(
             modifier = Modifier
-                .padding(innerPadding)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .background(Color(0xFFF5F5F5))
+                .padding(16.dp)
+                .padding(paddingValue)
         ) {
-            AsyncImage(
-                model = profileImageUrl,
-                contentDescription = "Profile Image",
-                contentScale = ContentScale.Crop,
+            Column(
                 modifier = Modifier
-                    .size(120.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(userName, style = MaterialTheme.typography.headlineSmall)
-            Text(email, style = MaterialTheme.typography.bodyMedium, color = Color.Gray)
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Text(
-                bio,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(horizontal = 16.dp),
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(
-                onClick = {onEditClick()},
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Edit Profile")
-            }
-
-            OutlinedButton(
-                onClick = {onLogoutClick()},
-                modifier = Modifier
+                    .heightIn(min = screenHeight * 2 / 3)
                     .fillMaxWidth()
-                    .padding(top = 8.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
-                Text("Logout")
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color(0xFF388E3C))
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(64.dp)
+                        )
+                        Text(
+                            text = "Ama Mensah",
+                            color = Color.White,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Student ID: JHS1-2025-0013",
+                            color = Color.White.copy(alpha = 0.8f),
+                            fontSize = 14.sp
+                        )
+                        Text(
+                            text = "Class: JHS 1 - Green",
+                            color = Color.White.copy(alpha = 0.8f),
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Info Cards
+                InfoCard("Phone Number", "+233 54 123 4567")
+                InfoCard("Date of Birth", "12th March 2012")
+                InfoCard("Guardian", "Mary Mensah")
+                InfoCard("Guardian Contact", "+233 24 987 6543")
+                InfoCard("Address", "Kwashieman, Accra")
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Button(
+                    onClick = {  },
+                    modifier = Modifier.fillMaxWidth()
+                        .height(50.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(AppColors.BACKGROUND_COLOR),
+                        contentColor = Color(
+                            AppColors.WHITE_COLOR
+                        )
+                    )
+                ) {
+                    Text("Edit Profile")
+                }
             }
+        }
+    }
+}
+
+
+@Composable
+fun InfoCard(label: String, value: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        shape = RoundedCornerShape(12.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = label, fontSize = 14.sp, color = Color.Gray)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = value, fontSize = 16.sp, fontWeight = FontWeight.Medium)
         }
     }
 }
