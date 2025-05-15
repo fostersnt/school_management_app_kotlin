@@ -103,8 +103,8 @@ fun AttendanceScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text("Present", fontWeight = FontWeight.Bold)
-                Text("Absent", fontWeight = FontWeight.Bold)
+                Text("Present", fontWeight = FontWeight.Bold, fontFamily = customFontFamily())
+                Text("Absent", fontWeight = FontWeight.Bold, fontFamily = customFontFamily())
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -147,7 +147,7 @@ fun StudentAttendanceRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(student.name, modifier = Modifier.weight(1f))
+        Text(student.name, modifier = Modifier.weight(1f), fontFamily = customFontFamily())
 
         Row {
             AttendanceOption(
