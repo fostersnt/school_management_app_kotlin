@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -22,6 +23,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,68 +33,70 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.loan_app.data.model.AppColors
+import com.loan_app.utilities.customFontFamily
 
 @Composable
 fun AttendanceScreen(navController: NavController) {
-    val students = remember {
-        mutableStateListOf(
-            StudentAttendance("Abigail Mensah"),
-            StudentAttendance("James Owusu"),
-            StudentAttendance("Lydia Boateng"),
-            StudentAttendance("Angela Addo"),
-            StudentAttendance("Grace Oteng"),
-            StudentAttendance("Benjamin Bekoe"),
-            StudentAttendance("Daniel Asante")
+    val students = listOf<StudentAttendance>(
+        StudentAttendance("Abigail Mensah"),
+        StudentAttendance("James Owusu"),
+        StudentAttendance("Lydia Boateng"),
+        StudentAttendance("Angela Addo"),
+        StudentAttendance("Grace Oteng"),
+        StudentAttendance("Benjamin Bekoe"),
+        StudentAttendance("Daniel Asante")
+    )
+
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = Color(AppColors.BACKGROUND_COLOR),
+            darkIcons = false // Set to true if background is light
         )
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
-            .padding(16.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text("Present", fontWeight = FontWeight.Bold)
-            Text("Absent", fontWeight = FontWeight.Bold)
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Student Attendance List
-        Card(
+    Scaffold() {paddingValue ->
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f), // fills 2/3 of the screen
-            shape = RoundedCornerShape(16.dp),
-            elevation = CardDefaults.cardElevation(4.dp)
+                .fillMaxSize()
+                .background(Color(0xFFF5F5F5))
+                .padding(16.dp)
+                .padding(paddingValue)
         ) {
-            LazyColumn (modifier = Modifier.padding(vertical = 8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Present", fontWeight = FontWeight.Bold)
+                Text("Absent", fontWeight = FontWeight.Bold)
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            LazyColumn (modifier = Modifier.padding(vertical = 8.dp).fillMaxSize()) {
                 items(students.size) { index ->
                     StudentAttendanceRow(
                         student = students[index],
-                        onStatusChange = { newStatus ->
-                            students[index] = students[index].copy(status = newStatus)
-                        }
+                        onStatusChange = {  }
                     )
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-        // Bottom Button
-        Button(
-            onClick = { /* handle add exam action */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Text("Add Exam", fontSize = 16.sp)
+            // Bottom Button
+            Button(
+                onClick = { /* handle add exam action */ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text("Add Exam", fontSize = 16.sp)
+            }
         }
     }
 }
@@ -144,7 +148,8 @@ fun AttendanceOption(text: String, selected: Boolean, onClick: () -> Unit) {
         Text(
             text = text,
             color = if (selected) Color(0xFF388E3C) else Color.Gray,
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            fontFamily = customFontFamily()
         )
     }
 }
